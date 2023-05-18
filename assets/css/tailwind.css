@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html,
+	body {
+		@apply bg-gray-50 dark:bg-stone-800 text-gray-800 dark:text-gray-200;
+	}
+
+	a {
+		@apply underline-offset-2;
+	}
+
+}
+
+@layer components {
+	::-webkit-scrollbar {
+		@apply bg-stone-100 dark:bg-stone-950 rounded-xl w-4;
+	}
+
+	::-webkit-scrollbar-thumb {
+		@apply bg-stone-200 dark:bg-stone-900 hover:dark:bg-stone-800 rounded-xl;
+	}
+}

@@ -1,0 +1,29 @@
+{
+	"private": true,
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare",
+		"format": "prettier --write --loglevel=warn \"{assets,components,content,layouts,pages,server}/**/*.{js,ts,json,vue,md}\" \"app.vue\" \"nuxt.config.ts\""
+	},
+	"dependencies": {
+		"canvas-constructor": "^7.0.0"
+	},
+	"devDependencies": {
+		"@nuxtjs/tailwindcss": "^6.4.1",
+		"@sapphire/prettier-config": "^1.4.5",
+		"@tailwindcss/forms": "^0.5.3",
+		"@tailwindcss/typography": "^0.5.9",
+		"@types/node": "^18.14.0",
+		"@types/prettier": "^2",
+		"@vite-pwa/nuxt": "^0.0.6",
+		"@vueuse/core": "^9.13.0",
+		"@vueuse/nuxt": "^9.13.0",
+		"nuxt": "^3.2.2",
+		"prettier": "^2.8.4"
+	},
+	"prettier": "@sapphire/prettier-config",
+	"packageManager": "yarn@3.5.1"
+}
