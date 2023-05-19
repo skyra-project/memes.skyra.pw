@@ -1696,7 +1696,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.5.0, @nuxt/kit@npm:^3.2.0, @nuxt/kit@npm:^3.3.3, @nuxt/kit@npm:^3.4.3":
+"@nuxt/kit@npm:3.5.0, @nuxt/kit@npm:^3.3.3, @nuxt/kit@npm:^3.4.3":
   version: 3.5.0
   resolution: "@nuxt/kit@npm:3.5.0"
   dependencies:
@@ -1836,7 +1836,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/tailwindcss@npm:^6.4.1":
+"@nuxtjs/tailwindcss@npm:^6.7.0":
   version: 6.7.0
   resolution: "@nuxtjs/tailwindcss@npm:6.7.0"
   dependencies:
@@ -2231,10 +2231,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/web-bluetooth@npm:^0.0.16":
-  version: 0.0.16
-  resolution: "@types/web-bluetooth@npm:0.0.16"
-  checksum: f68a630d062202a25c46d48686ebae1cf429dc70b4578fcf13b8357b2db63e4aedfb6f6d752bd388366be46ebd19c1c9de45f8a15c2631bb79e904fdfc454f94
+"@types/web-bluetooth@npm:^0.0.17":
+  version: 0.0.17
+  resolution: "@types/web-bluetooth@npm:0.0.17"
+  checksum: 8c72ba8cd1d7abd3fcab608e1d8eb828420df23f67d783f1282d4a747f995e91a0c861f92fa195e9423edb22bb34854452028f8a68148a593b35915635a4f4db
   languageName: node
   linkType: hard
 
@@ -2312,16 +2312,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-pwa/nuxt@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "@vite-pwa/nuxt@npm:0.0.6"
+"@vite-pwa/nuxt@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "@vite-pwa/nuxt@npm:0.0.8"
   dependencies:
-    "@nuxt/kit": ^3.2.0
-    vite-plugin-pwa: ^0.14.4
+    "@nuxt/kit": ^3.4.3
+    vite-plugin-pwa: ^0.14.7
   peerDependencies:
-    "@nuxt/kit": ^3.0.0 || ^3.1.0
+    "@nuxt/kit": ^3.0.0
     vite-plugin-pwa: ^0.14.0
-  checksum: 472c98ee4a2d3be0de1a719c5cf372158fbf86a0140605b4da2fec5ab59dace80247cda9e46839eaa9f52a9eb59d939ed7d7df28683c8d555c3c1ab741d1795a
+  checksum: 908289054c4ca30854425220a9e14c52fc658cbd9baa2cbef96f5985b58c87fd63d8ecbe5aaa33f6e6e9b6bb8dc897ce2d62c2c8d391efb0041284c98269a597
   languageName: node
   linkType: hard
 
@@ -2510,46 +2510,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:9.13.0, @vueuse/core@npm:^9.13.0":
-  version: 9.13.0
-  resolution: "@vueuse/core@npm:9.13.0"
+"@vueuse/core@npm:10.1.2, @vueuse/core@npm:^10.1.2":
+  version: 10.1.2
+  resolution: "@vueuse/core@npm:10.1.2"
   dependencies:
-    "@types/web-bluetooth": ^0.0.16
-    "@vueuse/metadata": 9.13.0
-    "@vueuse/shared": 9.13.0
-    vue-demi: "*"
-  checksum: 2b19d8ec4305f6c65650813c0fa9c15af6b322fc253ad656eb1c4bc8d7617a2ddd46a46d7ea359c4cdc5a5724aa5fc152fa7a3816ed6ebeaec4f7e58defb7153
+    "@types/web-bluetooth": ^0.0.17
+    "@vueuse/metadata": 10.1.2
+    "@vueuse/shared": 10.1.2
+    vue-demi: ">=0.14.0"
+  checksum: a18286495f4dc0783c3251455a1636d4913381204059e72e8d8ed02c63d4f911ebe2cbb1e9526fdca73640bb5b47bd6bd9b5842a501614f0aeab4bc721fc92a4
   languageName: node
   linkType: hard
 
-"@vueuse/metadata@npm:9.13.0":
-  version: 9.13.0
-  resolution: "@vueuse/metadata@npm:9.13.0"
-  checksum: 91e137bf2fb1406587b523edae26b58b315d3a59797c9f2ed5dde9cb707026aa740b86da5955ea7f9662a93ce92249d0b3af763c65449b4a843bbd0725eb67f6
+"@vueuse/metadata@npm:10.1.2":
+  version: 10.1.2
+  resolution: "@vueuse/metadata@npm:10.1.2"
+  checksum: b72470776ec6aeb88a21b4a60b6b365ad22559c965b7038ae8c68a6a2942631748f3beb4b715bdde3d8adb1dac06a5ebeb41255f24d60c8f28f19ac6fa3bc152
   languageName: node
   linkType: hard
 
-"@vueuse/nuxt@npm:^9.13.0":
-  version: 9.13.0
-  resolution: "@vueuse/nuxt@npm:9.13.0"
+"@vueuse/nuxt@npm:^10.1.2":
+  version: 10.1.2
+  resolution: "@vueuse/nuxt@npm:10.1.2"
   dependencies:
-    "@nuxt/kit": ^3.2.0
-    "@vueuse/core": 9.13.0
-    "@vueuse/metadata": 9.13.0
+    "@nuxt/kit": ^3.4.3
+    "@vueuse/core": 10.1.2
+    "@vueuse/metadata": 10.1.2
     local-pkg: ^0.4.3
-    vue-demi: "*"
+    nuxt: ^3.4.3
+    vue-demi: ">=0.14.0"
   peerDependencies:
     nuxt: ^3.0.0
-  checksum: ecea1c6015d0fd29adcd9bab08aec6d7cf9619d3c85cbfd9b6a09cd8a67bfd3223ab623b6f81a58dc63e117ee6156dc070c5311aa635f8e3c476db3d825d6abd
+  checksum: 1957429bd5d5d8d410ae4c4ebc04c02628b2834f0b9b0a4b9bfff98b51227e25016bad274e04e2b531c84daa8d562e24c4b408c39d79e981f50e7ec224a494bc
   languageName: node
   linkType: hard
 
-"@vueuse/shared@npm:9.13.0":
-  version: 9.13.0
-  resolution: "@vueuse/shared@npm:9.13.0"
+"@vueuse/shared@npm:10.1.2":
+  version: 10.1.2
+  resolution: "@vueuse/shared@npm:10.1.2"
   dependencies:
-    vue-demi: "*"
-  checksum: e53e7312bdd2030b7970afcf4d3dc3f9a47f7721a92ccb51c364d23246233cb54758f7ddacbdb9ac63d1e86ec82e97d06cb53b05a4b8d43be877d16ab61dd9bb
+    vue-demi: ">=0.14.0"
+  checksum: a134cc254bfef28ceca2c48c7532a4f1e2231dbb75304e43f896b41771f3d51b93897cc9a16bbd98c7aa6163fc44e001319bbf2478408382ef4d9788875301f2
   languageName: node
   linkType: hard
 
@@ -6698,7 +6699,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuxt@npm:^3.2.2":
+"nuxt@npm:^3.4.3, nuxt@npm:^3.5.0":
   version: 3.5.0
   resolution: "nuxt@npm:3.5.0"
   dependencies:
@@ -8080,17 +8081,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@nuxtjs/tailwindcss": ^6.4.1
+    "@nuxtjs/tailwindcss": ^6.7.0
     "@sapphire/prettier-config": ^1.4.5
     "@tailwindcss/forms": ^0.5.3
     "@tailwindcss/typography": ^0.5.9
     "@types/node": ^18.16.13
     "@types/prettier": ^2.7.2
-    "@vite-pwa/nuxt": ^0.0.6
-    "@vueuse/core": ^9.13.0
-    "@vueuse/nuxt": ^9.13.0
+    "@vite-pwa/nuxt": ^0.0.8
+    "@vueuse/core": ^10.1.2
+    "@vueuse/nuxt": ^10.1.2
     canvas-constructor: ^7.0.1
-    nuxt: ^3.2.2
+    nuxt: ^3.5.0
     prettier: ^2.8.8
     sitemap: ^7.1.1
   languageName: unknown
@@ -9336,7 +9337,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-pwa@npm:^0.14.4":
+"vite-plugin-pwa@npm:^0.14.7":
   version: 0.14.7
   resolution: "vite-plugin-pwa@npm:0.14.7"
   dependencies:
@@ -9461,7 +9462,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-demi@npm:*":
+"vue-demi@npm:>=0.14.0":
   version: 0.14.5
   resolution: "vue-demi@npm:0.14.5"
   peerDependencies:
