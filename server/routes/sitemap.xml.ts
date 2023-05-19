@@ -1,6 +1,6 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(() => {
 	// Fetch all documents
 	const sitemap = new SitemapStream({
 		hostname: 'https://memes.skyra.pw'
