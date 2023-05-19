@@ -94,7 +94,12 @@ export default defineNuxtConfig({
 		}
 	},
 	typescript: {
-		shim: false
+		shim: false,
+		tsConfig: {
+			compilerOptions: {
+				moduleResolution: 'bundler'
+			}
+		}
 	},
 	app: {
 		head: {
