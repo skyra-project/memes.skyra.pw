@@ -37,7 +37,7 @@
 			:width="width"
 			height="400"
 			ref="canvas"
-			class="border-8 rounded-xl border-gray-200 bg-gray-300 dark:border-stone-900 dark:bg-stone-900 shadow-xl"
+			class="border-8 rounded-xl border-gray-200 bg-gray-300 dark:border-stone-900 dark:bg-stone-900 shadow-xl w-full max-w-fit"
 			aria-label="Preview"
 			role="figure"
 		></canvas>
