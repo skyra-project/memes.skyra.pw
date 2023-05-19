@@ -2,12 +2,17 @@
 	<div>
 		<label class="block mb-5">
 			<span>Name</span>
-			<input type="text" v-model="name" class="range w-full" />
+			<input type="text" v-model.trim="name" class="range w-full" />
 		</label>
 
 		<label class="block mb-5">
 			<span>URL</span>
-			<input type="url" v-model="url" class="range w-full" />
+			<input type="url" v-model.trim="url" class="range w-full" />
+		</label>
+
+		<label class="flex mb-5 items-center gap-2">
+			<span>Use number input instead of sliders:</span>
+			<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
 		</label>
 	</div>
 
@@ -57,35 +62,35 @@
 					<span>
 						X<span class="status" role="status">: {{ box.x }}px</span>
 					</span>
-					<input type="range" min="0" :max="width" v-model="box.x" class="range w-full" />
+					<input :type="inputType" min="0" :max="width" v-model.number="box.x" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Y<span class="status" role="status">: {{ box.y }}px</span>
 					</span>
-					<input type="range" min="0" :max="height" v-model="box.y" class="range w-full" />
+					<input :type="inputType" min="0" :max="height" v-model.number="box.y" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Width<span class="status" role="status">: {{ box.width }}px</span>
 					</span>
-					<input type="range" min="20" :max="width" v-model="box.width" class="range w-full" />
+					<input :type="inputType" min="20" :max="width" v-model.number="box.width" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Height<span class="status" role="status">: {{ box.height }}px</span>
 					</span>
-					<input type="range" min="20" :max="height" v-model="box.height" class="range w-full" />
+					<input :type="inputType" min="20" :max="height" v-model.number="box.height" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Rotation<span class="status" role="status">: {{ box.rotation }}º</span>
 					</span>
-					<input type="range" min="-180" max="180" v-model="box.rotation" class="range w-full" />
+					<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="range w-full" />
 				</label>
 
 				<div class="flex">
@@ -122,26 +127,26 @@
 						<span>
 							X<span class="status" role="status">: {{ position.x }}px</span>
 						</span>
-						<input type="range" min="0" :max="width" v-model="position.x" class="range w-full" />
+						<input :type="inputType" min="0" :max="width" v-model.number="position.x" class="range w-full" />
 					</label>
 
 					<label>
 						<span>
 							Y<span class="status" role="status">: {{ position.y }}px</span>
 						</span>
-						<input type="range" min="0" :max="height" v-model="position.y" class="range w-full" />
+						<input :type="inputType" min="0" :max="height" v-model.number="position.y" class="range w-full" />
 					</label>
 
 					<label>
 						<span>
 							Size<span class="status" role="status">: {{ position.size }}px</span>
 						</span>
-						<input type="range" min="16" :max="height" v-model="position.size" class="range w-full" />
+						<input :type="inputType" min="16" :max="height" v-model.number="position.size" class="range w-full" />
 					</label>
 
 					<label>
 						<span>Style</span>
-						<select v-model="position.style" class="range w-full">
+						<select v-model="position.style" class="select w-full">
 							<option value="circle">Circle</option>
 							<option value="square">Square</option>
 						</select>
@@ -151,7 +156,7 @@
 						<span>
 							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
 						</span>
-						<input type="range" min="-180" max="180" v-model="position.rotation" class="range w-full" />
+						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="range w-full" />
 					</label>
 
 					<div class="flex">
@@ -176,6 +181,11 @@ const avatars = {
 	target: reactive<EntryAvatarPosition[]>([])
 };
 const boxes = reactive<EntryBox[]>([]);
+
+const inputType = ref<'number' | 'range'>('range');
+function toggleInputType() {
+	inputType.value = inputType.value === 'number' ? 'range' : 'number';
+}
 
 const AvatarKeys = ['author', 'target'] as const satisfies readonly AvatarTarget[];
 const AvatarNames = ['Author', 'Target'] as const satisfies readonly Capitalize<AvatarTarget>[];
@@ -346,8 +356,16 @@ button.danger {
 	@apply text-gray-50 bg-red-600 dark:bg-red-700;
 }
 
+select.select {
+	@apply form-select bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-800 rounded dark:[color-scheme:dark];
+}
+
 input.range {
-	@apply form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 rounded;
+	@apply form-input bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-800 rounded dark:[color-scheme:dark];
+}
+
+input.checkbox {
+	@apply form-checkbox bg-gray-100 border-gray-300 dark:bg-stone-800 dark:border-stone-700 text-green-500 dark:text-green-700 dark:[color-scheme:dark];
 }
 
 span.status {
