@@ -177,6 +177,6 @@ export default defineNuxtConfig({
 		prerender: {
 			routes: ['/', '/about', '/sitemap.xml']
 		},
-		serveStatic: true
+		serveStatic: false
 	}
 });
