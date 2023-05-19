@@ -23,12 +23,12 @@
 		"@vite-pwa/nuxt": "^0.0.8",
 		"@vueuse/core": "^10.1.2",
 		"@vueuse/nuxt": "^10.1.2",
-		"nuxt": "^3.4.3",
+		"nuxt": "^3.5.0",
 		"prettier": "^2.8.8"
 	},
 	"prettier": "@sapphire/prettier-config",
 	"packageManager": "yarn@3.5.1",
 	"resolutions": {
-		"nuxt": "3.4.3"
+		"unenv": "1.3.1"
 	}
 }
