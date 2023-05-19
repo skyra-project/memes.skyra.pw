@@ -176,7 +176,6 @@ export default defineNuxtConfig({
 		preset: 'cloudflare-pages',
 		prerender: {
 			routes: ['/', '/about', '/sitemap.xml']
-		},
-		serveStatic: true
+		}
 	}
 });
