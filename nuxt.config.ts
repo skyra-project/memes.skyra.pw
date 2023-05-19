@@ -17,7 +17,7 @@ export default defineNuxtConfig({
 			categories: ['tools'],
 			name: 'Meme Generator',
 			description: 'Meme Generator — Generate your memes',
-			start_url: 'https://memes.kyra.dev',
+			start_url: 'https://memes.skyra.pw',
 			theme_color: '#f43f5e'
 		},
 		registerType: 'autoUpdate'
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
 			link: [
 				// <link rel='apple-touch-icon' sizes='180x180' href='/icons/apple-touch-icon.png' />
 				// <link rel='apple-touch-startup-image' href='/icons/apple-startup.png' />
-				{ rel: 'canonical', href: 'https://memes.kyra.dev' }
+				{ rel: 'canonical', href: 'https://memes.skyra.pw' }
 				// <link rel='icon' href='/icons/android-chrome-192x192.png' />
 				// <link rel='icon' href='/favicon.ico' />
 				// <link rel='icon' type='image/png' sizes='16x16' href='/icons/favicon-16x16.png' />
@@ -65,7 +65,7 @@ export default defineNuxtConfig({
 				{ name: 'distribution', content: 'Global' },
 				{ name: 'googlebot', content: 'index,follow' },
 				{ name: 'HandheldFriendly', content: 'True' },
-				{ name: 'identifier-URL', content: 'https://memes.kyra.dev' },
+				{ name: 'identifier-URL', content: 'https://memes.skyra.pw' },
 				{ name: 'keywords', content: 'meme, generator, artiel' },
 				{ name: 'msapplication-config', content: '/browserconfig.xml' },
 				{ name: 'msapplication-TileColor', content: '#f43f5e' },
@@ -78,16 +78,16 @@ export default defineNuxtConfig({
 					name: 'robots',
 					content: 'archive,follow,imageindex,index,odp,snippet,translate'
 				},
-				{ name: 'shortlink', content: 'https://memes.kyra.dev' },
+				{ name: 'shortlink', content: 'https://memes.skyra.pw' },
 				{ name: 'subject', content: 'Meme Generator — Generate your memes' },
 				{ name: 'summary', content: 'Meme Generator — Generate your memes.' },
 				{ name: 'target', content: 'all' },
 				{ name: 'theme-color', content: '#f43f5e' },
 				{ name: 'twitter:card', content: 'summary' },
 				{ name: 'twitter:creator', content: '@kyranet_' },
-				// { name: 'twitter:image', content: 'https://memes.kyra.dev/icons/opengraph.png' },
+				// { name: 'twitter:image', content: 'https://memes.skyra.pw/icons/opengraph.png' },
 				{ name: 'twitter:site', content: '@kyranet_' },
-				{ name: 'url', content: 'https://memes.kyra.dev' },
+				{ name: 'url', content: 'https://memes.skyra.pw' },
 				{
 					property: 'og:description',
 					content: 'Meme Generator — Generate your memes'
@@ -96,12 +96,12 @@ export default defineNuxtConfig({
 				// { property: 'og:image:alt', content: 'OpenGraphImage' },
 				// { property: 'og:image:height', content: '512' },
 				// { property: 'og:image:width', content: '1024' },
-				// { property: 'og:image', content: 'https://memes.kyra.dev/icons/opengraph.png' },
+				// { property: 'og:image', content: 'https://memes.skyra.pw/icons/opengraph.png' },
 				{ property: 'og:locale', content: 'en_US' },
 				{ property: 'og:site_name', content: 'Meme Generator' },
 				{ property: 'og:title', content: 'Meme Generator' },
 				{ property: 'og:type', content: 'website' },
-				{ property: 'og:url', content: 'https://memes.kyra.dev' }
+				{ property: 'og:url', content: 'https://memes.skyra.pw' }
 			]
 		}
 	}
