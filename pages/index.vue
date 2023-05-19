@@ -248,6 +248,7 @@ function printImage() {
 	const img = image.value;
 	if (!img) return;
 
+	cc.clearRectangle();
 	cc.printImage(img, 0, 0, cc.width, cc.height);
 
 	let index = 0;
