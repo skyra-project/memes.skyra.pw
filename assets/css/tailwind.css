@@ -16,10 +16,10 @@
 
 @layer components {
 	::-webkit-scrollbar {
-		@apply bg-stone-100 dark:bg-stone-950 rounded-xl w-4;
+		@apply bg-gray-100 dark:bg-stone-950 rounded-xl w-4;
 	}
 
 	::-webkit-scrollbar-thumb {
-		@apply bg-stone-200 dark:bg-stone-900 hover:dark:bg-stone-800 rounded-xl;
+		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-800 rounded-xl;
 	}
 }

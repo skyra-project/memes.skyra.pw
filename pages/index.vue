@@ -2,18 +2,39 @@
 	<div>
 		<label class="block mb-5">
 			<span>Name</span>
-			<input type="text" v-model="name" class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded" />
+			<input type="text" v-model="name" class="range w-full" />
 		</label>
 
 		<label class="block mb-5">
 			<span>URL</span>
-			<input type="url" v-model="url" class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded" />
+			<input type="url" v-model="url" class="range w-full" />
 		</label>
+	</div>
+
+	<div v-if="image === null" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-yellow-500" role="alert">
+		<svg
+			class="mr-3 inline h-5 w-5 flex-shrink-0 dark:text-stone-50 text-yellow-600"
+			fill="currentColor"
+			viewBox="0 0 20 20"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				fill-rule="evenodd"
+				d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+				clip-rule="evenodd"
+			></path>
+		</svg>
+		<span>
+			Please fill the above input box with a link to an image to load as a base for the new meme template, for example,
+			<NuxtLink href="https://skyra.pw/avatars/skyra.png" target="_blank" class="underline opacity-80">
+				https://skyra.pw/avatars/skyra.png</NuxtLink
+			>.
+		</span>
 	</div>
 
 	<div class="grid grid-flow-row lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr] gap-4 mb-5 w-full justify-items-center">
 		<canvas
-			width="400"
+			:width="width"
 			height="400"
 			ref="canvas"
 			class="border-8 rounded-xl border-gray-200 bg-gray-300 dark:border-stone-900 dark:bg-stone-900 shadow-xl"
@@ -23,7 +44,7 @@
 
 		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl max-h-[70vh] overflow-y-auto">
 			<div class="flex gap-2">
-				<button @click="addBox" class="bg-green-500 dark:bg-green-700 px-3 rounded" aria-label="Add a new box">+</button>
+				<button @click="addBox" class="success rounded px-3" aria-label="Add a new box" :disabled="image === null">+</button>
 				<h2 class="text-3xl font-bold">Boxes</h2>
 			</div>
 
@@ -34,192 +55,114 @@
 			>
 				<label>
 					<span>
-						X<span class="text-stone-600 dark:text-stone-400" role="status">: {{ box.x }}px</span>
+						X<span class="status" role="status">: {{ box.x }}px</span>
 					</span>
-					<input
-						type="range"
-						min="0"
-						max="400"
-						v-model="box.x"
-						class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-					/>
+					<input type="range" min="0" :max="width" v-model="box.x" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
-						Y<span class="text-stone-600 dark:text-stone-400" role="status">: {{ box.y }}px</span>
+						Y<span class="status" role="status">: {{ box.y }}px</span>
 					</span>
-					<input
-						type="range"
-						min="0"
-						max="400"
-						v-model="box.y"
-						class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-					/>
+					<input type="range" min="0" :max="height" v-model="box.y" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
-						Width<span class="text-stone-600 dark:text-stone-400" role="status">: {{ box.width }}px</span>
+						Width<span class="status" role="status">: {{ box.width }}px</span>
 					</span>
-					<input
-						type="range"
-						min="20"
-						max="400"
-						v-model="box.width"
-						class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-					/>
+					<input type="range" min="20" :max="width" v-model="box.width" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
-						Height<span class="text-stone-600 dark:text-stone-400" role="status">: {{ box.height }}px</span>
+						Height<span class="status" role="status">: {{ box.height }}px</span>
 					</span>
-					<input
-						type="range"
-						min="20"
-						max="400"
-						v-model="box.height"
-						class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-					/>
+					<input type="range" min="20" :max="height" v-model="box.height" class="range w-full" />
 				</label>
 
 				<label>
 					<span>
-						Rotation<span class="text-stone-600 dark:text-stone-400" role="status">: {{ box.rotation }}º</span>
+						Rotation<span class="status" role="status">: {{ box.rotation }}º</span>
 					</span>
-					<input
-						type="range"
-						min="-180"
-						max="180"
-						v-model="box.rotation"
-						class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-					/>
+					<input type="range" min="-180" max="180" v-model="box.rotation" class="range w-full" />
 				</label>
 
 				<div class="flex">
-					<button @click="boxes.splice(index, 1)" class="text-gray-50 bg-red-600 dark:bg-red-700 p-2 rounded-xl w-full mt-auto">
-						Remove
-					</button>
+					<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
 				</div>
 			</div>
 		</div>
 
 		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:col-span-2 xl:col-auto w-full shadow-xl max-h-[70vh] overflow-y-auto">
-			<div class="flex gap-2">
-				<button @click="addAvatar" class="bg-green-500 dark:bg-green-700 px-3 rounded" aria-label="Add a new avatar">+</button>
-				<h2 class="text-3xl font-bold">Avatars</h2>
-			</div>
+			<h2 class="text-3xl font-bold">Avatars</h2>
 			<div
-				v-for="(avatar, index) of avatars"
+				v-for="(key, index) of AvatarKeys"
 				class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-rows-1 gap-5 mt-5"
 				:class="classes[(index + 4) % classes.length]"
 			>
-				<label>
-					<span>User</span>
-					<select
-						v-model="avatar.user"
-						class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
+				<div class="flex gap-2">
+					<button
+						@click="addPosition(key)"
+						class="success rounded px-3"
+						aria-label="Add a new position to this avatar"
+						:disabled="image === null"
 					>
-						<option value="author">Author</option>
-						<option value="target">Target</option>
-					</select>
-				</label>
+						+
+					</button>
+					<h3 class="text-2xl font-bold">{{ AvatarNames[index] }}</h3>
+				</div>
 
-				<div>
-					<div class="flex gap-2">
-						<button
-							@click="addPosition(avatar)"
-							class="bg-green-500 dark:bg-green-700 px-3 rounded"
-							aria-label="Add a new position to this avatar"
-						>
-							+
-						</button>
-						<h3 class="text-2xl font-bold">Positions</h3>
-					</div>
-					<div
-						v-for="(position, index) of avatar.positions"
-						class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-cols-2 gap-2 mt-3"
-						:class="classes[index % classes.length]"
-					>
-						<label>
-							<span>
-								X<span class="text-stone-600 dark:text-stone-400" role="status">: {{ position.x }}px</span>
-							</span>
-							<input
-								type="range"
-								min="0"
-								max="400"
-								v-model="position.x"
-								class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-							/>
-						</label>
+				<div
+					v-for="(position, index) of avatars[key]"
+					class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-cols-2 gap-2"
+					:class="classes[index % classes.length]"
+				>
+					<label>
+						<span>
+							X<span class="status" role="status">: {{ position.x }}px</span>
+						</span>
+						<input type="range" min="0" :max="width" v-model="position.x" class="range w-full" />
+					</label>
 
-						<label>
-							<span>
-								Y<span class="text-stone-600 dark:text-stone-400" role="status">: {{ position.y }}px</span>
-							</span>
-							<input
-								type="range"
-								min="0"
-								max="400"
-								v-model="position.y"
-								class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-							/>
-						</label>
+					<label>
+						<span>
+							Y<span class="status" role="status">: {{ position.y }}px</span>
+						</span>
+						<input type="range" min="0" :max="height" v-model="position.y" class="range w-full" />
+					</label>
 
-						<label>
-							<span>
-								Size<span class="text-stone-600 dark:text-stone-400" role="status">: {{ position.size }}px</span>
-							</span>
-							<input
-								type="range"
-								min="16"
-								max="400"
-								v-model="position.size"
-								class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-							/>
-						</label>
+					<label>
+						<span>
+							Size<span class="status" role="status">: {{ position.size }}px</span>
+						</span>
+						<input type="range" min="16" :max="height" v-model="position.size" class="range w-full" />
+					</label>
 
-						<label>
-							<span>Style</span>
-							<select
-								v-model="position.style"
-								class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-							>
-								<option value="circle">Circle</option>
-								<option value="square">Square</option>
-							</select>
-						</label>
+					<label>
+						<span>Style</span>
+						<select v-model="position.style" class="range w-full">
+							<option value="circle">Circle</option>
+							<option value="square">Square</option>
+						</select>
+					</label>
 
-						<label>
-							<span>
-								Rotation<span class="text-stone-600 dark:text-stone-400" role="status">: {{ position.rotation }}º</span>
-							</span>
-							<input
-								type="range"
-								min="-180"
-								max="180"
-								v-model="position.rotation"
-								class="form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 w-full rounded"
-							/>
-						</label>
+					<label>
+						<span>
+							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
+						</span>
+						<input type="range" min="-180" max="180" v-model="position.rotation" class="range w-full" />
+					</label>
 
-						<div class="flex">
-							<button
-								@click="avatar.positions.splice(index, 1)"
-								class="text-gray-50 bg-red-600 dark:bg-red-700 p-2 rounded-xl w-full mt-auto"
-							>
-								Remove
-							</button>
-						</div>
+					<div class="flex">
+						<button @click="avatars[key].splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<hr class="json-divider">
+	<hr class="json-divider" />
 	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status">{{ { name, url, avatars, boxes } }}</pre>
 </template>
 
@@ -228,8 +171,18 @@ import { Canvas, loadImage } from 'canvas-constructor/browser';
 
 const name = ref('');
 const url = ref('');
-const avatars = reactive<EntryAvatar[]>([]);
+const avatars = {
+	author: reactive<EntryAvatarPosition[]>([]),
+	target: reactive<EntryAvatarPosition[]>([])
+};
 const boxes = reactive<EntryBox[]>([]);
+
+const AvatarKeys = ['author', 'target'] as const satisfies readonly AvatarTarget[];
+const AvatarNames = ['Author', 'Target'] as const satisfies readonly Capitalize<AvatarTarget>[];
+type AvatarTarget = keyof typeof avatars;
+
+const width = 400;
+const height = ref(400);
 
 const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
@@ -239,27 +192,25 @@ watch(
 	async (value) => {
 		try {
 			image.value = await loadImage(new URL(value).href);
+			resizeCanvas();
 			printImage();
 		} catch {
 			image.value = null;
+			resizeCanvas();
 			constructor.value?.clearRectangle();
 		}
 	},
 	{ immediate: true }
 );
 
-watch([boxes, avatars], () => printImage());
+watch([boxes, avatars.author, avatars.target], () => printImage());
 
 function addBox() {
-	boxes.push({ x: 200, y: boxes.length === 0 ? 50 : 350, width: 400, height: 100, rotation: 0 });
+	boxes.push({ x: 200, y: boxes.length === 0 ? 50 : 350, width, height: 100, rotation: 0 });
 }
 
-function addAvatar() {
-	avatars.push({ user: 'author', positions: [{ x: 50, y: 50, size: 100, style: 'circle', rotation: 0 }] });
-}
-
-function addPosition(avatar: EntryAvatar) {
-	avatar.positions.push({ x: 50, y: 50, size: 100, style: 'circle', rotation: 0 });
+function addPosition(target: AvatarTarget) {
+	avatars[target].push({ x: 50, y: 50, size: 100, style: 'circle', rotation: 0 });
 }
 
 const colors = ['#dc2626', '#65a30d', '#059669', '#0891b2', '#2563eb', '#7c3aed', '#db2777', '#e11d48'];
@@ -273,6 +224,22 @@ const classes = [
 	'border-pink-600',
 	'border-rose-600'
 ];
+
+function resizeCanvas() {
+	const cc = constructor.value;
+	if (!cc) return;
+
+	const img = image.value;
+	if (!img) {
+		height.value = width;
+	} else if (img.width === img.height) {
+		height.value = width;
+	} else {
+		height.value = width * (img.height / img.width);
+	}
+
+	cc.height = height.value;
+}
 
 function printImage() {
 	const cc = constructor.value;
@@ -310,8 +277,8 @@ function printImage() {
 	}
 
 	index = 0;
-	for (const avatar of avatars) {
-		for (const position of avatar.positions) {
+	for (const key of AvatarKeys) {
+		for (const position of avatars[key]) {
 			cc.setStroke(colors[index]);
 			cc.setColor(`${colors[index]}20`);
 
@@ -351,11 +318,6 @@ interface EntryBox {
 	rotation: number;
 }
 
-interface EntryAvatar {
-	user: 'author' | 'target';
-	positions: EntryAvatarPosition[];
-}
-
 interface EntryAvatarPosition {
 	x: number;
 	y: number;
@@ -373,5 +335,21 @@ hr.json-divider {
 hr.json-divider:after {
 	@apply bg-gray-50 dark:bg-stone-800 px-1 relative -top-5 text-2xl;
 	content: 'JSON';
+}
+
+button.success {
+	@apply bg-green-500 disabled:bg-green-100 dark:bg-green-700 disabled:dark:bg-green-900;
+}
+
+button.danger {
+	@apply text-gray-50 bg-red-600 dark:bg-red-700;
+}
+
+input.range {
+	@apply form-input border-gray-300 dark:border-stone-700 bg-gray-100 dark:bg-stone-800 rounded;
+}
+
+span.status {
+	@apply text-stone-600 dark:text-stone-400;
 }
 </style>

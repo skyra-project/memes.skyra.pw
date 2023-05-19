@@ -5,8 +5,8 @@
 				<NuxtLink href="/about" class="hover:underline">About</NuxtLink>
 			</p>
 			<p>
-				© 2023 Aura Román —
-				<NuxtLink href="https://github.com/kyranet" class="hover:underline">GitHub</NuxtLink>
+				© 2023 Skyra Project —
+				<NuxtLink href="https://github.com/skyra-project" class="hover:underline">GitHub</NuxtLink>
 			</p>
 		</div>
 	</footer>

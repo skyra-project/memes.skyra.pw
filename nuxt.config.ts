@@ -1,108 +1,177 @@
+import '@vite-pwa/nuxt';
+import 'nuxt';
+
+const manifestIcons = [
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-36x36.png',
+		sizes: '36x36',
+		type: 'image/png',
+		purpose: 'any badge'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-48x48.png',
+		sizes: '48x48',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-72x72.png',
+		sizes: '72x72',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-96x96.png',
+		sizes: '96x96',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-144x144.png',
+		sizes: '144x144',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-192x192.png',
+		sizes: '192x192',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-256x256.png',
+		sizes: '256x256',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-384x384.png',
+		sizes: '384x384',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/android-chrome-512x512.png',
+		sizes: '512x512',
+		type: 'image/png'
+	},
+	{
+		src: 'https://memes.skyra.pw/icons/maskable_icon.png',
+		sizes: '640x640',
+		type: 'image/png',
+		purpose: 'any maskable'
+	}
+];
+
+const name = 'Meme Template Generator';
+const description = "A small but complete interactive browser utility to create new meme templates for Artiel's meme generator";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
+	pwa: {
+		registerType: 'autoUpdate',
+		includeManifestIcons: false,
+		devOptions: {
+			enabled: false,
+			type: 'module'
+		},
+		manifest: {
+			background_color: '#16171D',
+			categories: ['discord', 'bot', 'skyra', 'moderation', 'automation', 'kyra', 'favna', 'kyranet'],
+			description,
+			display: 'minimal-ui',
+			lang: 'en',
+			name,
+			orientation: 'portrait-primary',
+			scope: '/',
+			short_name: 'ArchId',
+			start_url: '/',
+			theme_color: '#1E88E5',
+			icons: manifestIcons,
+			shortcuts: [
+				{
+					name: 'Meme Template Generator Home',
+					short_name: name,
+					description: 'Go to Meme Template Generator',
+					url: '/',
+					icons: manifestIcons
+				}
+			]
+		}
+	},
 	typescript: {
 		shim: false
 	},
-	nitro: {
-		preset: 'cloudflare-pages',
-		prerender: {
-			routes: ['/', '/about']
-		},
-		serveStatic: true
-	},
-	pwa: {
-		manifest: {
-			background_color: '#292524',
-			categories: ['tools'],
-			name: 'Meme Generator',
-			description: 'Meme Generator — Generate your memes',
-			start_url: 'https://memes.skyra.pw',
-			theme_color: '#f43f5e'
-		},
-		registerType: 'autoUpdate'
-	},
 	app: {
 		head: {
-			title: 'Meme Generator',
+			charset: 'utf-8',
+			viewport: 'width=device-width, initial-scale=1',
+			title: 'Meme Template Generator',
 			htmlAttrs: { lang: 'en' },
 			link: [
-				// <link rel='apple-touch-icon' sizes='180x180' href='/icons/apple-touch-icon.png' />
-				// <link rel='apple-touch-startup-image' href='/icons/apple-startup.png' />
-				{ rel: 'canonical', href: 'https://memes.skyra.pw' }
-				// <link rel='icon' href='/icons/android-chrome-192x192.png' />
-				// <link rel='icon' href='/favicon.ico' />
-				// <link rel='icon' type='image/png' sizes='16x16' href='/icons/favicon-16x16.png' />
-				// <link rel='icon' type='image/png' sizes='192x192' href='/icons/android-chrome-192x192.png' />
-				// <link rel='icon' type='image/png' sizes='194x194' href='/icons/android-chrome-194x194.png' />
-				// <link rel='icon' type='image/png' sizes='32x32' href='/icons/favicon-32x32.png' />
-				// <link rel='manifest' href='/manifest.webmanifest' />
-				// <link rel='mask-icon' href='/icons/safari-pinned-tab.svg' color='#f43f5e' />
-				// <link rel='shortcut icon' href='/favicon.ico' />
+				{ rel: 'alternate', href: 'https://memes.skyra.pw' },
+				{ rel: 'canonical', href: 'https://memes.skyra.pw' },
+				{ rel: 'apple-touch-icon', href: '/icons/apple-touch-icon.png' },
+				{ rel: 'apple-touch-startup-image', href: '/icons/apple-startup.png' },
+				{ rel: 'icon', href: '/favicon.ico' },
+				{ rel: 'icon', href: '/icons/favicon-16x16.png' },
+				{ rel: 'icon', href: '/icons/android-chrome-192x192.png' },
+				{ rel: 'icon', href: '/icons/favicon-32x32.png' },
+				{ rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg' },
+				{ rel: 'shortcut icon', href: '/favicon.ico' }
 			],
 			meta: [
 				{ 'http-equiv': 'Cache-Control', content: '1y' },
 				{ 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
 				{ 'http-equiv': 'Expires', content: '1y' },
-				{
-					'http-equiv': 'Page-Enter',
-					content: 'RevealTrans(Duration=2.0,Transition=2)'
-				},
-				{
-					'http-equiv': 'Page-Exit',
-					content: 'RevealTrans(Duration=3.0,Transition=12)'
-				},
+				{ 'http-equiv': 'Page-Enter', content: 'RevealTrans(Duration=2.0,Transition=2)' },
+				{ 'http-equiv': 'Page-Exit', content: 'RevealTrans(Duration=3.0,Transition=12)' },
 				{ 'http-equiv': 'Pragma', content: '1y' },
 				{ name: 'apple-mobile-web-app-capable', content: 'yes' },
 				{ name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
-				{ name: 'apple-mobile-web-app-title', content: 'Meme Generator' },
-				{ name: 'application-name', content: 'Meme Generator' },
+				{ name: 'apple-mobile-web-app-title', content: name },
+				{ name: 'application-name', content: name },
 				{ name: 'audience', content: 'all' },
-				{ name: 'author', content: 'Aura Román, kyradiscord@gmail.com' },
+				{ name: 'author', content: 'Skyra Project, contact@skyra.pw' },
 				{ name: 'coverage', content: 'Worldwide' },
-				{ name: 'description', content: 'Meme Generator — Generate your memes' },
+				{ name: 'description', content: description },
 				{ name: 'designer', content: 'Aura Román, kyradiscord@gmail.com' },
 				{ name: 'distribution', content: 'Global' },
 				{ name: 'googlebot', content: 'index,follow' },
 				{ name: 'HandheldFriendly', content: 'True' },
 				{ name: 'identifier-URL', content: 'https://memes.skyra.pw' },
-				{ name: 'keywords', content: 'meme, generator, artiel' },
-				{ name: 'msapplication-config', content: '/browserconfig.xml' },
-				{ name: 'msapplication-TileColor', content: '#f43f5e' },
-				// { name: 'msapplication-TileImage', content: '/icons/mstile-144x144.png' },
+				{ name: 'keywords', content: 'skyra, discord, bot, meme, template, generator' },
+				{ name: 'msapplication-config', content: '/icons/browserconfig.xml' },
+				{ name: 'msapplication-TileColor', content: '#55ACEE' },
+				{ name: 'msapplication-TileImage', content: '/icons/mstile-144x144.png' },
 				{ name: 'owner', content: 'Aura Román, kyradiscord@gmail.com' },
 				{ name: 'rating', content: 'safe for kids' },
-				{ name: 'reply-to', content: 'kyradiscord@gmail.com' },
+				{ name: 'reply-to', content: 'contact@skyra.pw' },
 				{ name: 'revisit-after', content: '7 days' },
-				{
-					name: 'robots',
-					content: 'archive,follow,imageindex,index,odp,snippet,translate'
-				},
+				{ name: 'robots', content: 'archive,follow,imageindex,index,odp,snippet,translate' },
 				{ name: 'shortlink', content: 'https://memes.skyra.pw' },
-				{ name: 'subject', content: 'Meme Generator — Generate your memes' },
-				{ name: 'summary', content: 'Meme Generator — Generate your memes.' },
+				{ name: 'subject', content: description },
+				{ name: 'summary', content: description },
 				{ name: 'target', content: 'all' },
-				{ name: 'theme-color', content: '#f43f5e' },
+				{ name: 'theme-color', content: '#55ACEE' },
 				{ name: 'twitter:card', content: 'summary' },
 				{ name: 'twitter:creator', content: '@kyranet_' },
-				// { name: 'twitter:image', content: 'https://memes.skyra.pw/icons/opengraph.png' },
+				{ name: 'twitter:image', content: 'https://memes.skyra.pw/icons/opengraph.png' },
 				{ name: 'twitter:site', content: '@kyranet_' },
 				{ name: 'url', content: 'https://memes.skyra.pw' },
-				{
-					property: 'og:description',
-					content: 'Meme Generator — Generate your memes'
-				},
-				{ property: 'og:email', content: 'kyradiscord@gmail.com' },
-				// { property: 'og:image:alt', content: 'OpenGraphImage' },
-				// { property: 'og:image:height', content: '512' },
-				// { property: 'og:image:width', content: '1024' },
-				// { property: 'og:image', content: 'https://memes.skyra.pw/icons/opengraph.png' },
-				{ property: 'og:locale', content: 'en_US' },
-				{ property: 'og:site_name', content: 'Meme Generator' },
-				{ property: 'og:title', content: 'Meme Generator' },
+				{ property: 'og:description', content: description },
+				{ property: 'og:email', content: 'contact@skyra.pw' },
+				{ property: 'og:image:alt', content: 'OpenGraphImage' },
+				{ property: 'og:image:height', content: '512' },
+				{ property: 'og:image:width', content: '1024' },
+				{ property: 'og:image', content: 'https://memes.skyra.pw/icons/opengraph.png' },
+				{ property: 'og:locale', content: 'en' },
+				{ property: 'og:site_name', content: description },
+				{ property: 'og:title', content: description },
 				{ property: 'og:type', content: 'website' },
 				{ property: 'og:url', content: 'https://memes.skyra.pw' }
 			]
 		}
+	},
+	nitro: {
+		preset: 'cloudflare-pages',
+		prerender: {
+			routes: ['/', '/about', '/sitemap.xml']
+		},
+		serveStatic: true
 	}
 });

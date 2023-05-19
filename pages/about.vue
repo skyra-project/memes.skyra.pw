@@ -17,7 +17,7 @@
 
 		<p>
 			If this website lacks of a tool that you wish to use, or you encounter a problem, please open a new issue or Pull Request in the
-			<NuxtLink href="https://github.com/kyranet/memes.skyra.pw">GitHub repository</NuxtLink>.
+			<NuxtLink href="https://github.com/skyra-project/memes.skyra.pw">GitHub repository</NuxtLink>.
 		</p>
 	</section>
 </template>
