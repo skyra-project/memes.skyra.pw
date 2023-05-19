@@ -64,13 +64,16 @@ export default defineNuxtConfig({
 	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
 	pwa: {
 		registerType: 'autoUpdate',
-		includeManifestIcons: false,
 		devOptions: {
 			enabled: false,
 			type: 'module'
 		},
+		workbox: {
+			navigateFallback: '/',
+			globPatterns: ['**/*.{js,css,html,png,svg,ico,xml}']
+		},
 		manifest: {
-			background_color: '#16171D',
+			background_color: '#292524',
 			categories: ['discord', 'bot', 'skyra', 'moderation', 'automation', 'kyra', 'favna', 'kyranet'],
 			description,
 			display: 'minimal-ui',
@@ -80,7 +83,7 @@ export default defineNuxtConfig({
 			scope: '/',
 			short_name: 'ArchId',
 			start_url: '/',
-			theme_color: '#1E88E5',
+			theme_color: '#f43f5e',
 			icons: manifestIcons,
 			shortcuts: [
 				{
