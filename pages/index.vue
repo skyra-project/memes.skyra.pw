@@ -68,51 +68,50 @@
 		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl max-h-[70vh] overflow-y-auto">
 			<div class="flex gap-2">
 				<button @click="addBox" class="success rounded px-3" aria-label="Add a new box" :disabled="image === null">+</button>
-				<h2 class="text-3xl font-bold">Boxes</h2>
+				<h2 class="text-3xl font-bold">Text Boxes</h2>
 			</div>
 
-			<div
-				v-for="(box, index) of boxes"
-				class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-cols-2 gap-2 mt-5"
-				:class="classes[index % classes.length]"
-			>
-				<label>
-					<span>
-						X<span class="status" role="status">: {{ box.x }}px</span>
-					</span>
-					<input :type="inputType" min="0" :max="width" v-model.number="box.x" class="base-input range w-full" />
-				</label>
+			<div v-for="(box, index) of boxes" class="px-4 py-2 border-l-2 rounded shadow-sm mt-5" :class="classes[index % classes.length]">
+				<h3 class="text-xl font-bold mb-2">Text #{{ index + 1 }}</h3>
+				<div class="grid grid-cols-2 gap-2">
+					<label>
+						<span>
+							X<span class="status" role="status">: {{ box.x }}px</span>
+						</span>
+						<input :type="inputType" min="0" :max="width" v-model.number="box.x" class="base-input range w-full" />
+					</label>
 
-				<label>
-					<span>
-						Y<span class="status" role="status">: {{ box.y }}px</span>
-					</span>
-					<input :type="inputType" min="0" :max="height" v-model.number="box.y" class="base-input range w-full" />
-				</label>
+					<label>
+						<span>
+							Y<span class="status" role="status">: {{ box.y }}px</span>
+						</span>
+						<input :type="inputType" min="0" :max="height" v-model.number="box.y" class="base-input range w-full" />
+					</label>
 
-				<label>
-					<span>
-						Width<span class="status" role="status">: {{ box.width }}px</span>
-					</span>
-					<input :type="inputType" min="20" :max="width" v-model.number="box.width" class="base-input range w-full" />
-				</label>
+					<label>
+						<span>
+							Width<span class="status" role="status">: {{ box.width }}px</span>
+						</span>
+						<input :type="inputType" min="20" :max="width" v-model.number="box.width" class="base-input range w-full" />
+					</label>
 
-				<label>
-					<span>
-						Height<span class="status" role="status">: {{ box.height }}px</span>
-					</span>
-					<input :type="inputType" min="20" :max="height" v-model.number="box.height" class="base-input range w-full" />
-				</label>
+					<label>
+						<span>
+							Height<span class="status" role="status">: {{ box.height }}px</span>
+						</span>
+						<input :type="inputType" min="20" :max="height" v-model.number="box.height" class="base-input range w-full" />
+					</label>
 
-				<label>
-					<span>
-						Rotation<span class="status" role="status">: {{ box.rotation }}º</span>
-					</span>
-					<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="base-input range w-full" />
-				</label>
+					<label>
+						<span>
+							Rotation<span class="status" role="status">: {{ box.rotation }}º</span>
+						</span>
+						<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="base-input range w-full" />
+					</label>
 
-				<div class="flex">
-					<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
+					<div class="flex">
+						<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
+					</div>
 				</div>
 			</div>
 		</div>
