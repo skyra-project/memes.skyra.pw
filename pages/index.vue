@@ -362,14 +362,16 @@ button.danger {
 
 select.select {
 	--tw-border-opacity: 1;
-	--tw-select-rgb: 209 213 219;
-	--tw-select-color: rgb(var(--tw-select-rgb) / var(--tw-border-opacity));
+	--tw-select-arrow-rgb: 209 213 219;
+	--tw-select-arrow-color: rgb(var(--tw-select-arrow-rgb) / var(--tw-border-opacity));
+	--tw-select-bg-rgb: 243 244 246;
+	--tw-select-bg-color: rgb(var(--tw-select-bg-rgb) / var(--tw-border-opacity));
 
-	@apply appearance-none bg-no-repeat dark:[--tw-select-rgb:_68_64_60];
+	@apply appearance-none bg-no-repeat dark:[--tw-select-arrow-rgb:_68_64_60] dark:[--tw-select-bg-rgb:_28_25_23];
 
 	background-image:
-		linear-gradient(45deg, transparent 50%, var(--tw-select-color) 50%),
-		linear-gradient(135deg, var(--tw-select-color) 50%, transparent 50%);
+		linear-gradient(45deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%),
+		linear-gradient(135deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%);
 	background-position:
 		calc(100% - 20px) calc(1em + 2px),
 		calc(100% - 15px) calc(1em + 2px);
@@ -379,12 +381,12 @@ select.select {
 }
 
 select.select:focus {
-	--tw-select-rgb: 75 85 99;
+	--tw-select-arrow-rgb: 75 85 99;
 	@apply dark:[--tw-select-rgb:_214_211_209];
 
 	background-image:
-		linear-gradient(45deg, var(--tw-select-color) 50%, transparent 50%),
-		linear-gradient(135deg, transparent 50%, var(--tw-select-color) 50%);
+		linear-gradient(45deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%),
+		linear-gradient(135deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%);
 	background-position:
 		calc(100% - 15px) 1em,
 		calc(100% - 20px) 1em;
@@ -394,11 +396,11 @@ select.select:focus {
 }
 
 input.range {
-	@apply bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-800 rounded dark:[color-scheme:dark];
+	@apply rounded dark:[color-scheme:dark];
 }
 
 input.checkbox {
-	@apply bg-gray-100 border-gray-300 dark:bg-stone-800 dark:border-stone-700 text-green-500 dark:text-green-700 dark:[color-scheme:dark];
+	@apply dark:[color-scheme:dark];
 }
 
 span.status {
