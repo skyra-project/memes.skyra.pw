@@ -16,7 +16,7 @@
 		</label>
 	</div>
 
-	<div v-if="image === null" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-yellow-500" role="alert">
+	<div v-if="!debouncedUrl" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-yellow-500" role="alert">
 		<svg
 			class="mr-3 inline h-5 w-5 flex-shrink-0 dark:text-stone-50 text-yellow-600"
 			fill="currentColor"
@@ -36,6 +36,23 @@
 			>.
 		</span>
 	</div>
+	<div v-else-if="error || !imageData.src" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-red-500" role="alert">
+		<svg
+			class="mr-3 inline h-5 w-5 flex-shrink-0 dark:text-stone-50 text-red-600"
+			fill="currentColor"
+			viewBox="0 0 20 20"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				fill-rule="evenodd"
+				d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+				clip-rule="evenodd"
+			></path>
+		</svg>
+		<span>
+			{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
+		</span>
+	</div>
 
 	<div class="grid grid-flow-row lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr] gap-4 mb-5 w-full justify-items-center">
 		<canvas
@@ -43,6 +60,7 @@
 			height="400"
 			ref="canvas"
 			class="border-8 rounded-xl border-gray-200 bg-gray-300 dark:border-stone-900 dark:bg-stone-900 shadow-xl w-full max-w-fit"
+			:class="isLoading ? 'animate-pulse' : ''"
 			aria-label="Preview"
 			role="figure"
 		></canvas>
@@ -172,10 +190,12 @@
 </template>
 
 <script setup lang="ts">
-import { Canvas, loadImage } from 'canvas-constructor/browser';
+import { useImage } from '@vueuse/core';
+import { Canvas } from 'canvas-constructor/browser';
 
 const name = ref('');
 const url = ref('');
+const debouncedUrl = refDebounced(url, 500);
 const avatars = {
 	author: reactive<EntryAvatarPosition[]>([]),
 	target: reactive<EntryAvatarPosition[]>([])
@@ -196,22 +216,21 @@ const height = ref(400);
 
 const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
-const image = ref<HTMLImageElement | null>(null);
-watch(
-	url,
-	async (value) => {
-		try {
-			image.value = await loadImage(new URL(value).href);
-			resizeCanvas();
-			printImage();
-		} catch {
-			image.value = null;
-			resizeCanvas();
-			constructor.value?.clearRectangle();
-		}
-	},
-	{ immediate: true }
-);
+
+const imageData = reactive({ src: '' });
+const { isLoading, error, state: image, execute } = useImage(imageData, { immediate: false });
+watch(debouncedUrl, async (value) => {
+	try {
+		imageData.src = new URL(value).href;
+		await execute();
+		resizeCanvas();
+		printImage();
+	} catch {
+		imageData.src = '';
+		resizeCanvas();
+		constructor.value?.clearRectangle();
+	}
+});
 
 watch([boxes, avatars.author, avatars.target], () => printImage());
 
