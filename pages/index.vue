@@ -108,101 +108,111 @@
 						</span>
 						<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="base-input range w-full" />
 					</label>
+				</div>
 
-					<div></div>
-
-					<label>
-						<span>Font</span>
-						<select v-model="box.modifiers.font" class="base-input select rounded w-full">
-							<option value="impact">Impact</option>
-							<option value="arial">Arial</option>
-						</select>
-					</label>
-
-					<label>
-						<span>
-							Font Size<span class="status" role="status">: {{ box.modifiers.fontSize }}px</span>
-						</span>
-						<input :type="inputType" min="1" max="72" v-model.number="box.modifiers.fontSize" class="base-input range w-full" />
-					</label>
-
-					<label>
-						<span>Outline Type</span>
-						<select v-model="box.modifiers.outlineType" class="base-input select rounded w-full">
-							<option value="outline">Outline</option>
-							<option value="shadow">Shadow</option>
-							<option value="none">None</option>
-						</select>
-					</label>
-
-					<label>
-						<span>
-							Outline Width<span class="status" role="status">: {{ box.modifiers.outlineWidth }}px</span>
-						</span>
-						<input
-							:type="inputType"
-							min="0"
-							max="4"
-							step="0.25"
-							v-model.number="box.modifiers.outlineWidth"
-							:disabled="box.modifiers.outlineType === 'none'"
-							class="base-input range w-full"
-						/>
-					</label>
-
-					<label>
-						<span>Text Align</span>
-						<select v-model="box.modifiers.textAlign" class="base-input select rounded w-full">
-							<option value="left">Left</option>
-							<option value="center">Center</option>
-							<option value="right">Right</option>
-						</select>
-					</label>
-
-					<label>
-						<span>Vertical Align</span>
-						<select v-model="box.modifiers.verticalAlign" class="base-input select rounded w-full">
-							<option value="top">Top</option>
-							<option value="middle">Middle</option>
-							<option value="bottom">Bottom</option>
-						</select>
-					</label>
-
-					<div>
-						Modifiers<span class="status"
-							>:
-							<span
-								:class="{
-									uppercase: box.modifiers.allCaps,
-									italic: box.modifiers.italic,
-									'font-extrabold': box.modifiers.bold
-								}"
-								>Ab</span
-							></span
-						>
-						<label class="flex items-center gap-2">
-							<input type="checkbox" v-model="box.modifiers.allCaps" class="checkbox" />
-							<span>All Caps</span>
+				<accordion class="bg-gray-300 dark:bg-stone-950 px-1 py-2 rounded-xl">
+					<template #header>Details</template>
+					<div class="grid grid-cols-2 gap-2 px-2 py-1 mt-2 mb-3 bg-gray-200 dark:bg-stone-900 rounded-xl">
+						<label>
+							<span>Font</span>
+							<select v-model="box.modifiers.font" class="base-input select rounded w-full">
+								<option value="impact">Impact</option>
+								<option value="arial">Arial</option>
+							</select>
 						</label>
 
-						<label class="flex items-center gap-2">
-							<input type="checkbox" v-model="box.modifiers.bold" class="checkbox" />
-							<span>Bold</span>
+						<label>
+							<span>
+								Size<span class="status" role="status">: {{ box.modifiers.fontSize }}px</span>
+							</span>
+							<input :type="inputType" min="1" max="72" v-model.number="box.modifiers.fontSize" class="base-input range w-full" />
 						</label>
 
-						<label class="flex items-center gap-2">
-							<input type="checkbox" v-model="box.modifiers.italic" class="checkbox" />
-							<span>Italic</span>
+						<label>
+							<span>Outline Type</span>
+							<select v-model="box.modifiers.outlineType" class="base-input select rounded w-full">
+								<option value="outline">Outline</option>
+								<option value="shadow">Shadow</option>
+								<option value="none">None</option>
+							</select>
+						</label>
+
+						<label>
+							<span>
+								Width<span class="status" role="status">: {{ box.modifiers.outlineWidth }}px</span>
+							</span>
+							<input
+								:type="inputType"
+								min="0"
+								max="4"
+								step="0.25"
+								v-model.number="box.modifiers.outlineWidth"
+								:disabled="box.modifiers.outlineType === 'none'"
+								class="base-input range w-full"
+							/>
+						</label>
+
+						<label>
+							<span>Text Align</span>
+							<select v-model="box.modifiers.textAlign" class="base-input select rounded w-full">
+								<option value="left">Left</option>
+								<option value="center">Center</option>
+								<option value="right">Right</option>
+							</select>
+						</label>
+
+						<label>
+							<span>Vertical Align</span>
+							<select v-model="box.modifiers.verticalAlign" class="base-input select rounded w-full">
+								<option value="top">Top</option>
+								<option value="middle">Middle</option>
+								<option value="bottom">Bottom</option>
+							</select>
+						</label>
+
+						<div>
+							Modifiers<span class="status"
+								>:
+								<span
+									:class="{
+										uppercase: box.modifiers.allCaps,
+										italic: box.modifiers.italic,
+										'font-extrabold': box.modifiers.bold
+									}"
+									>Ab</span
+								></span
+							>
+							<label class="flex items-center gap-2">
+								<input type="checkbox" v-model="box.modifiers.allCaps" class="checkbox" />
+								<span>All Caps</span>
+							</label>
+
+							<label class="flex items-center gap-2">
+								<input type="checkbox" v-model="box.modifiers.bold" class="checkbox" />
+								<span>Bold</span>
+							</label>
+
+							<label class="flex items-center gap-2">
+								<input type="checkbox" v-model="box.modifiers.italic" class="checkbox" />
+								<span>Italic</span>
+							</label>
+						</div>
+
+						<label>
+							<span>
+								Opacity<span class="status" role="status">: {{ Math.round(box.modifiers.opacity * 100) }}%</span>
+							</span>
+							<input
+								:type="inputType"
+								min="0"
+								max="1"
+								step="0.01"
+								v-model.number="box.modifiers.opacity"
+								class="base-input range w-full"
+							/>
 						</label>
 					</div>
-
-					<label>
-						<span>
-							Opacity<span class="status" role="status">: {{ Math.round(box.modifiers.opacity * 100) }}%</span>
-						</span>
-						<input :type="inputType" min="0" max="1" step="0.01" v-model.number="box.modifiers.opacity" class="base-input range w-full" />
-					</label>
-				</div>
+				</accordion>
 
 				<div class="flex mt-2">
 					<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
@@ -256,18 +266,18 @@
 					</label>
 
 					<label>
+						<span>
+							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
+						</span>
+						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="base-input range w-full" />
+					</label>
+
+					<label>
 						<span>Style</span>
 						<select v-model="position.style" class="base-input select rounded w-full">
 							<option value="circle">Circle</option>
 							<option value="square">Square</option>
 						</select>
-					</label>
-
-					<label>
-						<span>
-							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
-						</span>
-						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="base-input range w-full" />
 					</label>
 
 					<div class="flex">
