@@ -72,13 +72,8 @@
 			</div>
 
 			<div v-for="(box, index) of boxes" class="px-4 py-2 border-l-2 rounded shadow-sm mt-5" :class="classes[index % classes.length]">
-				<h3 class="text-xl font-bold mb-2">
-					Text #{{ index + 1 }}
-					<div class="flex">
-						<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
-					</div>
-				</h3>
-				<div class="grid grid-cols-2 gap-2">
+				<h3 class="text-xl font-bold">Text #{{ index + 1 }}</h3>
+				<div class="grid grid-cols-2 gap-2 mt-2">
 					<label>
 						<span>
 							X<span class="status" role="status">: {{ box.x }}px</span>
@@ -207,6 +202,10 @@
 						</span>
 						<input :type="inputType" min="0" max="1" step="0.01" v-model.number="box.modifiers.opacity" class="base-input range w-full" />
 					</label>
+				</div>
+
+				<div class="flex mt-2">
+					<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
 				</div>
 			</div>
 		</div>
