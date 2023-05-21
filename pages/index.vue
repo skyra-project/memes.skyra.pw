@@ -110,7 +110,7 @@
 					</label>
 				</div>
 
-				<accordion class="bg-gray-300 dark:bg-stone-950 px-1 py-2 rounded-xl">
+				<accordion class="bg-gray-300 dark:bg-stone-950 px-1 py-2 rounded-xl mt-2">
 					<template #header>Details</template>
 					<div class="grid grid-cols-2 gap-2 px-2 py-1 mt-2 mb-3 bg-gray-200 dark:bg-stone-900 rounded-xl">
 						<label>
