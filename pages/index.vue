@@ -2,12 +2,12 @@
 	<div>
 		<label class="block mb-5">
 			<span>Name</span>
-			<input type="text" v-model.trim="name" class="range w-full" />
+			<input type="text" v-model.trim="name" class="base-input rounded w-full" />
 		</label>
 
 		<label class="block mb-5">
 			<span>URL</span>
-			<input type="url" v-model.trim="url" class="range w-full" />
+			<input type="url" v-model.trim="url" class="base-input rounded w-full" />
 		</label>
 
 		<label class="flex mb-5 items-center gap-2">
@@ -80,35 +80,35 @@
 					<span>
 						X<span class="status" role="status">: {{ box.x }}px</span>
 					</span>
-					<input :type="inputType" min="0" :max="width" v-model.number="box.x" class="range w-full" />
+					<input :type="inputType" min="0" :max="width" v-model.number="box.x" class="base-input range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Y<span class="status" role="status">: {{ box.y }}px</span>
 					</span>
-					<input :type="inputType" min="0" :max="height" v-model.number="box.y" class="range w-full" />
+					<input :type="inputType" min="0" :max="height" v-model.number="box.y" class="base-input range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Width<span class="status" role="status">: {{ box.width }}px</span>
 					</span>
-					<input :type="inputType" min="20" :max="width" v-model.number="box.width" class="range w-full" />
+					<input :type="inputType" min="20" :max="width" v-model.number="box.width" class="base-input range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Height<span class="status" role="status">: {{ box.height }}px</span>
 					</span>
-					<input :type="inputType" min="20" :max="height" v-model.number="box.height" class="range w-full" />
+					<input :type="inputType" min="20" :max="height" v-model.number="box.height" class="base-input range w-full" />
 				</label>
 
 				<label>
 					<span>
 						Rotation<span class="status" role="status">: {{ box.rotation }}º</span>
 					</span>
-					<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="range w-full" />
+					<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="base-input range w-full" />
 				</label>
 
 				<div class="flex">
@@ -145,26 +145,26 @@
 						<span>
 							X<span class="status" role="status">: {{ position.x }}px</span>
 						</span>
-						<input :type="inputType" min="0" :max="width" v-model.number="position.x" class="range w-full" />
+						<input :type="inputType" min="0" :max="width" v-model.number="position.x" class="base-input range w-full" />
 					</label>
 
 					<label>
 						<span>
 							Y<span class="status" role="status">: {{ position.y }}px</span>
 						</span>
-						<input :type="inputType" min="0" :max="height" v-model.number="position.y" class="range w-full" />
+						<input :type="inputType" min="0" :max="height" v-model.number="position.y" class="base-input range w-full" />
 					</label>
 
 					<label>
 						<span>
 							Size<span class="status" role="status">: {{ position.size }}px</span>
 						</span>
-						<input :type="inputType" min="16" :max="height" v-model.number="position.size" class="range w-full" />
+						<input :type="inputType" min="16" :max="height" v-model.number="position.size" class="base-input range w-full" />
 					</label>
 
 					<label>
 						<span>Style</span>
-						<select v-model="position.style" class="select w-full">
+						<select v-model="position.style" class="base-input select rounded w-full">
 							<option value="circle">Circle</option>
 							<option value="square">Square</option>
 						</select>
@@ -174,7 +174,7 @@
 						<span>
 							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
 						</span>
-						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="range w-full" />
+						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="base-input range w-full" />
 					</label>
 
 					<div class="flex">
@@ -375,16 +375,51 @@ button.danger {
 	@apply text-gray-50 bg-red-600 dark:bg-red-700;
 }
 
+.base-input {
+	@apply border-2 p-2 bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-900 dark:[color-scheme:dark];
+}
+
 select.select {
-	@apply form-select bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-800 rounded dark:[color-scheme:dark];
+	--tw-border-opacity: 1;
+	--tw-select-arrow-rgb: 209 213 219;
+	--tw-select-arrow-color: rgb(var(--tw-select-arrow-rgb) / var(--tw-border-opacity));
+	--tw-select-bg-rgb: 243 244 246;
+	--tw-select-bg-color: rgb(var(--tw-select-bg-rgb) / var(--tw-border-opacity));
+
+	@apply appearance-none bg-no-repeat dark:[--tw-select-arrow-rgb:_68_64_60] dark:[--tw-select-bg-rgb:_28_25_23];
+
+	background-image:
+		linear-gradient(45deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%),
+		linear-gradient(135deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%);
+	background-position:
+		calc(100% - 20px) calc(1em + 2px),
+		calc(100% - 15px) calc(1em + 2px);
+	background-size:
+		5px 5px,
+		5px 5px;
+}
+
+select.select:focus {
+	--tw-select-arrow-rgb: 75 85 99;
+	@apply dark:[--tw-select-rgb:_214_211_209];
+
+	background-image:
+		linear-gradient(45deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%),
+		linear-gradient(135deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%);
+	background-position:
+		calc(100% - 15px) 1em,
+		calc(100% - 20px) 1em;
+	background-size:
+		5px 5px,
+		5px 5px;
 }
 
 input.range {
-	@apply form-input bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-800 rounded dark:[color-scheme:dark];
+	@apply rounded dark:[color-scheme:dark];
 }
 
 input.checkbox {
-	@apply form-checkbox bg-gray-100 border-gray-300 dark:bg-stone-800 dark:border-stone-700 text-green-500 dark:text-green-700 dark:[color-scheme:dark];
+	@apply dark:[color-scheme:dark];
 }
 
 span.status {
