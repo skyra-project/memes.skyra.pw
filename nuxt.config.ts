@@ -88,7 +88,7 @@ export default defineNuxtConfig({
 		},
 		workbox: {
 			navigateFallback: '/',
-			globPatterns: ['**/*.{js,css,html,png,svg,ico,xml}']
+			globPatterns: ['**/*.{js,css,html,png,svg,ico,xml,json,wasm}']
 		},
 		manifest: {
 			background_color: '#292524',
