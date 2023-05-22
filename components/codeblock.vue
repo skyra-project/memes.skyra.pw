@@ -22,19 +22,19 @@ function line(indent: number, ...elements: readonly (JSX.Element | string)[]) {
 }
 
 function property(name: string) {
-	return <span class="text-teal-400">"{name}"</span>;
+	return <span class="text-teal-600 dark:text-teal-400">"{name}"</span>;
 }
 
 function string(value: string) {
-	return <span class="text-green-400">"{value}"</span>;
+	return <span class="text-green-600 dark:text-green-400">"{value}"</span>;
 }
 
 function number(value: number) {
-	return <span class="text-amber-400">{value}</span>;
+	return <span class="text-amber-600 dark:text-amber-400">{value}</span>;
 }
 
 function boolean(value: boolean) {
-	return <span class="text-rose-400">{value ? 'true' : 'false'}</span>;
+	return <span class="text-rose-600 dark:text-rose-400">{value ? 'true' : 'false'}</span>;
 }
 
 function addAvatar(lines: JSX.Element[], position: EntryAvatarPosition, last: boolean) {
@@ -116,6 +116,10 @@ function renderJson() {
 	}
 
 	lines.push(line(0, '}'));
-	return <code>{lines}</code>;
+	return (
+		<code>
+			<client-only>{lines}</client-only>
+		</code>
+	);
 }
 </script>
