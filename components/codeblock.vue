@@ -100,7 +100,7 @@ function renderJson() {
 	if (props.avatars.target.length === 0) {
 		lines.push(line(2, property('target'), ': []'));
 	} else {
-		lines.push(line(2, property('target'), ': []'));
+		lines.push(line(2, property('target'), ': ['));
 		addAvatars(lines, props.avatars.target);
 		lines.push(line(2, ']'));
 	}
