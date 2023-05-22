@@ -67,11 +67,6 @@ export default defineNuxtConfig({
 			routes: ['/', '/about', '/sitemap.xml']
 		}
 	},
-	vite: {
-		define: {
-			'process.env.VSCODE_TEXTMATE_DEBUG': 'false'
-		}
-	},
 	typescript: {
 		shim: false,
 		tsConfig: {
@@ -88,7 +83,7 @@ export default defineNuxtConfig({
 		},
 		workbox: {
 			navigateFallback: '/',
-			globPatterns: ['**/*.{js,css,html,png,svg,ico,xml,json,wasm}']
+			globPatterns: ['**/*.{js,css,html,png,svg,ico,xml}']
 		},
 		manifest: {
 			background_color: '#292524',
