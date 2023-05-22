@@ -9,7 +9,15 @@ export interface EntryBox {
 	modifiers: EntryBoxModifiers;
 }
 
-export interface EntryBoxModifiers {
+export interface EntryAvatarPosition {
+	x: number;
+	y: number;
+	size: number;
+	style: 'circle' | 'square';
+	rotation: number;
+}
+
+interface EntryBoxModifiers {
 	font: 'impact' | 'arial';
 	fontSize: number;
 	allCaps: boolean;
@@ -21,18 +29,3 @@ export interface EntryBoxModifiers {
 	verticalAlign: 'top' | 'middle' | 'bottom';
 	opacity: number;
 }
-
-export interface EntryAvatarPosition {
-	x: number;
-	y: number;
-	size: number;
-	style: 'circle' | 'square';
-	rotation: number;
-}
-
-export interface EntryAvatars {
-	author: ReturnType<typeof reactive<EntryAvatarPosition[]>>;
-	target: ReturnType<typeof reactive<EntryAvatarPosition[]>>;
-}
-
-export type EntryBoxes = ReturnType<typeof reactive<EntryBox[]>>;

@@ -251,16 +251,16 @@
 <script setup lang="ts">
 import { useImage } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
-import type { EntryAvatarPosition, EntryAvatars, EntryBox, EntryBoxes } from '~/lib/interfaces';
+import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
 
 const name = ref('');
 const url = ref('');
 const debouncedUrl = refDebounced(url, 500);
-const avatars: EntryAvatars = {
+const avatars = {
 	author: reactive<EntryAvatarPosition[]>([]),
 	target: reactive<EntryAvatarPosition[]>([])
 };
-const boxes: EntryBoxes = reactive<EntryBox[]>([]);
+const boxes = reactive<EntryBox[]>([]);
 
 const inputType = ref<'number' | 'range'>('range');
 function toggleInputType() {
