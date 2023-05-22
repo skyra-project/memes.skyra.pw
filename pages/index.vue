@@ -74,23 +74,23 @@
 			<div v-for="(box, index) of boxes" class="px-4 py-2 border-l-2 rounded shadow-sm mt-5" :class="classes[index % classes.length]">
 				<h3 class="text-xl font-bold">Text #{{ index + 1 }}</h3>
 				<div class="grid grid-cols-2 gap-2 mt-2">
-					<input-slider name="X" v-model="box.x" :type="inputType" :min="0" :max="width" class="base-input range w-full">
+					<input-slider name="X" v-model="box.x" :type="inputType" :min="0" :max="width">
 						<template #header="{ value }">{{ value }}px</template>
 					</input-slider>
 
-					<input-slider name="Y" v-model="box.y" :type="inputType" :min="0" :max="height" class="base-input range w-full">
+					<input-slider name="Y" v-model="box.y" :type="inputType" :min="0" :max="height">
 						<template #header="{ value }">{{ value }}px</template>
 					</input-slider>
 
-					<input-slider name="Width" v-model="box.width" :type="inputType" :min="0" :max="width" class="base-input range w-full">
+					<input-slider name="Width" v-model="box.width" :type="inputType" :min="0" :max="width">
 						<template #header="{ value }">{{ value }}px</template>
 					</input-slider>
 
-					<input-slider name="Height" v-model="box.height" :type="inputType" :min="0" :max="height" class="base-input range w-full">
+					<input-slider name="Height" v-model="box.height" :type="inputType" :min="0" :max="height">
 						<template #header="{ value }">{{ value }}px</template>
 					</input-slider>
 
-					<input-slider name="Rotation" v-model="box.rotation" :type="inputType" :min="-180" :max="180" class="base-input range w-full">
+					<input-slider name="Rotation" v-model="box.rotation" :type="inputType" :min="-180" :max="180">
 						<template #header="{ value }">{{ value }}º</template>
 					</input-slider>
 				</div>
@@ -106,14 +106,7 @@
 							</select>
 						</label>
 
-						<input-slider
-							name="Size"
-							v-model="box.modifiers.fontSize"
-							:type="inputType"
-							:min="1"
-							:max="72"
-							class="base-input range w-full"
-						>
+						<input-slider name="Size" v-model="box.modifiers.fontSize" :type="inputType" :min="1" :max="72">
 							<template #header="{ value }">{{ value }}px</template>
 						</input-slider>
 
@@ -134,7 +127,6 @@
 							:max="4"
 							:step="0.25"
 							:disabled="box.modifiers.outlineType === 'none'"
-							class="base-input range w-full"
 						>
 							<template #header="{ value }">{{ value }}px</template>
 						</input-slider>
@@ -184,15 +176,7 @@
 							</label>
 						</div>
 
-						<input-slider
-							name="Opacity"
-							v-model="box.modifiers.opacity"
-							:type="inputType"
-							:min="0"
-							:max="1"
-							:step="0.01"
-							class="base-input range w-full"
-						>
+						<input-slider name="Opacity" v-model="box.modifiers.opacity" :type="inputType" :min="0" :max="1" :step="0.01">
 							<template #header="{ value }">{{ Math.round(value * 100) }}%</template>
 						</input-slider>
 					</div>
@@ -228,26 +212,19 @@
 					class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-cols-2 gap-2"
 					:class="classes[index % classes.length]"
 				>
-					<input-slider name="X" v-model="position.x" :type="inputType" :min="0" :max="width" class="base-input range w-full">
+					<input-slider name="X" v-model="position.x" :type="inputType" :min="0" :max="width">
 						<template #header="{ value }">{{ value }}px</template>
 					</input-slider>
 
-					<input-slider name="Y" :type="inputType" v-model="position.y" :min="0" :max="height" class="base-input range w-full">
+					<input-slider name="Y" :type="inputType" v-model="position.y" :min="0" :max="height">
 						<template #header="{ value }">{{ value }}px</template>
 					</input-slider>
 
-					<input-slider name="Size" v-model="position.size" :type="inputType" :min="16" :max="height" class="base-input range w-full">
+					<input-slider name="Size" v-model="position.size" :type="inputType" :min="16" :max="height">
 						<template #header="{ value }">{{ value }}px</template>
 					</input-slider>
 
-					<input-slider
-						name="Rotation"
-						v-model="position.rotation"
-						:type="inputType"
-						:min="-180"
-						:max="180"
-						class="base-input range w-full"
-					>
+					<input-slider name="Rotation" v-model="position.rotation" :type="inputType" :min="-180" :max="180">
 						<template #header="{ value }">{{ value }}º</template>
 					</input-slider>
 
@@ -514,13 +491,5 @@ select.select:focus {
 		linear-gradient(135deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%);
 	background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em;
 	background-size: 5px 5px, 5px 5px;
-}
-
-input.range {
-	@apply rounded dark:[color-scheme:dark];
-}
-
-input.checkbox {
-	@apply dark:[color-scheme:dark];
 }
 </style>

@@ -24,6 +24,10 @@
 	}
 
 	.base-input {
-		@apply border-2 p-2 bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-900 dark:[color-scheme:dark];
+		@apply border-2 p-2 bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-900;
+	}
+
+	input {
+		@apply dark:[color-scheme:dark];
 	}
 }

@@ -9,7 +9,7 @@
 			:type="type"
 			:value="modelValue"
 			@input="$emit('update:modelValue', ($event.target as HTMLInputElement).valueAsNumber)"
-			class="base-input range w-full"
+			class="base-input rounded w-full"
 		/>
 	</label>
 </template>
