@@ -72,8 +72,8 @@
 			</div>
 
 			<div v-for="(box, index) of boxes" class="px-4 py-2 border-l-2 rounded shadow-sm mt-5" :class="classes[index % classes.length]">
-				<h3 class="text-xl font-bold mb-2">Text #{{ index + 1 }}</h3>
-				<div class="grid grid-cols-2 gap-2">
+				<h3 class="text-xl font-bold">Text #{{ index + 1 }}</h3>
+				<div class="grid grid-cols-2 gap-2 mt-2">
 					<label>
 						<span>
 							X<span class="status" role="status">: {{ box.x }}px</span>
@@ -108,10 +108,114 @@
 						</span>
 						<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="base-input range w-full" />
 					</label>
+				</div>
 
-					<div class="flex">
-						<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
+				<accordion class="bg-gray-300 dark:bg-stone-950 px-1 py-2 rounded-xl mt-2">
+					<template #header>Details</template>
+					<div class="grid grid-cols-2 gap-2 px-2 py-1 mt-2 mb-3 bg-gray-200 dark:bg-stone-900 rounded-xl">
+						<label>
+							<span>Font</span>
+							<select v-model="box.modifiers.font" class="base-input select rounded w-full">
+								<option value="impact">Impact</option>
+								<option value="arial">Arial</option>
+							</select>
+						</label>
+
+						<label>
+							<span>
+								Size<span class="status" role="status">: {{ box.modifiers.fontSize }}px</span>
+							</span>
+							<input :type="inputType" min="1" max="72" v-model.number="box.modifiers.fontSize" class="base-input range w-full" />
+						</label>
+
+						<label>
+							<span>Outline Type</span>
+							<select v-model="box.modifiers.outlineType" class="base-input select rounded w-full">
+								<option value="outline">Outline</option>
+								<option value="shadow">Shadow</option>
+								<option value="none">None</option>
+							</select>
+						</label>
+
+						<label>
+							<span>
+								Width<span class="status" role="status">: {{ box.modifiers.outlineWidth }}px</span>
+							</span>
+							<input
+								:type="inputType"
+								min="0"
+								max="4"
+								step="0.25"
+								v-model.number="box.modifiers.outlineWidth"
+								:disabled="box.modifiers.outlineType === 'none'"
+								class="base-input range w-full"
+							/>
+						</label>
+
+						<label>
+							<span>Text Align</span>
+							<select v-model="box.modifiers.textAlign" class="base-input select rounded w-full">
+								<option value="left">Left</option>
+								<option value="center">Center</option>
+								<option value="right">Right</option>
+							</select>
+						</label>
+
+						<label>
+							<span>Vertical Align</span>
+							<select v-model="box.modifiers.verticalAlign" class="base-input select rounded w-full">
+								<option value="top">Top</option>
+								<option value="middle">Middle</option>
+								<option value="bottom">Bottom</option>
+							</select>
+						</label>
+
+						<div>
+							Modifiers<span class="status"
+								>:
+								<span
+									:class="{
+										uppercase: box.modifiers.allCaps,
+										italic: box.modifiers.italic,
+										'font-extrabold': box.modifiers.bold
+									}"
+									>Ab</span
+								></span
+							>
+							<label class="flex items-center gap-2">
+								<input type="checkbox" v-model="box.modifiers.allCaps" class="checkbox" />
+								<span>All Caps</span>
+							</label>
+
+							<label class="flex items-center gap-2">
+								<input type="checkbox" v-model="box.modifiers.bold" class="checkbox" />
+								<span>Bold</span>
+							</label>
+
+							<label class="flex items-center gap-2">
+								<input type="checkbox" v-model="box.modifiers.italic" class="checkbox" />
+								<span>Italic</span>
+							</label>
+						</div>
+
+						<label>
+							<span>
+								Opacity<span class="status" role="status">: {{ Math.round(box.modifiers.opacity * 100) }}%</span>
+							</span>
+							<input
+								:type="inputType"
+								min="0"
+								max="1"
+								step="0.01"
+								v-model.number="box.modifiers.opacity"
+								class="base-input range w-full"
+							/>
+						</label>
 					</div>
+				</accordion>
+
+				<div class="flex mt-2">
+					<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
 				</div>
 			</div>
 		</div>
@@ -162,18 +266,18 @@
 					</label>
 
 					<label>
+						<span>
+							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
+						</span>
+						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="base-input range w-full" />
+					</label>
+
+					<label>
 						<span>Style</span>
 						<select v-model="position.style" class="base-input select rounded w-full">
 							<option value="circle">Circle</option>
 							<option value="square">Square</option>
 						</select>
-					</label>
-
-					<label>
-						<span>
-							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
-						</span>
-						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="base-input range w-full" />
 					</label>
 
 					<div class="flex">
@@ -185,7 +289,9 @@
 	</div>
 
 	<hr class="json-divider" />
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status">{{ { name, url, avatars, boxes } }}</pre>
+	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status">{{
+		JSON.stringify({ name, url, avatars, boxes }, null, '\t')
+	}}</pre>
 </template>
 
 <script setup lang="ts">
@@ -234,7 +340,25 @@ watch(debouncedUrl, async (value) => {
 watch([boxes, avatars.author, avatars.target], () => printImage());
 
 function addBox() {
-	boxes.push({ x: 200, y: boxes.length === 0 ? 50 : 350, width, height: 100, rotation: 0 });
+	boxes.push({
+		x: 200,
+		y: boxes.length === 0 ? 50 : 350,
+		width,
+		height: 100,
+		rotation: 0,
+		modifiers: {
+			font: 'impact',
+			fontSize: 32,
+			allCaps: false,
+			bold: false,
+			italic: false,
+			outlineType: 'outline',
+			outlineWidth: 4,
+			textAlign: 'center',
+			verticalAlign: 'middle',
+			opacity: 1
+		}
+	});
 }
 
 function addPosition(target: AvatarTarget) {
@@ -345,6 +469,20 @@ interface EntryBox {
 	width: number;
 	height: number;
 	rotation: number;
+	modifiers: EntryBoxModifiers;
+}
+
+interface EntryBoxModifiers {
+	font: 'impact' | 'arial';
+	fontSize: number;
+	allCaps: boolean;
+	bold: boolean;
+	italic: boolean;
+	outlineType: 'shadow' | 'outline' | 'none';
+	outlineWidth: number;
+	textAlign: 'left' | 'center' | 'right';
+	verticalAlign: 'top' | 'middle' | 'bottom';
+	opacity: number;
 }
 
 interface EntryAvatarPosition {
@@ -387,30 +525,20 @@ select.select {
 
 	@apply appearance-none bg-no-repeat dark:[--tw-select-arrow-rgb:_68_64_60] dark:[--tw-select-bg-rgb:_28_25_23];
 
-	background-image:
-		linear-gradient(45deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%),
+	background-image: linear-gradient(45deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%),
 		linear-gradient(135deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%);
-	background-position:
-		calc(100% - 20px) calc(1em + 2px),
-		calc(100% - 15px) calc(1em + 2px);
-	background-size:
-		5px 5px,
-		5px 5px;
+	background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+	background-size: 5px 5px, 5px 5px;
 }
 
 select.select:focus {
 	--tw-select-arrow-rgb: 75 85 99;
 	@apply dark:[--tw-select-rgb:_214_211_209];
 
-	background-image:
-		linear-gradient(45deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%),
+	background-image: linear-gradient(45deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%),
 		linear-gradient(135deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%);
-	background-position:
-		calc(100% - 15px) 1em,
-		calc(100% - 20px) 1em;
-	background-size:
-		5px 5px,
-		5px 5px;
+	background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em;
+	background-size: 5px 5px, 5px 5px;
 }
 
 input.range {
