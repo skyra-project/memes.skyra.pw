@@ -1,17 +1,17 @@
 <template>
 	<div>
 		<label class="block mb-5">
-			<span>Name</span>
+			Name
 			<input type="text" v-model.trim="name" class="base-input rounded w-full" />
 		</label>
 
 		<label class="block mb-5">
-			<span>URL</span>
+			URL
 			<input type="url" v-model.trim="url" class="base-input rounded w-full" />
 		</label>
 
 		<label class="flex mb-5 items-center gap-2">
-			<span>Use number input instead of sliders:</span>
+			Use number input instead of sliders:
 			<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
 		</label>
 	</div>
@@ -29,12 +29,12 @@
 				clip-rule="evenodd"
 			></path>
 		</svg>
-		<span>
+		<p>
 			Please fill the above input box with a link to an image to load as a base for the new meme template, for example,
 			<NuxtLink href="https://skyra.pw/avatars/skyra.png" target="_blank" class="underline opacity-80">
 				https://skyra.pw/avatars/skyra.png</NuxtLink
 			>.
-		</span>
+		</p>
 	</div>
 	<div v-else-if="error || !imageData.src" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-red-500" role="alert">
 		<svg
@@ -49,9 +49,9 @@
 				clip-rule="evenodd"
 			></path>
 		</svg>
-		<span>
+		<p>
 			{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
-		</span>
+		</p>
 	</div>
 
 	<div class="grid grid-flow-row lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr] gap-4 mb-5 w-full justify-items-center">
@@ -74,62 +74,44 @@
 			<div v-for="(box, index) of boxes" class="px-4 py-2 border-l-2 rounded shadow-sm mt-5" :class="classes[index % classes.length]">
 				<h3 class="text-xl font-bold">Text #{{ index + 1 }}</h3>
 				<div class="grid grid-cols-2 gap-2 mt-2">
-					<label>
-						<span>
-							X<span class="status" role="status">: {{ box.x }}px</span>
-						</span>
-						<input :type="inputType" min="0" :max="width" v-model.number="box.x" class="base-input range w-full" />
-					</label>
+					<input-slider name="X" v-model="box.x" :type="inputType" :min="0" :max="width">
+						<template #header="{ value }">{{ value }}px</template>
+					</input-slider>
 
-					<label>
-						<span>
-							Y<span class="status" role="status">: {{ box.y }}px</span>
-						</span>
-						<input :type="inputType" min="0" :max="height" v-model.number="box.y" class="base-input range w-full" />
-					</label>
+					<input-slider name="Y" v-model="box.y" :type="inputType" :min="0" :max="height">
+						<template #header="{ value }">{{ value }}px</template>
+					</input-slider>
 
-					<label>
-						<span>
-							Width<span class="status" role="status">: {{ box.width }}px</span>
-						</span>
-						<input :type="inputType" min="20" :max="width" v-model.number="box.width" class="base-input range w-full" />
-					</label>
+					<input-slider name="Width" v-model="box.width" :type="inputType" :min="0" :max="width">
+						<template #header="{ value }">{{ value }}px</template>
+					</input-slider>
 
-					<label>
-						<span>
-							Height<span class="status" role="status">: {{ box.height }}px</span>
-						</span>
-						<input :type="inputType" min="20" :max="height" v-model.number="box.height" class="base-input range w-full" />
-					</label>
+					<input-slider name="Height" v-model="box.height" :type="inputType" :min="0" :max="height">
+						<template #header="{ value }">{{ value }}px</template>
+					</input-slider>
 
-					<label>
-						<span>
-							Rotation<span class="status" role="status">: {{ box.rotation }}º</span>
-						</span>
-						<input :type="inputType" min="-180" max="180" v-model.number="box.rotation" class="base-input range w-full" />
-					</label>
+					<input-slider name="Rotation" v-model="box.rotation" :type="inputType" :min="-180" :max="180">
+						<template #header="{ value }">{{ value }}º</template>
+					</input-slider>
 				</div>
 
 				<accordion class="bg-gray-300 dark:bg-stone-950 px-1 py-2 rounded-xl mt-2">
 					<template #header>Details</template>
 					<div class="grid grid-cols-2 gap-2 px-2 py-1 mt-2 mb-3 bg-gray-200 dark:bg-stone-900 rounded-xl">
 						<label>
-							<span>Font</span>
+							Font
 							<select v-model="box.modifiers.font" class="base-input select rounded w-full">
 								<option value="impact">Impact</option>
 								<option value="arial">Arial</option>
 							</select>
 						</label>
 
-						<label>
-							<span>
-								Size<span class="status" role="status">: {{ box.modifiers.fontSize }}px</span>
-							</span>
-							<input :type="inputType" min="1" max="72" v-model.number="box.modifiers.fontSize" class="base-input range w-full" />
-						</label>
+						<input-slider name="Size" v-model="box.modifiers.fontSize" :type="inputType" :min="1" :max="72">
+							<template #header="{ value }">{{ value }}px</template>
+						</input-slider>
 
 						<label>
-							<span>Outline Type</span>
+							Outline Type
 							<select v-model="box.modifiers.outlineType" class="base-input select rounded w-full">
 								<option value="outline">Outline</option>
 								<option value="shadow">Shadow</option>
@@ -137,23 +119,20 @@
 							</select>
 						</label>
 
-						<label>
-							<span>
-								Width<span class="status" role="status">: {{ box.modifiers.outlineWidth }}px</span>
-							</span>
-							<input
-								:type="inputType"
-								min="0"
-								max="4"
-								step="0.25"
-								v-model.number="box.modifiers.outlineWidth"
-								:disabled="box.modifiers.outlineType === 'none'"
-								class="base-input range w-full"
-							/>
-						</label>
+						<input-slider
+							name="Width"
+							v-model="box.modifiers.outlineWidth"
+							:type="inputType"
+							:min="0"
+							:max="4"
+							:step="0.25"
+							:disabled="box.modifiers.outlineType === 'none'"
+						>
+							<template #header="{ value }">{{ value }}px</template>
+						</input-slider>
 
 						<label>
-							<span>Text Align</span>
+							Text Align
 							<select v-model="box.modifiers.textAlign" class="base-input select rounded w-full">
 								<option value="left">Left</option>
 								<option value="center">Center</option>
@@ -162,7 +141,7 @@
 						</label>
 
 						<label>
-							<span>Vertical Align</span>
+							Vertical Align
 							<select v-model="box.modifiers.verticalAlign" class="base-input select rounded w-full">
 								<option value="top">Top</option>
 								<option value="middle">Middle</option>
@@ -171,46 +150,35 @@
 						</label>
 
 						<div>
-							Modifiers<span class="status"
-								>:
-								<span
-									:class="{
-										uppercase: box.modifiers.allCaps,
-										italic: box.modifiers.italic,
-										'font-extrabold': box.modifiers.bold
-									}"
-									>Ab</span
-								></span
+							Modifiers<span
+								:class="{
+									uppercase: box.modifiers.allCaps,
+									italic: box.modifiers.italic,
+									'font-extrabold': box.modifiers.bold
+								}"
+								class="before:content-[':_'] before:font-medium before:not-italic opacity-80"
+								>Ab</span
 							>
+
 							<label class="flex items-center gap-2">
 								<input type="checkbox" v-model="box.modifiers.allCaps" class="checkbox" />
-								<span>All Caps</span>
+								All Caps
 							</label>
 
 							<label class="flex items-center gap-2">
 								<input type="checkbox" v-model="box.modifiers.bold" class="checkbox" />
-								<span>Bold</span>
+								Bold
 							</label>
 
 							<label class="flex items-center gap-2">
 								<input type="checkbox" v-model="box.modifiers.italic" class="checkbox" />
-								<span>Italic</span>
+								Italic
 							</label>
 						</div>
 
-						<label>
-							<span>
-								Opacity<span class="status" role="status">: {{ Math.round(box.modifiers.opacity * 100) }}%</span>
-							</span>
-							<input
-								:type="inputType"
-								min="0"
-								max="1"
-								step="0.01"
-								v-model.number="box.modifiers.opacity"
-								class="base-input range w-full"
-							/>
-						</label>
+						<input-slider name="Opacity" v-model="box.modifiers.opacity" :type="inputType" :min="0" :max="1" :step="0.01">
+							<template #header="{ value }">{{ Math.round(value * 100) }}%</template>
+						</input-slider>
 					</div>
 				</accordion>
 
@@ -244,36 +212,24 @@
 					class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-cols-2 gap-2"
 					:class="classes[index % classes.length]"
 				>
-					<label>
-						<span>
-							X<span class="status" role="status">: {{ position.x }}px</span>
-						</span>
-						<input :type="inputType" min="0" :max="width" v-model.number="position.x" class="base-input range w-full" />
-					</label>
+					<input-slider name="X" v-model="position.x" :type="inputType" :min="0" :max="width">
+						<template #header="{ value }">{{ value }}px</template>
+					</input-slider>
+
+					<input-slider name="Y" :type="inputType" v-model="position.y" :min="0" :max="height">
+						<template #header="{ value }">{{ value }}px</template>
+					</input-slider>
+
+					<input-slider name="Size" v-model="position.size" :type="inputType" :min="16" :max="height">
+						<template #header="{ value }">{{ value }}px</template>
+					</input-slider>
+
+					<input-slider name="Rotation" v-model="position.rotation" :type="inputType" :min="-180" :max="180">
+						<template #header="{ value }">{{ value }}º</template>
+					</input-slider>
 
 					<label>
-						<span>
-							Y<span class="status" role="status">: {{ position.y }}px</span>
-						</span>
-						<input :type="inputType" min="0" :max="height" v-model.number="position.y" class="base-input range w-full" />
-					</label>
-
-					<label>
-						<span>
-							Size<span class="status" role="status">: {{ position.size }}px</span>
-						</span>
-						<input :type="inputType" min="16" :max="height" v-model.number="position.size" class="base-input range w-full" />
-					</label>
-
-					<label>
-						<span>
-							Rotation<span class="status" role="status">: {{ position.rotation }}º</span>
-						</span>
-						<input :type="inputType" min="-180" max="180" v-model.number="position.rotation" class="base-input range w-full" />
-					</label>
-
-					<label>
-						<span>Style</span>
+						Style
 						<select v-model="position.style" class="base-input select rounded w-full">
 							<option value="circle">Circle</option>
 							<option value="square">Square</option>
@@ -289,14 +245,13 @@
 	</div>
 
 	<hr class="json-divider" />
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status">{{
-		JSON.stringify({ name, url, avatars, boxes }, null, '\t')
-	}}</pre>
+	<codeblock :data="{ name, url, avatars, boxes }" />
 </template>
 
 <script setup lang="ts">
 import { useImage } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
+import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
 
 const name = ref('');
 const url = ref('');
@@ -462,36 +417,6 @@ function printImage() {
 		}
 	}
 }
-
-interface EntryBox {
-	x: number;
-	y: number;
-	width: number;
-	height: number;
-	rotation: number;
-	modifiers: EntryBoxModifiers;
-}
-
-interface EntryBoxModifiers {
-	font: 'impact' | 'arial';
-	fontSize: number;
-	allCaps: boolean;
-	bold: boolean;
-	italic: boolean;
-	outlineType: 'shadow' | 'outline' | 'none';
-	outlineWidth: number;
-	textAlign: 'left' | 'center' | 'right';
-	verticalAlign: 'top' | 'middle' | 'bottom';
-	opacity: number;
-}
-
-interface EntryAvatarPosition {
-	x: number;
-	y: number;
-	size: number;
-	style: 'circle' | 'square';
-	rotation: number;
-}
 </script>
 
 <style scoped>
@@ -510,10 +435,6 @@ button.success {
 
 button.danger {
 	@apply text-gray-50 bg-red-600 dark:bg-red-700;
-}
-
-.base-input {
-	@apply border-2 p-2 bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-900 dark:[color-scheme:dark];
 }
 
 select.select {
@@ -539,17 +460,5 @@ select.select:focus {
 		linear-gradient(135deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%);
 	background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em;
 	background-size: 5px 5px, 5px 5px;
-}
-
-input.range {
-	@apply rounded dark:[color-scheme:dark];
-}
-
-input.checkbox {
-	@apply dark:[color-scheme:dark];
-}
-
-span.status {
-	@apply text-stone-600 dark:text-stone-400;
 }
 </style>
