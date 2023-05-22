@@ -1,7 +1,5 @@
 <template>
-	<ClientOnly>
-		<div class="codeblock" v-html="highlightedJson"></div>
-	</ClientOnly>
+	<div class="codeblock" v-html="highlightedJson"></div>
 </template>
 
 <script setup lang="ts">
