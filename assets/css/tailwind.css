@@ -11,7 +11,6 @@
 	a {
 		@apply underline-offset-2;
 	}
-
 }
 
 @layer components {
