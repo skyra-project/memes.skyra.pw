@@ -1,5 +1,5 @@
 <template>
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status"><render-json /></pre>
+	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status"><client-only><render-json /></client-only></pre>
 </template>
 
 <script setup lang="tsx">
@@ -116,10 +116,6 @@ function renderJson() {
 	}
 
 	lines.push(line(0, '}'));
-	return (
-		<code>
-			<client-only>{lines}</client-only>
-		</code>
-	);
+	return <code>{lines}</code>;
 }
 </script>
