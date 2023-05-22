@@ -1,17 +1,17 @@
 <template>
 	<div>
 		<label class="block mb-5">
-			<span>Name</span>
+			Name
 			<input type="text" v-model.trim="name" class="base-input rounded w-full" />
 		</label>
 
 		<label class="block mb-5">
-			<span>URL</span>
+			URL
 			<input type="url" v-model.trim="url" class="base-input rounded w-full" />
 		</label>
 
 		<label class="flex mb-5 items-center gap-2">
-			<span>Use number input instead of sliders:</span>
+			Use number input instead of sliders:
 			<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
 		</label>
 	</div>
@@ -29,12 +29,12 @@
 				clip-rule="evenodd"
 			></path>
 		</svg>
-		<span>
+		<p>
 			Please fill the above input box with a link to an image to load as a base for the new meme template, for example,
 			<NuxtLink href="https://skyra.pw/avatars/skyra.png" target="_blank" class="underline opacity-80">
 				https://skyra.pw/avatars/skyra.png</NuxtLink
 			>.
-		</span>
+		</p>
 	</div>
 	<div v-else-if="error || !imageData.src" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-red-500" role="alert">
 		<svg
@@ -49,9 +49,9 @@
 				clip-rule="evenodd"
 			></path>
 		</svg>
-		<span>
+		<p>
 			{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
-		</span>
+		</p>
 	</div>
 
 	<div class="grid grid-flow-row lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr] gap-4 mb-5 w-full justify-items-center">
@@ -99,7 +99,7 @@
 					<template #header>Details</template>
 					<div class="grid grid-cols-2 gap-2 px-2 py-1 mt-2 mb-3 bg-gray-200 dark:bg-stone-900 rounded-xl">
 						<label>
-							<span>Font</span>
+							Font
 							<select v-model="box.modifiers.font" class="base-input select rounded w-full">
 								<option value="impact">Impact</option>
 								<option value="arial">Arial</option>
@@ -111,7 +111,7 @@
 						</input-slider>
 
 						<label>
-							<span>Outline Type</span>
+							Outline Type
 							<select v-model="box.modifiers.outlineType" class="base-input select rounded w-full">
 								<option value="outline">Outline</option>
 								<option value="shadow">Shadow</option>
@@ -132,7 +132,7 @@
 						</input-slider>
 
 						<label>
-							<span>Text Align</span>
+							Text Align
 							<select v-model="box.modifiers.textAlign" class="base-input select rounded w-full">
 								<option value="left">Left</option>
 								<option value="center">Center</option>
@@ -141,7 +141,7 @@
 						</label>
 
 						<label>
-							<span>Vertical Align</span>
+							Vertical Align
 							<select v-model="box.modifiers.verticalAlign" class="base-input select rounded w-full">
 								<option value="top">Top</option>
 								<option value="middle">Middle</option>
@@ -162,17 +162,17 @@
 
 							<label class="flex items-center gap-2">
 								<input type="checkbox" v-model="box.modifiers.allCaps" class="checkbox" />
-								<span>All Caps</span>
+								All Caps
 							</label>
 
 							<label class="flex items-center gap-2">
 								<input type="checkbox" v-model="box.modifiers.bold" class="checkbox" />
-								<span>Bold</span>
+								Bold
 							</label>
 
 							<label class="flex items-center gap-2">
 								<input type="checkbox" v-model="box.modifiers.italic" class="checkbox" />
-								<span>Italic</span>
+								Italic
 							</label>
 						</div>
 
@@ -229,7 +229,7 @@
 					</input-slider>
 
 					<label>
-						<span>Style</span>
+						Style
 						<select v-model="position.style" class="base-input select rounded w-full">
 							<option value="circle">Circle</option>
 							<option value="square">Square</option>
