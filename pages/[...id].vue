@@ -245,23 +245,22 @@
 	</div>
 
 	<hr class="json-divider" />
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status">{{
-		JSON.stringify({ name, url, avatars, boxes }, null, '\t')
-	}}</pre>
+	<codeblock :data="{ name, url, avatars, boxes }" />
 </template>
 
 <script setup lang="ts">
 import { useImage } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
+import type { EntryAvatarPosition, EntryAvatars, EntryBox, EntryBoxes } from '~/lib/interfaces';
 
 const name = ref('');
 const url = ref('');
 const debouncedUrl = refDebounced(url, 500);
-const avatars = {
+const avatars: EntryAvatars = {
 	author: reactive<EntryAvatarPosition[]>([]),
 	target: reactive<EntryAvatarPosition[]>([])
 };
-const boxes = reactive<EntryBox[]>([]);
+const boxes: EntryBoxes = reactive<EntryBox[]>([]);
 
 const inputType = ref<'number' | 'range'>('range');
 function toggleInputType() {
@@ -417,36 +416,6 @@ function printImage() {
 			if (++index > colors.length) index = 0;
 		}
 	}
-}
-
-interface EntryBox {
-	x: number;
-	y: number;
-	width: number;
-	height: number;
-	rotation: number;
-	modifiers: EntryBoxModifiers;
-}
-
-interface EntryBoxModifiers {
-	font: 'impact' | 'arial';
-	fontSize: number;
-	allCaps: boolean;
-	bold: boolean;
-	italic: boolean;
-	outlineType: 'shadow' | 'outline' | 'none';
-	outlineWidth: number;
-	textAlign: 'left' | 'center' | 'right';
-	verticalAlign: 'top' | 'middle' | 'bottom';
-	opacity: number;
-}
-
-interface EntryAvatarPosition {
-	x: number;
-	y: number;
-	size: number;
-	style: 'circle' | 'square';
-	rotation: number;
 }
 </script>
 

@@ -7,10 +7,7 @@
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"update": "yarn upgrade-interactive",
-		"format": "prettier --write --loglevel=warn \"{assets,components,content,layouts,pages,server}/**/*.{js,ts,json,vue,md}\" \"app.vue\" \"nuxt.config.ts\""
-	},
-	"dependencies": {
-		"canvas-constructor": "^7.0.1"
+		"format": "prettier --write ."
 	},
 	"devDependencies": {
 		"@nuxtjs/tailwindcss": "^6.7.0",
@@ -21,10 +18,15 @@
 		"@vite-pwa/nuxt": "^0.0.8",
 		"@vueuse/core": "^10.1.2",
 		"@vueuse/nuxt": "^10.1.2",
+		"canvas-constructor": "^7.0.1",
 		"nuxt": "^3.5.0",
 		"prettier": "^2.8.8",
+		"shiki-es": "^0.2.0",
 		"sitemap": "^7.1.1"
 	},
 	"prettier": "@sapphire/prettier-config",
-	"packageManager": "yarn@3.5.1"
+	"packageManager": "yarn@3.5.1",
+	"resolutions": {
+		"shiki-es@^0.2.0": "patch:shiki-es@npm%3A0.2.0#./.yarn/patches/shiki-es-npm-0.2.0-a9934bd6d5.patch"
+	}
 }

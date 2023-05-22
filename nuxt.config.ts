@@ -59,9 +59,27 @@ const manifestIcons = [
 const name = 'Meme Template Generator';
 const description = "A small but complete interactive browser utility to create new meme templates for Artiel's meme generator";
 
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
+	nitro: {
+		preset: 'cloudflare-pages',
+		prerender: {
+			routes: ['/', '/about', '/sitemap.xml']
+		}
+	},
+	vite: {
+		define: {
+			'process.env.VSCODE_TEXTMATE_DEBUG': 'false'
+		}
+	},
+	typescript: {
+		shim: false,
+		tsConfig: {
+			compilerOptions: {
+				moduleResolution: 'bundler'
+			}
+		}
+	},
 	pwa: {
 		registerType: 'autoUpdate',
 		devOptions: {
@@ -94,14 +112,6 @@ export default defineNuxtConfig({
 					icons: manifestIcons
 				}
 			]
-		}
-	},
-	typescript: {
-		shim: false,
-		tsConfig: {
-			compilerOptions: {
-				moduleResolution: 'bundler'
-			}
 		}
 	},
 	app: {
@@ -173,12 +183,6 @@ export default defineNuxtConfig({
 				{ property: 'og:type', content: 'website' },
 				{ property: 'og:url', content: 'https://memes.skyra.pw' }
 			]
-		}
-	},
-	nitro: {
-		preset: 'cloudflare-pages',
-		prerender: {
-			routes: ['/', '/about', '/sitemap.xml']
 		}
 	}
 });
