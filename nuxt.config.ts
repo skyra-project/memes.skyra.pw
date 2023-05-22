@@ -65,6 +65,9 @@ export default defineNuxtConfig({
 		preset: 'cloudflare-pages',
 		prerender: {
 			routes: ['/', '/about', '/sitemap.xml']
+		},
+		experimental: {
+			wasm: true
 		}
 	},
 	vite: {
