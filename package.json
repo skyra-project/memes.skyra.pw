@@ -21,12 +21,8 @@
 		"canvas-constructor": "^7.0.1",
 		"nuxt": "^3.5.0",
 		"prettier": "^2.8.8",
-		"shiki-es": "^0.2.0",
 		"sitemap": "^7.1.1"
 	},
 	"prettier": "@sapphire/prettier-config",
-	"packageManager": "yarn@3.5.1",
-	"resolutions": {
-		"shiki-es@^0.2.0": "patch:shiki-es@npm%3A0.2.0#./.yarn/patches/shiki-es-npm-0.2.0-a9934bd6d5.patch"
-	}
+	"packageManager": "yarn@3.5.1"
 }

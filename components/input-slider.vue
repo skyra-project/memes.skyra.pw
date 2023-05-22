@@ -1,7 +1,9 @@
 <template>
 	<label>
-		{{ name }}
-		<span role="status" class="before:content-[':_'] opacity-80" :aria-hidden="type === 'number'" v-show="type === 'range'">
+		<span :class="{ 'after:content-[\':_\'] after:opacity-80': type === 'range' }">
+			{{ name }}
+		</span>
+		<span role="status" class="opacity-80" :aria-hidden="type === 'number'" v-show="type === 'range'">
 			<slot name="header" :value="modelValue">{{ modelValue }}</slot>
 		</span>
 		<input

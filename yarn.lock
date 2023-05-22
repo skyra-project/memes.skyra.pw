@@ -8072,7 +8072,6 @@ __metadata:
     canvas-constructor: ^7.0.1
     nuxt: ^3.5.0
     prettier: ^2.8.8
-    shiki-es: ^0.2.0
     sitemap: ^7.1.1
   languageName: unknown
   linkType: soft
@@ -8273,20 +8272,6 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 1a2bcae50de99034fcd92ad4212d8e01eedf52c7ec7830eedcf886622804fe36884278f2be8be0ea5fde3fd1c23911643a4e0f726c8685b61871c8908af01222
-  languageName: node
-  linkType: hard
-
-"shiki-es@npm:0.2.0":
-  version: 0.2.0
-  resolution: "shiki-es@npm:0.2.0"
-  checksum: a3af5c946398fd91c7e64d019b1cdc2e2df66aec79b9f1ebd3f77b19bf34966415fe873571e5d4bacee961f30c08d210a5e3d2a89b5f3345b6b27ba0135e6684
-  languageName: node
-  linkType: hard
-
-"shiki-es@patch:shiki-es@npm%3A0.2.0#./.yarn/patches/shiki-es-npm-0.2.0-a9934bd6d5.patch::locator=root-workspace-0b6124%40workspace%3A.":
-  version: 0.2.0
-  resolution: "shiki-es@patch:shiki-es@npm%3A0.2.0#./.yarn/patches/shiki-es-npm-0.2.0-a9934bd6d5.patch::version=0.2.0&hash=8ac947&locator=root-workspace-0b6124%40workspace%3A."
-  checksum: 29c6c98f751350605c08b8a1df6926ff216c73ebb3dac8632762ed7fea59f71e86c226512c2e6d67ea0783f391ecd87bb5bbce3076c8342913df5fe71f686849
   languageName: node
   linkType: hard
 
