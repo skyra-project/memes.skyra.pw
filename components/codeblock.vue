@@ -87,11 +87,7 @@ function addBoxes(lines: JSX.Element[], boxes: readonly EntryBox[]) {
 }
 
 function renderJson() {
-	const url = (
-		<a target="_blank" href={props.url} rel="noopener noreferrer" class="underline" aria-label="The URL used for the meme template, if any">
-			{props.url}
-		</a>
-	);
+	const url = <span class="underline">{props.url}</span>;
 	const lines = [
 		line(0, brace(0, '{')),
 		line(1, property('name'), ': ', string(props.name), ','),
