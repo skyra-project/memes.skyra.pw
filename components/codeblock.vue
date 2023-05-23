@@ -88,9 +88,9 @@ function addBoxes(lines: JSX.Element[], boxes: readonly EntryBox[]) {
 
 function renderJson() {
 	const url = (
-		<nuxt-link target="_blank" href={props.url} class="underline">
+		<a target="_blank" href={props.url} rel="noopener noreferrer" class="underline">
 			{props.url}
-		</nuxt-link>
+		</a>
 	);
 	const lines = [
 		line(0, brace(0, '{')),
