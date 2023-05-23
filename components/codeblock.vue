@@ -88,7 +88,7 @@ function addBoxes(lines: JSX.Element[], boxes: readonly EntryBox[]) {
 
 function renderJson() {
 	const url = (
-		<a target="_blank" href={props.url} rel="noopener noreferrer" class="underline">
+		<a target="_blank" href={props.url} rel="noopener noreferrer" class="underline" aria-label="The URL used for the meme template, if any">
 			{props.url}
 		</a>
 	);

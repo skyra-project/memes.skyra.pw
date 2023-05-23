@@ -22,7 +22,7 @@
 		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-800 rounded-xl;
 	}
 
-	.base-input:not([type="range"]) {
+	.base-input:not([type='range']) {
 		@apply border-2 p-2 bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-900;
 	}
 
