@@ -245,7 +245,7 @@
 	</div>
 
 	<hr class="json-divider" />
-	<codeblock :data="{ name, url, avatars, boxes }" />
+	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
 </template>
 
 <script setup lang="ts">

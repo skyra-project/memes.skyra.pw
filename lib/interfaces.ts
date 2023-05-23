@@ -17,7 +17,7 @@ export interface EntryAvatarPosition {
 	rotation: number;
 }
 
-interface EntryBoxModifiers {
+export interface EntryBoxModifiers {
 	font: 'impact' | 'arial';
 	fontSize: number;
 	allCaps: boolean;
