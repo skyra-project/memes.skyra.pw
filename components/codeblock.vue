@@ -1,5 +1,5 @@
 <template>
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-y-auto" role="status"><client-only><render-json /></client-only></pre>
+	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-auto" role="status"><client-only><render-json /></client-only></pre>
 </template>
 
 <script setup lang="tsx">
@@ -22,29 +22,34 @@ function line(indent: number, ...elements: readonly (JSX.Element | string)[]) {
 }
 
 function property(name: string) {
-	return <span class="text-teal-600 dark:text-teal-400">"{name}"</span>;
+	return <span class="text-[#bc2b3d] dark:text-[#df6a73]">"{name}"</span>;
 }
 
-function string(value: string) {
-	return <span class="text-green-600 dark:text-green-400">"{value}"</span>;
+function string(value: string | JSX.Element) {
+	return <span class="text-[#457400] dark:text-[#98c379]">"{value}"</span>;
 }
 
 function number(value: number) {
-	return <span class="text-amber-600 dark:text-amber-400">{value}</span>;
+	return <span class="text-[#915c00] dark:text-[#d19a66]">{value}</span>;
 }
 
 function boolean(value: boolean) {
-	return <span class="text-rose-600 dark:text-rose-400">{value ? 'true' : 'false'}</span>;
+	return <span class="text-[#915c00] dark:text-[#d19a66]">{value ? 'true' : 'false'}</span>;
+}
+
+const colours = ['text-[#915c00] dark:text-[#d19a66]', 'text-[#a626a4] dark:text-[#c678dd]', 'text-[#00737d] dark:text-[#56b6c2]'];
+function brace(level: number, value: '{' | '{}' | '}' | '[' | '[]' | ']') {
+	return <span class={colours[level % colours.length]}>{value}</span>;
 }
 
 function addAvatar(lines: JSX.Element[], position: EntryAvatarPosition, last: boolean) {
-	lines.push(line(3, '{'));
+	lines.push(line(3, brace(3, '{')));
 	lines.push(line(4, property('x'), ': ', number(position.x), ','));
 	lines.push(line(4, property('y'), ': ', number(position.y), ','));
 	lines.push(line(4, property('size'), ': ', number(position.size), ','));
 	lines.push(line(4, property('style'), ': ', string(position.style), ','));
 	lines.push(line(4, property('rotation'), ': ', number(position.rotation)));
-	lines.push(line(3, last ? '}' : '},'));
+	lines.push(line(3, ...(last ? [brace(3, '}')] : [brace(3, '}'), ','])));
 }
 
 function addAvatars(lines: JSX.Element[], positions: readonly EntryAvatarPosition[]) {
@@ -54,13 +59,13 @@ function addAvatars(lines: JSX.Element[], positions: readonly EntryAvatarPositio
 }
 
 function addBox(lines: JSX.Element[], box: EntryBox, last: boolean) {
-	lines.push(line(2, '{'));
+	lines.push(line(2, brace(2, '{')));
 	lines.push(line(3, property('x'), ': ', number(box.x), ','));
 	lines.push(line(3, property('y'), ': ', number(box.y), ','));
 	lines.push(line(3, property('width'), ': ', number(box.width), ','));
 	lines.push(line(3, property('height'), ': ', number(box.height), ','));
 	lines.push(line(3, property('rotation'), ': ', number(box.rotation), ','));
-	lines.push(line(3, property('modifiers'), ': {'));
+	lines.push(line(3, property('modifiers'), ': ', brace(3, '{')));
 	lines.push(line(4, property('font'), ': ', string(box.modifiers.font), ','));
 	lines.push(line(4, property('fontSize'), ': ', number(box.modifiers.fontSize), ','));
 	lines.push(line(4, property('allCaps'), ': ', boolean(box.modifiers.allCaps), ','));
@@ -71,8 +76,8 @@ function addBox(lines: JSX.Element[], box: EntryBox, last: boolean) {
 	lines.push(line(4, property('textAlign'), ': ', string(box.modifiers.textAlign), ','));
 	lines.push(line(4, property('verticalAlign'), ': ', string(box.modifiers.verticalAlign), ','));
 	lines.push(line(4, property('opacity'), ': ', number(box.modifiers.opacity)));
-	lines.push(line(3, '}'));
-	lines.push(line(2, last ? '}' : '},'));
+	lines.push(line(3, brace(3, '}')));
+	lines.push(line(2, ...(last ? [brace(2, '}')] : [brace(2, '}'), ','])));
 }
 
 function addBoxes(lines: JSX.Element[], boxes: readonly EntryBox[]) {
@@ -82,40 +87,45 @@ function addBoxes(lines: JSX.Element[], boxes: readonly EntryBox[]) {
 }
 
 function renderJson() {
+	const url = (
+		<nuxt-link target="_blank" href={props.url} class="underline">
+			{props.url}
+		</nuxt-link>
+	);
 	const lines = [
-		line(0, '{'),
+		line(0, brace(0, '{')),
 		line(1, property('name'), ': ', string(props.name), ','),
-		line(1, property('url'), ': ', string(props.url), ','),
-		line(1, property('avatars'), ': {')
+		line(1, property('url'), ': ', string(url), ','),
+		line(1, property('avatars'), ': ', brace(1, '{'))
 	];
 
 	if (props.avatars.author.length === 0) {
-		lines.push(line(2, property('author'), ': [],'));
+		lines.push(line(2, property('author'), ': ', brace(2, '[]'), ','));
 	} else {
-		lines.push(line(2, property('author'), ': ['));
+		lines.push(line(2, property('author'), ': ', brace(2, '[')));
 		addAvatars(lines, props.avatars.author);
-		lines.push(line(2, '],'));
+		lines.push(line(2, brace(2, ']'), ','));
 	}
 
 	if (props.avatars.target.length === 0) {
-		lines.push(line(2, property('target'), ': []'));
+		lines.push(line(2, property('target'), ': ', brace(2, '[]')));
 	} else {
-		lines.push(line(2, property('target'), ': ['));
+		lines.push(line(2, property('target'), ': ', brace(2, '[')));
 		addAvatars(lines, props.avatars.target);
-		lines.push(line(2, ']'));
+		lines.push(line(2, brace(2, ']')));
 	}
 
-	lines.push(line(1, '}'));
+	lines.push(line(1, brace(1, '}'), ','));
 
 	if (props.boxes.length === 0) {
-		lines.push(line(1, property('boxes'), ': []'));
+		lines.push(line(1, property('boxes'), ': ', brace(1, '[]')));
 	} else {
-		lines.push(line(1, property('boxes'), ': ['));
+		lines.push(line(1, property('boxes'), ': ', brace(1, '[')));
 		addBoxes(lines, props.boxes);
-		lines.push(line(1, ']'));
+		lines.push(line(1, brace(1, ']')));
 	}
 
-	lines.push(line(0, '}'));
+	lines.push(line(0, brace(0, '}')));
 	return <code>{lines}</code>;
 }
 </script>
