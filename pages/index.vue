@@ -45,7 +45,9 @@
 
 		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl max-h-[70vh] overflow-y-auto">
 			<div class="flex gap-2">
-				<button @click="addBox" class="success rounded px-2" aria-label="Add a new box" :disabled="image === null"><PlusIcon class="h-4 w-4" /></button>
+				<button @click="addBox" class="success rounded px-2" aria-label="Add a new box" :disabled="image === null">
+					<PlusIcon class="h-4 w-4" />
+				</button>
 				<h2 class="text-3xl font-bold">Text Boxes</h2>
 			</div>
 
@@ -196,7 +198,7 @@
 </template>
 
 <script setup lang="ts">
-import { PlusIcon, InformationCircleIcon } from '@heroicons/vue/24/outline';
+import { InformationCircleIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import { useImage } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';

@@ -1,5 +1,3 @@
-import type { reactive } from 'vue';
-
 export interface EntryBox {
 	x: number;
 	y: number;
