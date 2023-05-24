@@ -62,7 +62,7 @@ const description = "A small but complete interactive browser utility to create 
 export default defineNuxtConfig({
 	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
 	nitro: {
-		preset: 'cloudflare-module',
+		preset: 'cloudflare-pages',
 		prerender: {
 			routes: ['/', '/about', '/sitemap.xml']
 		}

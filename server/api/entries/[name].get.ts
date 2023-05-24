@@ -1,8 +1,7 @@
-import type { D1Database } from '@cloudflare/workers-types';
 import type { RawEntry } from '../../utils/transform-entry';
 
 export default defineEventHandler(async (event) => {
-	const db: D1Database = event.context.cloudflare.env.DATABASE;
+	const db = useDatabase();
 
 	try {
 		return await db
