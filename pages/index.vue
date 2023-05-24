@@ -196,6 +196,7 @@
 	<hr class="json-divider" />
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
 
+	<button @click="execute()">Fetch</button>
 	{{ entriesError }}
 	{{ entriesData }}
 </template>
@@ -206,7 +207,7 @@ import { useImage } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
 
-const { error: entriesError, data: entriesData } = useFetch('/api/entries');
+const { error: entriesError, data: entriesData, execute } = useFetch('/api/entries', { immediate: false });
 
 const name = ref('');
 const url = ref('');
@@ -233,11 +234,11 @@ const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
 const imageData = reactive({ src: '' });
-const { isLoading, error, state: image, execute } = useImage(imageData, { immediate: false });
+const { isLoading, error, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
 watch(debouncedUrl, async (value) => {
 	try {
 		imageData.src = new URL(value).href;
-		await execute();
+		await loadImage();
 		resizeCanvas();
 		printImage();
 	} catch {

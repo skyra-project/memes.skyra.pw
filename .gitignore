@@ -7,6 +7,9 @@ node_modules
 .env
 dist
 sw.*
+
+# Wrangler
+.wrangler
 wrangler.toml
 
 # yarn

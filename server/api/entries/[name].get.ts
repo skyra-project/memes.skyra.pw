@@ -1,10 +1,8 @@
 import type { RawEntry } from '../../utils/transform-entry';
 
 export default defineEventHandler(async (event) => {
-	const db = useDatabase(event);
-
 	try {
-		return await db
+		return await useDatabase(event)
 			.prepare('SELECT name, url, avatars, boxes FROM templates WHERE id = ?')
 			.bind(event.context.params!.id)
 			.first<RawEntry>()
