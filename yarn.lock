@@ -2176,7 +2176,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.16.13":
+"@types/node@npm:^18.16.14":
   version: 18.16.14
   resolution: "@types/node@npm:18.16.14"
   checksum: c11cb3c787236414efe58240ae71854971592554d82ff9d201876ce7cafd51c37aaa001c63602d002e8238614d7331bd6d48ac4c1c0caa826799980b6846fb08
@@ -2310,16 +2310,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-pwa/nuxt@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "@vite-pwa/nuxt@npm:0.0.8"
+"@vite-pwa/nuxt@npm:^0.0.9":
+  version: 0.0.9
+  resolution: "@vite-pwa/nuxt@npm:0.0.9"
   dependencies:
     "@nuxt/kit": ^3.4.3
     vite-plugin-pwa: ^0.14.7
   peerDependencies:
     "@nuxt/kit": ^3.0.0
     vite-plugin-pwa: ^0.14.0
-  checksum: 908289054c4ca30854425220a9e14c52fc658cbd9baa2cbef96f5985b58c87fd63d8ecbe5aaa33f6e6e9b6bb8dc897ce2d62c2c8d391efb0041284c98269a597
+  checksum: 4d4a4027cb079f25a781a7a85b62299970b6f0df058f7e4f409fb25d2dd782708b38a69224df67704e87d7b0b2fb92a09af7b941e735a9a611c81bba4328c652
   languageName: node
   linkType: hard
 
@@ -8074,9 +8074,9 @@ __metadata:
     "@nuxtjs/tailwindcss": ^6.7.0
     "@sapphire/prettier-config": ^1.4.5
     "@tailwindcss/typography": ^0.5.9
-    "@types/node": ^18.16.13
+    "@types/node": ^18.16.14
     "@types/prettier": ^2.7.2
-    "@vite-pwa/nuxt": ^0.0.8
+    "@vite-pwa/nuxt": ^0.0.9
     "@vueuse/core": ^10.1.2
     "@vueuse/nuxt": ^10.1.2
     canvas-constructor: ^7.0.1
