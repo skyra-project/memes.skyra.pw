@@ -21,7 +21,7 @@
 				@input="$emit('update:modelValue', ($event.target as HTMLInputElement).valueAsNumber)"
 				class="bg-inherit p-2 flex-1"
 			/>
-			<div v-if="adornment" class="flex-none pl-1 pr-2">{{ adornment }}</div>
+			<div v-if="adornment" class="flex-none pl-1 pr-2 opacity-0.8">{{ adornment }}</div>
 		</div>
 	</label>
 </template>
