@@ -23,7 +23,8 @@
 		"canvas-constructor": "^7.0.1",
 		"nuxt": "^3.5.1",
 		"prettier": "^2.8.8",
-		"sitemap": "^7.1.1"
+		"sitemap": "^7.1.1",
+		"wrangler": "^3.0.1"
 	},
 	"prettier": "@sapphire/prettier-config",
 	"packageManager": "yarn@3.5.1"

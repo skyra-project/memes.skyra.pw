@@ -1,7 +1,7 @@
 import type { RawEntry } from '../../utils/transform-entry';
 
 export default defineEventHandler(async (event) => {
-	const db = useDatabase();
+	const db = useDatabase(event);
 
 	try {
 		return await db
