@@ -1,4 +1,9 @@
-import type { reactive } from 'vue';
+export interface Entry {
+	name: string;
+	url: string;
+	avatars: EntryAvatarPosition[];
+	boxes: EntryBox[];
+}
 
 export interface EntryBox {
 	x: number;
