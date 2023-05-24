@@ -75,7 +75,7 @@ function addBox(lines: JSX.Element[], box: EntryBox, last: boolean) {
 	lines.push(line(4, property('outlineWidth'), ': ', number(box.modifiers.outlineWidth), ','));
 	lines.push(line(4, property('textAlign'), ': ', string(box.modifiers.textAlign), ','));
 	lines.push(line(4, property('verticalAlign'), ': ', string(box.modifiers.verticalAlign), ','));
-	lines.push(line(4, property('opacity'), ': ', number(box.modifiers.opacity)));
+	lines.push(line(4, property('opacity'), ': ', number(box.modifiers.opacity / 100)));
 	lines.push(line(3, brace(3, '}')));
 	lines.push(line(2, ...(last ? [brace(2, '}')] : [brace(2, '}'), ','])));
 }

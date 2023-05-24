@@ -159,9 +159,7 @@
 							</label>
 						</div>
 
-						<input-slider name="Opacity" v-model="box.modifiers.opacity" :type="inputType" :min="0" :max="1" :step="0.01" adornment="%">
-							<template #header="{ value }">{{ Math.round(value * 100) }}%</template>
-						</input-slider>
+						<input-slider name="Opacity" v-model="box.modifiers.opacity" :type="inputType" :min="0" :max="100" adornment="%" />
 					</div>
 				</accordion>
 
