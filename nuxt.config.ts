@@ -57,7 +57,7 @@ const manifestIcons = [
 ];
 
 const name = 'Meme Template Generator';
-const description = "A small but complete interactive browser utility to create new meme templates for Artiel's meme generator";
+const description = "A small but complete interactive browser utility to create new meme templates for Artiel's meme generator.";
 
 export default defineNuxtConfig({
 	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
@@ -173,8 +173,7 @@ export default defineNuxtConfig({
 				{ property: 'og:image:width', content: '1024' },
 				{ property: 'og:image', content: 'https://memes.skyra.pw/icons/opengraph.png' },
 				{ property: 'og:locale', content: 'en' },
-				{ property: 'og:site_name', content: description },
-				{ property: 'og:title', content: description },
+				{ property: 'og:title', content: name },
 				{ property: 'og:type', content: 'website' },
 				{ property: 'og:url', content: 'https://memes.skyra.pw' }
 			]

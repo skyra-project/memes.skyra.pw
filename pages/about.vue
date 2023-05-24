@@ -21,3 +21,7 @@
 		</p>
 	</section>
 </template>
+
+<script setup lang="ts">
+useHead({ title: 'About', meta: [{ property: 'og:title', content: 'About the Meme Template Generator' }] });
+</script>
