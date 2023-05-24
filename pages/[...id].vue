@@ -259,7 +259,7 @@ function addBox() {
 			outlineWidth: 4,
 			textAlign: 'center',
 			verticalAlign: 'middle',
-			opacity: 1
+			opacity: 100
 		}
 	});
 }
