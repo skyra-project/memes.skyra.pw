@@ -10,6 +10,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
+		"@heroicons/vue": "^2.0.18",
 		"@nuxtjs/tailwindcss": "^6.7.0",
 		"@sapphire/prettier-config": "^1.4.5",
 		"@tailwindcss/typography": "^0.5.9",
@@ -19,7 +20,7 @@
 		"@vueuse/core": "^10.1.2",
 		"@vueuse/nuxt": "^10.1.2",
 		"canvas-constructor": "^7.0.1",
-		"nuxt": "^3.5.0",
+		"nuxt": "^3.5.1",
 		"prettier": "^2.8.8",
 		"sitemap": "^7.1.1"
 	},

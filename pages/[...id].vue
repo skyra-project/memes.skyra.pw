@@ -17,38 +17,16 @@
 	</div>
 
 	<div v-if="!debouncedUrl" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-yellow-500" role="alert">
-		<svg
-			class="mr-3 inline h-5 w-5 flex-shrink-0 dark:text-stone-50 text-yellow-600"
-			fill="currentColor"
-			viewBox="0 0 20 20"
-			xmlns="http://www.w3.org/2000/svg"
-		>
-			<path
-				fill-rule="evenodd"
-				d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-				clip-rule="evenodd"
-			></path>
-		</svg>
+		<InformationCircleIcon class="mr-3 inline h-5 w-5 flex-shrink-0 text-yellow-600 dark:text-stone-50" />
 		<p>
 			Please fill the above input box with a link to an image to load as a base for the new meme template, for example,
-			<NuxtLink href="https://skyra.pw/avatars/skyra.png" target="_blank" class="underline opacity-80">
+			<NuxtLink href="https://skyra.pw/avatars/skyra.png" target="_blank" class="underline text-gray-800/80 dark:text-gray-200/80">
 				https://skyra.pw/avatars/skyra.png</NuxtLink
 			>.
 		</p>
 	</div>
 	<div v-else-if="error || !imageData.src" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-red-500" role="alert">
-		<svg
-			class="mr-3 inline h-5 w-5 flex-shrink-0 dark:text-stone-50 text-red-600"
-			fill="currentColor"
-			viewBox="0 0 20 20"
-			xmlns="http://www.w3.org/2000/svg"
-		>
-			<path
-				fill-rule="evenodd"
-				d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-				clip-rule="evenodd"
-			></path>
-		</svg>
+		<InformationCircleIcon class="mr-3 inline h-5 w-5 flex-shrink-0 text-red-600 dark:text-stone-50" />
 		<p>
 			{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
 		</p>
@@ -67,7 +45,7 @@
 
 		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl max-h-[70vh] overflow-y-auto">
 			<div class="flex gap-2">
-				<button @click="addBox" class="success rounded px-3" aria-label="Add a new box" :disabled="image === null">+</button>
+				<button @click="addBox" class="success rounded px-2" aria-label="Add a new box" :disabled="image === null"><PlusIcon class="h-4 w-4" /></button>
 				<h2 class="text-3xl font-bold">Text Boxes</h2>
 			</div>
 
@@ -179,11 +157,11 @@
 				<div class="flex gap-2">
 					<button
 						@click="addPosition(key)"
-						class="success rounded px-3"
+						class="success rounded px-2"
 						aria-label="Add a new position to this avatar"
 						:disabled="image === null"
 					>
-						+
+						<PlusIcon class="h-4 w-4" />
 					</button>
 					<h3 class="text-2xl font-bold">{{ AvatarNames[index] }}</h3>
 				</div>
@@ -219,6 +197,7 @@
 </template>
 
 <script setup lang="ts">
+import { PlusIcon, InformationCircleIcon } from '@heroicons/vue/24/outline';
 import { useImage } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
