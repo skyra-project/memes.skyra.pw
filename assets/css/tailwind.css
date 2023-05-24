@@ -23,7 +23,7 @@
 	}
 
 	.base-input:not([type='range']) {
-		@apply border-2 p-2 bg-gray-100 border-gray-300 dark:border-stone-700 dark:bg-stone-900;
+		@apply border-2 p-2 bg-gray-100 dark:bg-stone-900 border-gray-300 dark:border-stone-700;
 	}
 
 	input {
