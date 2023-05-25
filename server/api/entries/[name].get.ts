@@ -8,11 +8,10 @@ export default defineEventHandler((event) => {
 });
 
 async function handleEvent(event: H3Event, db: D1Database) {
-	console.log(event.context.params);
 	try {
 		return await db
 			.prepare('SELECT name, url, avatars, boxes FROM templates WHERE name = ?')
-			.bind(event.context.params!.name)
+			.bind(decodeURIComponent(event.context.params!.name))
 			.first<RawEntry>()
 			.then(transformTemplateEntry);
 	} catch (error) {
@@ -25,8 +24,8 @@ async function handleEvent(event: H3Event, db: D1Database) {
 }
 
 async function fallbackHandleEvent(event: H3Event) {
-	const response = await event.fetch(`https://memes.skyra.pw/api/entries/${encodeURIComponent(event.context.params!.name)}`);
-	console.log('Fallback Status:', response.status);
+	const response = await event.fetch(`https://memes.skyra.pw/api/entries/${event.context.params!.name}`);
+	console.debug('Fallback Status:', response.status);
 	event.node.res.statusCode = response.status;
 	return response.json();
 }

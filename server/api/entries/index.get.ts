@@ -28,7 +28,7 @@ async function handleEvent(db: D1Database) {
 
 async function fallbackHandleEvent(event: H3Event) {
 	const response = await event.fetch('https://memes.skyra.pw/api/entries');
-	console.log('Fallback Status:', response.status);
+	console.debug('Fallback Status:', response.status);
 	event.node.res.statusCode = response.status;
 	return response.json();
 }
