@@ -7,7 +7,9 @@
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
 		"update": "yarn upgrade-interactive",
-		"format": "prettier --write ."
+		"format": "prettier --write .",
+		"wrangler:create": "wrangler d1 execute memes-skyra-pw --local --file server/db/schema.sql",
+		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20230518.0",

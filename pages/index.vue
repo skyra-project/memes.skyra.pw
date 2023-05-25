@@ -195,10 +195,6 @@
 
 	<hr class="json-divider" />
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
-
-	<button @click="execute()">Fetch</button>
-	{{ entriesError }}
-	{{ entriesData }}
 </template>
 
 <script setup lang="ts">
@@ -206,8 +202,6 @@ import { InformationCircleIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import { useImage } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
-
-const { error: entriesError, data: entriesData, execute } = useFetch('/api/entries', { immediate: false });
 
 const name = ref('');
 const url = ref('');

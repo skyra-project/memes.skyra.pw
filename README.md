@@ -21,5 +21,11 @@ database_id = "<Your-Database-ID>"
 Followed by this command:
 
 ```bash
-yarn wrangler d1 execute memes-skyra-pw --local --file server/db/schema.sql
+yarn wrangler:create
+```
+
+And then you can build the website using `yarn build` and run it with:
+
+```bash
+yarn wrangler:dev
 ```
