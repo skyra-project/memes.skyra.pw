@@ -8,6 +8,10 @@ node_modules
 dist
 sw.*
 
+# Wrangler
+.wrangler
+wrangler.toml
+
 # yarn
 .yarn/*
 !.yarn/patches
