@@ -1,4 +1,5 @@
 import '@vite-pwa/nuxt';
+import type { SessionConfig } from 'h3';
 import 'nuxt';
 
 const manifestIcons = [
@@ -61,6 +62,20 @@ const description = "A small but complete interactive browser utility to create 
 
 export default defineNuxtConfig({
 	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
+	runtimeConfig: {
+		auth: {
+			name: 'authorization',
+			maxAge: 604800,
+			password: process.env.AUTH_SECRET ?? ''
+		} satisfies SessionConfig,
+		origin: process.env.ORIGIN,
+		clientId: process.env.DISCORD_CLIENT_ID,
+		clientSecret: process.env.DISCORD_CLIENT_SECRET,
+		public: {
+			origin: process.env.ORIGIN,
+			clientId: process.env.DISCORD_CLIENT_ID
+		}
+	},
 	nitro: {
 		preset: 'cloudflare-pages',
 		prerender: {
