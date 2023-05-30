@@ -41,7 +41,7 @@ const isAnimated = ref(false);
 
 const defaultAvatar = computed(() =>
 	session.value?.avatar
-		? `https://cdn.discordapp.com/embed/avatars/${BigInt(session.value.id) % 5n}.png`
+		? `https://cdn.discordapp.com/embed/avatars/${BigInt(session.value.id) % BigInt(5)}.png`
 		: `https://cdn.discordapp.com/embed/avatars/${Math.floor(Math.random() * 4)}.png`
 );
 
