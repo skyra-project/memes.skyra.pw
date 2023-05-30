@@ -1,17 +1,15 @@
-import type { AuthSession } from '~~/server/utils/session';
-
 export default defineNuxtPlugin(async (nuxtApp) => {
 	// Skip plugin when rendering error page
 	if (nuxtApp.payload.error) {
 		return {};
 	}
 
-	const { data: session, refresh: updateSession } = await useFetch<AuthSession>('/api/auth/session');
+	const { data: session, refresh: updateSession } = await useFetch('/api/auth/session');
 
 	const loggedIn = computed(() => !!session.value?.id);
 
 	// Create a ref to know where to redirect the user when logged in
-	const redirectTo = useState('authRedirect');
+	const redirectTo = useState<string>('authRedirect', () => '/');
 
 	/**
 	 * Add global route middleware to protect pages using:
@@ -42,10 +40,6 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 				await navigateTo('/login');
 			}
 		});
-	}
-
-	if (loggedIn.value && currentRoute.path === '/login') {
-		await navigateTo(redirectTo.value || '/');
 	}
 
 	return {

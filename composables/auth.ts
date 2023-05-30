@@ -12,9 +12,7 @@ export function getLoginURL() {
 	return url.toString();
 }
 
-export const authLogout = async () => {
-	await $fetch('/api/auth/logout', {
-		method: 'POST'
-	});
-	await useAuth().updateSession();
-};
+export async function authLogout() {
+	await $fetch('/api/auth/logout', { method: 'POST' });
+	useAuth().session.value = null;
+}

@@ -1,5 +1,3 @@
-import type { AuthSession } from '../../utils/session';
-
 export default eventHandler(async (event) => {
 	const session = await useAuthSession(event);
 	const { code } = (await readBody(event)) as OAuth2BodyData;
@@ -17,9 +15,8 @@ export default eventHandler(async (event) => {
 		throw createError({ message: 'Failed to fetch the user', statusCode: 500 });
 	}
 
-	const information = { id: user.id, name: user.username, avatar: user.avatar } satisfies AuthSession;
-	await session.update(information);
-	return information;
+	await session.update({ id: user.id, name: user.username, avatar: user.avatar });
+	return session.data;
 });
 
 interface OAuth2BodyData {
