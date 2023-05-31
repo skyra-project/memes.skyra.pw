@@ -22,7 +22,7 @@
 					{{ $auth.session.value?.name }}
 					<img v-if="isDefault" :src="defaultAvatar" alt="Default Avatar" class="rounded-full w-10" />
 					<picture v-else>
-						<source v-if="isAnimated" type="image/gif" :srcset="makeSrcset('gif')" />
+						<source v-if="isAnimated" media="(prefers-reduced-motion: no-preference)" type="image/gif" :srcset="makeSrcset('gif')" />
 						<source type="image/webp" :srcset="makeSrcset('webp')" />
 						<source type="image/png" :srcset="makeSrcset('png')" />
 						<img :src="createUrl('png', 128)" alt="Avatar" class="rounded-full w-8" />
