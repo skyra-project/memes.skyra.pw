@@ -4,8 +4,7 @@ const manifestIcons = [
 	{
 		src: 'https://memes.skyra.pw/icons/android-chrome-36x36.png',
 		sizes: '36x36',
-		type: 'image/png',
-		purpose: 'any badge'
+		type: 'image/png'
 	},
 	{
 		src: 'https://memes.skyra.pw/icons/android-chrome-48x48.png',
@@ -51,7 +50,7 @@ const manifestIcons = [
 		src: 'https://memes.skyra.pw/icons/maskable_icon.png',
 		sizes: '640x640',
 		type: 'image/png',
-		purpose: 'any maskable'
+		purpose: 'maskable'
 	}
 ];
 
