@@ -1,6 +1,4 @@
-import '@vite-pwa/nuxt';
 import type { SessionConfig } from 'h3';
-import 'nuxt';
 
 const manifestIcons = [
 	{
@@ -61,12 +59,13 @@ const name = 'Meme Template Generator';
 const description = "A small but complete interactive browser utility to create new meme templates for Artiel's meme generator.";
 
 export default defineNuxtConfig({
-	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
+	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt', 'nuxt-security'],
 	runtimeConfig: {
 		auth: {
-			name: 'authorization',
+			name: 'artiel-auth',
 			maxAge: 604800,
-			password: process.env.AUTH_SECRET ?? ''
+			password: process.env.AUTH_SECRET ?? '',
+			cookie: { sameSite: 'strict' }
 		} satisfies SessionConfig,
 		origin: process.env.ORIGIN,
 		clientId: process.env.DISCORD_CLIENT_ID,
@@ -74,6 +73,19 @@ export default defineNuxtConfig({
 		public: {
 			origin: process.env.ORIGIN,
 			clientId: process.env.DISCORD_CLIENT_ID
+		}
+	},
+	security: {
+		allowedMethodsRestricter: ['GET', 'POST'],
+		headers: {
+			crossOriginEmbedderPolicy: 'unsafe-none',
+			contentSecurityPolicy: {
+				'img-src': ["'self'", 'data:', 'skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
+			}
+		},
+		corsHandler: {
+			origin: process.env.ORIGIN || '*',
+			methods: ['GET', 'POST']
 		}
 	},
 	nitro: {

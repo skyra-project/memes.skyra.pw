@@ -1,19 +1,21 @@
 <template>
-	<div v-if="!code">Missing code</div>
-	<div v-else>
-		<h1 v-if="pending" class="animate-pulse font-extrabold text-4xl">Loading...</h1>
-		<div v-else-if="error" class="">
-			<h1 class="font-extrabold text-4xl pb-4">Failed to complete authentication flow:</h1>
-			<pre><code>{{ error }}</code></pre>
-		</div>
-		<div v-else-if="data">
-			<h1 class="font-extrabold text-4xl pb-4">Welcome {{ data.name }}</h1>
-			<p>You will be redirected to the main page in a second.</p>
-			<div class="p-1 mt-2 rounded-lg bg-gray-200 dark:bg-stone-900" aria-label="Progress" role="progressbar">
-				<div class="h-4 rounded-md bg-rose-500 progress"></div>
+	<client-only>
+		<div v-if="!code">Missing code</div>
+		<div v-else>
+			<h1 v-if="pending" class="animate-pulse font-extrabold text-4xl">Loading...</h1>
+			<div v-else-if="error" class="">
+				<h1 class="font-extrabold text-4xl pb-4">Failed to complete authentication flow:</h1>
+				<pre><code>{{ error }}</code></pre>
+			</div>
+			<div v-else-if="data">
+				<h1 class="font-extrabold text-4xl pb-4">Welcome {{ data.name }}</h1>
+				<p>You will be redirected to the main page in a second.</p>
+				<div class="p-1 mt-2 rounded-lg bg-gray-200 dark:bg-stone-900" aria-label="Progress" role="progressbar">
+					<div class="h-4 rounded-md bg-rose-500 progress"></div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</client-only>
 </template>
 
 <script setup lang="ts">
@@ -21,7 +23,12 @@ const { code } = useRoute().query;
 const router = useRouter();
 const auth = useAuth();
 
-const { data, error, pending, execute } = useFetch('/api/auth/callback', { body: JSON.stringify({ code }), method: 'POST', immediate: false });
+const redirectUri = `${process.client ? window.location.origin : useRuntimeConfig().origin ?? ''}/auth/callback`;
+const { data, error, pending, execute } = useFetch('/api/auth/callback', {
+	body: JSON.stringify({ code, redirectUri }),
+	method: 'POST',
+	immediate: false
+});
 
 if (process.client && code) {
 	await execute();

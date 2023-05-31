@@ -9,13 +9,13 @@ import {
 
 const { clientId, clientSecret, origin } = useRuntimeConfig() as { clientId: string; clientSecret: string; origin: string };
 
-export async function fetchAccessToken(code: string) {
+export async function fetchAccessToken(code: string, redirectUri: string) {
 	const data = {
 		client_id: clientId,
 		client_secret: clientSecret,
 		code,
 		grant_type: 'authorization_code',
-		redirect_uri: `${origin}/auth/callback`
+		redirect_uri: origin ? `${origin}/auth/callback` : redirectUri
 	} satisfies RESTPostOAuth2AccessTokenURLEncodedData;
 
 	const result = await fetch(OAuth2Routes.tokenURL, {
