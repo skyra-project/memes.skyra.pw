@@ -86,7 +86,8 @@ export default defineNuxtConfig({
 		corsHandler: {
 			origin: process.env.ORIGIN || '*',
 			methods: ['GET', 'POST']
-		}
+		},
+		rateLimiter: false
 	},
 	nitro: {
 		preset: 'cloudflare-pages',
