@@ -1,6 +1,9 @@
 <template>
 	<client-only>
-		<div v-if="!code">Missing code</div>
+		<div v-if="!code">
+			<h1 class="font-extrabold text-4xl pb-4">Missing code</h1>
+			<p>Please use the Login button instead or click <nuxt-link to="/login" class="underline">here</nuxt-link>.</p>
+		</div>
 		<div v-else>
 			<h1 v-if="pending" class="animate-pulse font-extrabold text-4xl">Loading...</h1>
 			<div v-else-if="error" class="">
@@ -36,8 +39,8 @@ if (process.client && code) {
 	useTimeoutFn(() => router.push(auth.redirectTo.value), 1000);
 }
 
-useHead({ title: 'Auth Callback' });
 useSeoMeta({
+	title: 'Auth Callback',
 	robots: { none: true },
 	ogTitle: 'Auth Callback',
 	ogDescription: 'A landing page for the OAuth2.0 callback flow, use the Login button instead.'

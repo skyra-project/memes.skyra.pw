@@ -11,7 +11,7 @@
 
 		<p>
 			All data is stored exclusively in your browser tab's memory, meaning that all the data is not persistent and will not persist across
-			refreshes.
+			refreshes. The only exception to this is the `artiel-auth` cookie which is used for authorization.
 		</p>
 		<hr />
 
@@ -23,5 +23,9 @@
 </template>
 
 <script setup lang="ts">
-useHead({ title: 'About', meta: [{ property: 'og:title', content: 'About the Meme Template Generator' }] });
+useSeoMeta({
+	title: 'About',
+	ogTitle: 'About',
+	ogDescription: 'About the Meme Template Generator'
+});
 </script>
