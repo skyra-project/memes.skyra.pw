@@ -26,7 +26,7 @@ const { code } = useRoute().query;
 const router = useRouter();
 const auth = useAuth();
 
-const redirectUri = `${getDomain()}/auth/callback`;
+const redirectUri = `${getOrigin()}/auth/callback`;
 const { data, error, pending, execute } = useFetch('/api/auth/callback', {
 	body: JSON.stringify({ code, redirectUri }),
 	method: 'POST',

@@ -1,4 +1,4 @@
-export const getOrigin = () => useRuntimeConfig().public.origin;
+export const getConfiguredOrigin = () => useRuntimeConfig().public.origin;
 export const getClientId = () => useRuntimeConfig().public.clientId;
 
-export const getDomain = () => useRequestURL().origin;
+export const getOrigin = () => useRequestURL().origin;
