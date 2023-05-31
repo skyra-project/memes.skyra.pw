@@ -80,7 +80,7 @@ export default defineNuxtConfig({
 		headers: {
 			crossOriginEmbedderPolicy: 'unsafe-none',
 			contentSecurityPolicy: {
-				'img-src': ["'self'", 'data:', 'skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
+				'img-src': ["'self'", 'data:', 'skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
 			}
 		},
 		corsHandler: {
