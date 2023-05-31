@@ -20,11 +20,3 @@ export async function requireAuthSession(event: H3Event) {
 	}
 	return session;
 }
-
-export async function hash(str: string) {
-	const encoded = new TextEncoder().encode(str);
-	const hashBuffer = await crypto.subtle.digest('SHA-512', encoded);
-	const hashArray = new Uint8Array(hashBuffer);
-	const hashHex = [...hashArray].map((b) => b.toString(16).padStart(2, '0')).join('');
-	return hashHex;
-}

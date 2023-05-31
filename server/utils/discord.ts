@@ -7,7 +7,7 @@ import {
 	type RESTPostOAuth2AccessTokenURLEncodedData
 } from 'discord-api-types/v10';
 
-const { clientId, clientSecret, origin } = useRuntimeConfig() as { clientId: string; clientSecret: string; origin: string };
+const { clientId, clientSecret } = useRuntimeConfig() as { clientId: string; clientSecret: string };
 
 export async function fetchAccessToken(code: string, redirectUri: string) {
 	const data = {
@@ -15,7 +15,7 @@ export async function fetchAccessToken(code: string, redirectUri: string) {
 		client_secret: clientSecret,
 		code,
 		grant_type: 'authorization_code',
-		redirect_uri: origin ? `${origin}/auth/callback` : redirectUri
+		redirect_uri: redirectUri
 	} satisfies RESTPostOAuth2AccessTokenURLEncodedData;
 
 	const result = await fetch(OAuth2Routes.tokenURL, {
