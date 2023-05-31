@@ -29,4 +29,9 @@
 	input {
 		@apply dark:[color-scheme:dark];
 	}
+
+	.prose code {
+		@apply after:content-none;
+		@apply before:content-none;
+	}
 }
