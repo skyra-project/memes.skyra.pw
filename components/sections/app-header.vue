@@ -20,7 +20,14 @@
 					class="flex items-center gap-2 bg-gray-200/70 hover:bg-gray-200/80 dark:bg-stone-800 hover:dark:bg-stone-700 px-3.5 py-2 rounded-xl"
 				>
 					{{ $auth.session.value?.name }}
-					<img v-if="isDefault" :src="defaultAvatar" alt="Default Avatar" class="rounded-full w-10" />
+					<img
+						v-if="isDefault"
+						:src="defaultAvatar"
+						alt="Default Avatar"
+						class="rounded-full w-10"
+						decoding="async"
+						crossorigin="anonymous"
+					/>
 					<picture v-else>
 						<source
 							v-if="isAnimated"
@@ -30,7 +37,7 @@
 						/>
 						<source type="image/webp" :srcset="makeSrcset('webp')" />
 						<source type="image/png" :srcset="makeSrcset('png')" />
-						<img :src="createUrl('png', 128)" alt="Avatar" class="rounded-full w-8" />
+						<img :src="createUrl('png', 128)" alt="Avatar" class="rounded-full w-8" decoding="async" crossorigin="anonymous" />
 					</picture>
 				</button>
 			</nav>

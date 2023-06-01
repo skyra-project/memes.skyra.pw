@@ -199,7 +199,7 @@
 
 <script setup lang="ts">
 import { InformationCircleIcon, PlusIcon } from '@heroicons/vue/24/outline';
-import { useImage } from '@vueuse/core';
+import { useImage, type UseImageOptions } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
 
@@ -227,7 +227,7 @@ const height = ref(400);
 const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
-const imageData = reactive({ src: '' });
+const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' });
 const { isLoading, error, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
 watch(debouncedUrl, async (value) => {
 	try {
