@@ -1,12 +1,10 @@
-import '@vite-pwa/nuxt';
-import 'nuxt';
+import type { SessionConfig } from 'h3';
 
 const manifestIcons = [
 	{
 		src: 'https://memes.skyra.pw/icons/android-chrome-36x36.png',
 		sizes: '36x36',
-		type: 'image/png',
-		purpose: 'any badge'
+		type: 'image/png'
 	},
 	{
 		src: 'https://memes.skyra.pw/icons/android-chrome-48x48.png',
@@ -52,7 +50,7 @@ const manifestIcons = [
 		src: 'https://memes.skyra.pw/icons/maskable_icon.png',
 		sizes: '640x640',
 		type: 'image/png',
-		purpose: 'any maskable'
+		purpose: 'maskable'
 	}
 ];
 
@@ -60,7 +58,36 @@ const name = 'Meme Template Generator';
 const description = "A small but complete interactive browser utility to create new meme templates for Artiel's meme generator.";
 
 export default defineNuxtConfig({
-	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt'],
+	modules: ['@vueuse/nuxt', '@nuxtjs/tailwindcss', '@vite-pwa/nuxt', 'nuxt-security'],
+	runtimeConfig: {
+		auth: {
+			name: 'artiel-auth',
+			maxAge: 604800,
+			password: process.env.AUTH_SECRET ?? '',
+			cookie: { sameSite: 'strict' }
+		} satisfies SessionConfig,
+		origin: process.env.ORIGIN,
+		clientId: process.env.DISCORD_CLIENT_ID,
+		clientSecret: process.env.DISCORD_CLIENT_SECRET,
+		public: {
+			origin: process.env.ORIGIN,
+			clientId: process.env.DISCORD_CLIENT_ID
+		}
+	},
+	security: {
+		allowedMethodsRestricter: ['GET', 'POST'],
+		headers: {
+			crossOriginEmbedderPolicy: 'unsafe-none',
+			contentSecurityPolicy: {
+				'img-src': ["'self'", 'data:', 'skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
+			}
+		},
+		corsHandler: {
+			origin: process.env.ORIGIN || '*',
+			methods: ['GET', 'POST']
+		},
+		rateLimiter: false
+	},
 	nitro: {
 		preset: 'cloudflare-pages',
 		prerender: {

@@ -1,6 +1,6 @@
 <template>
-	<section class="prose prose-stone dark:prose-invert max-w-none px-4 sm:px-0">
-		<h1 class="font-extrabold text-4xl py-2">About</h1>
+	<section class="prose prose-stone dark:prose-invert max-w-none">
+		<h1>About</h1>
 		<p>
 			<span class="font-bold">Meme Generator</span> is a free open-source platform to generate the templates used in
 			<NuxtLink href="https://github.com/skyra-project/artiel">Artiel</NuxtLink>, built with
@@ -11,7 +11,7 @@
 
 		<p>
 			All data is stored exclusively in your browser tab's memory, meaning that all the data is not persistent and will not persist across
-			refreshes.
+			refreshes. The only exception to this is the <code>artiel-auth</code> cookie which is used for authorization.
 		</p>
 		<hr />
 
@@ -23,5 +23,9 @@
 </template>
 
 <script setup lang="ts">
-useHead({ title: 'About', meta: [{ property: 'og:title', content: 'About the Meme Template Generator' }] });
+useSeoMeta({
+	title: 'About',
+	ogTitle: 'About',
+	ogDescription: 'About the Meme Template Generator'
+});
 </script>
