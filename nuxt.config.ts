@@ -64,7 +64,8 @@ export default defineNuxtConfig({
 			name: 'artiel-auth',
 			maxAge: 604800,
 			password: process.env.AUTH_SECRET ?? '',
-			cookie: { sameSite: 'strict' }
+			cookie: { sameSite: 'strict' },
+			sessionHeader: false
 		} satisfies SessionConfig,
 		origin: process.env.ORIGIN,
 		clientId: process.env.DISCORD_CLIENT_ID,
