@@ -1,27 +1,29 @@
 <template>
-	<div>
-		<label class="block mb-5">
-			Name
-			<input type="text" v-model.trim="name" class="base-input rounded w-full" />
-		</label>
+	<label class="block mb-5">
+		Name
+		<input type="text" v-model.trim="name" class="base-input rounded w-full" />
+	</label>
 
-		<label class="block mb-5">
-			URL
-			<input type="url" v-model.trim="url" class="base-input rounded w-full" />
-		</label>
+	<label class="block mb-5">
+		URL
+		<input type="url" v-model.trim="url" class="base-input rounded w-full" />
+	</label>
 
-		<label class="flex mb-5 items-center gap-2">
-			Use number input instead of sliders:
-			<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
-		</label>
-	</div>
+	<label class="flex mb-5 items-center gap-2">
+		Use number input instead of sliders:
+		<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
+	</label>
 
 	<div v-if="!debouncedUrl" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-yellow-500" role="alert">
 		<InformationCircleIcon class="mr-3 inline h-5 w-5 flex-shrink-0 text-yellow-600 dark:text-stone-50" />
 		<p>
 			Please fill the above input box with a link to an image to load as a base for the new meme template, for example,
-			<NuxtLink href="https://skyra.pw/avatars/skyra.png" target="_blank" class="underline text-gray-800/80 dark:text-gray-200/80">
-				https://skyra.pw/avatars/skyra.png</NuxtLink
+			<NuxtLink
+				href="https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png"
+				target="_blank"
+				class="underline text-gray-800/80 dark:text-gray-200/80"
+			>
+				https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png</NuxtLink
 			>.
 		</p>
 	</div>
@@ -44,9 +46,9 @@
 		></canvas>
 
 		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl max-h-[70vh] overflow-y-auto">
-			<div class="flex gap-2">
-				<button @click="addBox" class="success rounded px-2" aria-label="Add a new box" :disabled="image === null">
-					<PlusIcon class="h-4 w-4" />
+			<div class="flex gap-2 items-center">
+				<button @click="addBox" class="success rounded w-8 h-8" aria-label="Add a new text box" title="Add a new text box" :disabled="!image">
+					<PlusIcon class="h-6 w-6 m-auto" />
 				</button>
 				<h2 class="text-3xl font-bold">Text Boxes</h2>
 			</div>
@@ -155,14 +157,15 @@
 				class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-rows-1 gap-5 mt-5"
 				:class="classes[(index + 4) % classes.length]"
 			>
-				<div class="flex gap-2">
+				<div class="flex gap-2 items-center">
 					<button
 						@click="addPosition(key)"
-						class="success rounded px-2"
+						class="success rounded w-8 h-8"
 						aria-label="Add a new position to this avatar"
-						:disabled="image === null"
+						title="Add a new position to this avatar"
+						:disabled="!image"
 					>
-						<PlusIcon class="h-4 w-4" />
+						<PlusIcon class="h-6 w-6 m-auto" />
 					</button>
 					<h3 class="text-2xl font-bold">{{ AvatarNames[index] }}</h3>
 				</div>
@@ -193,7 +196,7 @@
 		</div>
 	</div>
 
-	<hr class="json-divider" />
+	<hr class="json-divider" aria-label="JSON" />
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
 </template>
 
@@ -380,7 +383,7 @@ hr.json-divider:after {
 }
 
 button.success {
-	@apply bg-green-500 disabled:bg-green-100 dark:bg-green-700 disabled:dark:bg-green-900;
+	@apply bg-green-500 dark:bg-green-700 disabled:saturate-0;
 }
 
 button.danger {
