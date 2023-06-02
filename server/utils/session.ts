@@ -12,10 +12,6 @@ export function useAuthSession(event: H3Event) {
 	return useSession<AuthSession>(event, sessionConfig);
 }
 
-export function getAuthSession(event: H3Event) {
-	return getSession<AuthSession>(event, sessionConfig);
-}
-
 export async function requireAuthSession(event: H3Event) {
 	const session = await useAuthSession(event);
 	if (!session.data.id) {
