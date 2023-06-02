@@ -1,5 +1,4 @@
 export default eventHandler(async (event) => {
-	const session = await useAuthSession(event);
 	const { code, redirectUri } = (await readBody(event)) as OAuth2BodyData;
 	if (typeof code !== 'string' || typeof redirectUri !== 'string') {
 		throw createError({ message: 'Invalid body parameters', statusCode: 400 });
@@ -15,6 +14,7 @@ export default eventHandler(async (event) => {
 		throw createError({ message: 'Failed to fetch the user', statusCode: 500 });
 	}
 
+	const session = await useAuthSession(event);
 	await session.update({ id: user.id, name: user.username, avatar: user.avatar });
 	return session.data;
 });

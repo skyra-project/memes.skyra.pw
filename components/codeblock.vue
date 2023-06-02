@@ -1,5 +1,5 @@
 <template>
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-auto" role="status"><client-only><render-json /></client-only></pre>
+	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-auto" role="status"><render-json /></pre>
 </template>
 
 <script setup lang="tsx">
@@ -22,19 +22,19 @@ function line(indent: number, ...elements: readonly (JSX.Element | string)[]) {
 }
 
 function property(name: string) {
-	return <span class="text-[#bc2b3d] dark:text-[#df6a73]">"{name}"</span>;
+	return <codeblock-property value={name} />;
 }
 
-function string(value: string | JSX.Element) {
-	return <span class="text-[#457400] dark:text-[#98c379]">"{value}"</span>;
+function string(value: string) {
+	return <codeblock-string value={value} />;
 }
 
 function number(value: number) {
-	return <span class="text-[#915c00] dark:text-[#d19a66]">{value}</span>;
+	return <codeblock-number value={value} />;
 }
 
 function boolean(value: boolean) {
-	return <span class="text-[#915c00] dark:text-[#d19a66]">{value ? 'true' : 'false'}</span>;
+	return <codeblock-boolean value={value} />;
 }
 
 const colours = ['text-[#915c00] dark:text-[#d19a66]', 'text-[#a626a4] dark:text-[#c678dd]', 'text-[#00737d] dark:text-[#56b6c2]'];
@@ -87,11 +87,10 @@ function addBoxes(lines: JSX.Element[], boxes: readonly EntryBox[]) {
 }
 
 function renderJson() {
-	const url = <span class="underline">{props.url}</span>;
 	const lines = [
 		line(0, brace(0, '{')),
 		line(1, property('name'), ': ', string(props.name), ','),
-		line(1, property('url'), ': ', string(url), ','),
+		line(1, property('url'), ': ', <codeblock-url value={props.url} />, ','),
 		line(1, property('avatars'), ': ', brace(1, '{'))
 	];
 

@@ -1,6 +1,6 @@
 <template>
 	<div v-bind="$attrs">
-		<button class="w-full p-2 rounded-xl" @click="toggle()" role="heading" :aria-level="level ?? 3">
+		<button class="w-full p-2 rounded-xl" @click="toggle()">
 			<slot name="header">{{ header ?? 'Accordion' }}</slot>
 		</button>
 		<transition name="accordion" @before-enter="transitionClose" @enter="transitionOpen" @before-leave="transitionOpen" @leave="transitionClose">
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ header?: string; level?: number }>();
+defineProps<{ header?: string }>();
 
 const [show, toggle] = useToggle(false);
 

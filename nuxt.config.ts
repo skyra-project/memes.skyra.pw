@@ -64,7 +64,8 @@ export default defineNuxtConfig({
 			name: 'artiel-auth',
 			maxAge: 604800,
 			password: process.env.AUTH_SECRET ?? '',
-			cookie: { sameSite: 'strict' }
+			cookie: { sameSite: 'lax' },
+			sessionHeader: false
 		} satisfies SessionConfig,
 		origin: process.env.ORIGIN,
 		clientId: process.env.DISCORD_CLIENT_ID,
@@ -77,9 +78,37 @@ export default defineNuxtConfig({
 	security: {
 		allowedMethodsRestricter: ['GET', 'POST'],
 		headers: {
-			crossOriginEmbedderPolicy: 'unsafe-none',
 			contentSecurityPolicy: {
-				'img-src': ["'self'", 'data:', 'skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
+				'img-src': ["'self'", 'data:', 'cdn.skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
+			},
+			permissionsPolicy: {
+				accelerometer: ['()'],
+				'ambient-light-sensor': ['()'],
+				autoplay: ['()'],
+				battery: ['()'],
+				camera: ['()'],
+				'display-capture': ['()'],
+				'document-domain': ['()'],
+				'encrypted-media': ['()'],
+				fullscreen: ['()'],
+				gamepad: ['()'],
+				geolocation: ['()'],
+				gyroscope: ['()'],
+				hid: ['()'],
+				'idle-detection': ['()'],
+				'local-fonts': ['()'],
+				magnetometer: ['()'],
+				microphone: ['()'],
+				midi: ['()'],
+				payment: ['()'],
+				'picture-in-picture': ['()'],
+				'publickey-credentials-get': ['()'],
+				'screen-wake-lock': ['()'],
+				serial: ['()'],
+				'speaker-selection': ['()'],
+				usb: ['()'],
+				'web-share': ['()'],
+				'xr-spatial-tracking': ['()']
 			}
 		},
 		corsHandler: {
@@ -158,8 +187,6 @@ export default defineNuxtConfig({
 				{ 'http-equiv': 'Cache-Control', content: '1y' },
 				{ 'http-equiv': 'Content-Type', content: 'text/html; charset=UTF-8' },
 				{ 'http-equiv': 'Expires', content: '1y' },
-				{ 'http-equiv': 'Page-Enter', content: 'RevealTrans(Duration=2.0,Transition=2)' },
-				{ 'http-equiv': 'Page-Exit', content: 'RevealTrans(Duration=3.0,Transition=12)' },
 				{ 'http-equiv': 'Pragma', content: '1y' },
 				{ name: 'apple-mobile-web-app-capable', content: 'yes' },
 				{ name: 'apple-mobile-web-app-status-bar-style', content: 'black' },
