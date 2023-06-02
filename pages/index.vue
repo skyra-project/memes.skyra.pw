@@ -208,7 +208,7 @@ import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
 
 const name = ref('');
 const url = ref('');
-const debouncedUrl = refDebounced(url, 500);
+const debouncedUrl = refDebounced(url, 500, { maxWait: 2000 });
 const avatars = {
 	author: reactive<EntryAvatarPosition[]>([]),
 	target: reactive<EntryAvatarPosition[]>([])
