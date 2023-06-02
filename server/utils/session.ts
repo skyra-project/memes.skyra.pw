@@ -1,5 +1,6 @@
-import type { H3Event } from 'h3';
-import { getServerSessionConfig } from '../../utils/auth';
+import type { H3Event, SessionConfig } from 'h3';
+
+const sessionConfig: SessionConfig = useRuntimeConfig().auth || {};
 
 export interface AuthSession {
 	id: string;
@@ -8,7 +9,7 @@ export interface AuthSession {
 }
 
 export function useAuthSession(event: H3Event) {
-	return useSession<AuthSession>(event, getServerSessionConfig());
+	return useSession<AuthSession>(event, sessionConfig);
 }
 
 export async function requireAuthSession(event: H3Event) {
