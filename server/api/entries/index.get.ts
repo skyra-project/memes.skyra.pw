@@ -1,15 +1,13 @@
-import type { D1Database, D1Result } from '@cloudflare/workers-types';
+import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import type { RawEntry } from '../../utils/transform-entry';
+import type { Entry, RawEntry } from '../../utils/transform/entry';
 
-export default defineEventHandler((event) => {
+export default defineEventHandler<Entry[]>((event) => {
 	const db = useDatabase();
 	return db ? handleEvent(event, db) : fallbackHandleEvent(event);
 });
 
 async function handleEvent(event: H3Event, db: D1Database) {
-	let result: D1Result<RawEntry>;
-
 	const query = getQuery(event);
 	const name = query.name as string | undefined;
 	if (name && typeof name !== 'string') {
@@ -34,21 +32,7 @@ async function handleEvent(event: H3Event, db: D1Database) {
 
 	limit ??= 25;
 	const statement = name ? handleEventSearch(db, decodeURIComponent(name), limit) : handleEventAll(db, limit);
-	try {
-		result = await statement.all<RawEntry>();
-		if (result.success) return result.results!.map(transformTemplateEntry);
-	} catch (error) {
-		if (error instanceof Error) error = (error.cause as Error)?.message ?? error.message;
-		throw createError({
-			statusCode: 500,
-			statusMessage: String(error ?? 'Received an unknown error')
-		});
-	}
-
-	throw createError({
-		statusCode: 500,
-		statusMessage: result.error ?? 'Received an unknown error'
-	});
+	return runAll(statement.all<RawEntry>(), transformTemplateEntry);
 }
 
 function handleEventAll(db: D1Database, limit: number) {

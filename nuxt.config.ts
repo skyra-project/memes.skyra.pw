@@ -70,13 +70,15 @@ export default defineNuxtConfig({
 		origin: process.env.ORIGIN,
 		clientId: process.env.DISCORD_CLIENT_ID,
 		clientSecret: process.env.DISCORD_CLIENT_SECRET,
+		administrators: (process.env.ADMINISTRATORS ?? '').split(' '),
 		public: {
 			origin: process.env.ORIGIN,
-			clientId: process.env.DISCORD_CLIENT_ID
+			clientId: process.env.DISCORD_CLIENT_ID,
+			administrators: (process.env.ADMINISTRATORS ?? '').split(' ')
 		}
 	},
 	security: {
-		allowedMethodsRestricter: ['GET', 'POST'],
+		allowedMethodsRestricter: ['GET', 'POST', 'PATCH', 'DELETE'],
 		headers: {
 			contentSecurityPolicy: {
 				'img-src': ["'self'", 'data:', 'cdn.skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
@@ -113,7 +115,7 @@ export default defineNuxtConfig({
 		},
 		corsHandler: {
 			origin: process.env.ORIGIN || '*',
-			methods: ['GET', 'POST']
+			methods: ['GET', 'POST', 'PATCH', 'DELETE']
 		},
 		rateLimiter: false
 	},
