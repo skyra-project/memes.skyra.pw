@@ -22,6 +22,8 @@
 </template>
 
 <script setup lang="ts">
+import { promiseTimeout } from '@vueuse/core';
+
 const { code } = useRoute().query;
 
 const redirectUri = `${getOrigin()}/auth/callback`;
@@ -34,12 +36,16 @@ const { data, error, pending, execute } = useFetch('/api/auth/callback', {
 });
 
 if (process.client && code) {
-	watch(data, () => {
-		useAuth().session.value = data.value;
-		useTimeoutFn(() => useRouter().push(useAuth().redirectTo.value), 1000);
-	});
+	void performCall().catch(console.error);
+}
 
-	execute();
+async function performCall() {
+	await execute();
+	if (!data.value) return;
+
+	useAuth().session.value = data.value;
+	await promiseTimeout(1000);
+	await useRouter().replace(useAuth().redirectTo.value);
 }
 
 useSeoMeta({
