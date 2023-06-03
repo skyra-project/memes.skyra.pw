@@ -1,8 +1,10 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import type { Entry, RawEntry } from '../../utils/transform/entry';
+import { transformTemplateEntry, type Entry, type RawEntry } from '../../../utils/transform/entry';
+import { validateEntryAvatars, validateEntryBoxes, validateEntryName, validateEntryURL } from '../../../utils/validators/entries';
+import { validateObject } from '../../../utils/validators/primitives';
 
-const ids = useRuntimeConfig().administrators as string[];
+const ids = useAdministrators();
 
 export default defineEventHandler<Entry>((event) => {
 	const db = useDatabase();

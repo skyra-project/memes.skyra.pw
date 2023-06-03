@@ -70,7 +70,6 @@ export default defineNuxtConfig({
 		origin: process.env.ORIGIN,
 		clientId: process.env.DISCORD_CLIENT_ID,
 		clientSecret: process.env.DISCORD_CLIENT_SECRET,
-		administrators: (process.env.ADMINISTRATORS ?? '').split(' '),
 		public: {
 			origin: process.env.ORIGIN,
 			clientId: process.env.DISCORD_CLIENT_ID,

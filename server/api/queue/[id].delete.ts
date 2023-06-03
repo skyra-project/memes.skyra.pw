@@ -1,7 +1,7 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
 
-const ids = useRuntimeConfig().administrators as string[];
+const ids = useAdministrators();
 
 export default defineEventHandler<null>((event) => {
 	const db = useDatabase();

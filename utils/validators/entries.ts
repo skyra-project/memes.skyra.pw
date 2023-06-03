@@ -1,4 +1,5 @@
 import type { EntryAvatarPosition, EntryAvatars, EntryBox, EntryBoxModifiers } from '../transform/entry';
+import { validateBoolean, validateInteger, validateNumber, validateObject, validatePossibles, validateString } from './primitives';
 
 export function validateEntryName(value: string): string {
 	return validateString('name', value, 2, 64);

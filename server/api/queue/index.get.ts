@@ -1,8 +1,8 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import type { QueueEntry, RawQueueEntry } from '../../utils/transform/queue-entry';
+import { transformTemplateQueueEntry, type QueueEntry, type RawQueueEntry } from '../../../utils/transform/queue-entry';
 
-const ids = useRuntimeConfig().administrators as string[];
+const ids = useAdministrators();
 
 export default defineEventHandler<QueueEntry[]>((event) => {
 	const db = useDatabase();

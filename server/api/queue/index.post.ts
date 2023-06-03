@@ -1,7 +1,9 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import type { Entry } from '../../utils/transform/entry';
-import type { QueueEntry, RawQueueEntry } from '../../utils/transform/queue-entry';
+import type { Entry } from '../../../utils/transform/entry';
+import { transformTemplateQueueEntry, type QueueEntry, type RawQueueEntry } from '../../../utils/transform/queue-entry';
+import { validateEntryAvatars, validateEntryBoxes, validateEntryName, validateEntryURL } from '../../../utils/validators/entries';
+import { validateObject } from '../../../utils/validators/primitives';
 
 export default defineEventHandler<QueueEntry>((event) => {
 	const db = useDatabase();

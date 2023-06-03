@@ -34,4 +34,22 @@
 		@apply after:content-none;
 		@apply before:content-none;
 	}
+
+	.button {
+		@apply p-3.5 rounded-xl;
+		@apply disabled:saturate-0;
+		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-700;
+	}
+
+	.button.neutral {
+		@apply bg-gray-100 hover:bg-gray-200 dark:bg-stone-800 hover:dark:bg-stone-700;
+	}
+
+	.button.success {
+		@apply bg-green-500 hover:bg-green-400 dark:bg-green-800 hover:dark:bg-green-600;
+	}
+
+	.button.danger {
+		@apply bg-red-500 hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-600;
+	}
 }

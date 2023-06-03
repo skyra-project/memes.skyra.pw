@@ -9,30 +9,25 @@
 		<input type="url" v-model.trim="url" class="base-input rounded w-full" />
 	</label>
 
+	<alert v-if="!debouncedUrl" type="info" title="Tip">
+		Before you can make a template, please fill the above input box with a link to an image to load as a base for the new meme template, for
+		example:
+		<NuxtLink
+			to="https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png"
+			target="_blank"
+			class="underline text-gray-800/80 dark:text-gray-200/80 inline-block"
+		>
+			https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png
+		</NuxtLink>
+	</alert>
+	<alert v-else-if="error || !imageData.src" type="danger" title="Error">
+		{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
+	</alert>
+
 	<label class="flex mb-5 items-center gap-2">
 		Use number input instead of sliders:
 		<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
 	</label>
-
-	<div v-if="!debouncedUrl" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-yellow-500" role="alert">
-		<InformationCircleIcon class="mr-3 inline h-5 w-5 flex-shrink-0 text-yellow-600 dark:text-stone-50" />
-		<p>
-			Please fill the above input box with a link to an image to load as a base for the new meme template, for example,
-			<NuxtLink
-				href="https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png"
-				target="_blank"
-				class="underline text-gray-800/80 dark:text-gray-200/80"
-			>
-				https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png</NuxtLink
-			>.
-		</p>
-	</div>
-	<div v-else-if="error || !imageData.src" class="mb-4 flex rounded-lg bg-opacity-25 p-4 text-sm bg-red-500" role="alert">
-		<InformationCircleIcon class="mr-3 inline h-5 w-5 flex-shrink-0 text-red-600 dark:text-stone-50" />
-		<p>
-			{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
-		</p>
-	</div>
 
 	<div class="grid grid-flow-row lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr] gap-4 mb-5 w-full justify-items-center">
 		<canvas
@@ -45,9 +40,15 @@
 			role="figure"
 		></canvas>
 
-		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl max-h-[70vh] overflow-y-auto">
+		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto">
 			<div class="flex gap-2 items-center">
-				<button @click="addBox" class="success rounded w-8 h-8" aria-label="Add a new text box" title="Add a new text box" :disabled="!image">
+				<button
+					@click="addBox"
+					class="button success rounded w-8 h-8 p-0"
+					aria-label="Add a new text box"
+					title="Add a new text box"
+					:disabled="!image"
+				>
 					<PlusIcon class="h-6 w-6 m-auto" />
 				</button>
 				<h2 class="text-3xl font-bold">Text Boxes</h2>
@@ -145,12 +146,12 @@
 				</accordion>
 
 				<div class="flex mt-2">
-					<button @click="boxes.splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
+					<button @click="boxes.splice(index, 1)" class="button danger p-2 rounded-xl w-full mt-auto">Remove</button>
 				</div>
 			</div>
 		</div>
 
-		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:col-span-2 xl:col-auto w-full shadow-xl max-h-[70vh] overflow-y-auto">
+		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:col-span-2 xl:col-auto w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto">
 			<h2 class="text-3xl font-bold">Avatars</h2>
 			<div
 				v-for="(key, index) of AvatarKeys"
@@ -160,7 +161,7 @@
 				<div class="flex gap-2 items-center">
 					<button
 						@click="addPosition(key)"
-						class="success rounded w-8 h-8"
+						class="button success rounded w-8 h-8 p-0"
 						aria-label="Add a new position to this avatar"
 						title="Add a new position to this avatar"
 						:disabled="!image"
@@ -189,22 +190,42 @@
 					</label>
 
 					<div class="flex">
-						<button @click="avatars[key].splice(index, 1)" class="danger p-2 rounded-xl w-full mt-auto">Remove</button>
+						<button @click="avatars[key].splice(index, 1)" class="button danger p-2 rounded-xl w-full mt-auto">Remove</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<hr class="json-divider" aria-label="JSON" />
+	<hr class="border border-gray-800 dark:border-stone-700 mt-10 mb-3" />
+
+	<lazy-dialog-entry ref="dialog" @submit="replace" />
+	<section class="flex gap-2 mb-4 justify-end">
+		<button class="flex items-center gap-2 button" @click="copy(JSON.stringify({ name, url, avatars, boxes }, undefined, '\t'))">
+			<template v-if="copied"><ClipboardDocumentCheckIcon class="w-5 h-5" />Copied</template>
+			<template v-else><ClipboardDocumentIcon class="w-5 h-5" />Copy</template>
+		</button>
+		<button class="flex items-center gap-2 button" @click="dialog.showModal()"><ClipboardDocumentListIcon class="w-5 h-5" />Paste</button>
+		<button class="flex items-center gap-2 button danger" @click="resetData"><TrashIcon class="w-5 h-5" />Reset</button>
+		<button class="flex items-center gap-2 button success" @click="uploadData"><ArrowUpTrayIcon class="w-5 h-5" />Upload</button>
+	</section>
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
 </template>
 
 <script setup lang="ts">
-import { InformationCircleIcon, PlusIcon } from '@heroicons/vue/24/outline';
+import {
+	ArrowUpTrayIcon,
+	ClipboardDocumentCheckIcon,
+	ClipboardDocumentIcon,
+	ClipboardDocumentListIcon,
+	PlusIcon,
+	TrashIcon
+} from '@heroicons/vue/24/outline';
 import { useImage, type UseImageOptions } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
-import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
+import type { Entry, EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
+
+const dialog = ref<HTMLDialogElement>(null!);
 
 const name = ref('');
 const url = ref('');
@@ -214,6 +235,14 @@ const avatars = {
 	target: reactive<EntryAvatarPosition[]>([])
 };
 const boxes = reactive<EntryBox[]>([]);
+
+function replace(entry: Entry) {
+	name.value = entry.name;
+	url.value = entry.url;
+	avatars.author.splice(0, avatars.author.length, ...entry.avatars.author);
+	avatars.target.splice(0, avatars.target.length, ...entry.avatars.target);
+	boxes.splice(0, boxes.length, ...entry.boxes);
+}
 
 const inputType = ref<'number' | 'range'>('range');
 function toggleInputType() {
@@ -370,26 +399,21 @@ function printImage() {
 		}
 	}
 }
+
+const { copied, copy } = useClipboard();
+
+function resetData() {
+	name.value = '';
+	url.value = '';
+	avatars.author.length = 0;
+	avatars.target.length = 0;
+	boxes.length = 0;
+}
+
+function uploadData() {}
 </script>
 
 <style scoped>
-hr.json-divider {
-	@apply border-0 border-t-2 text-gray-800 dark:text-gray-200 overflow-visible text-center h-1 py-1 mt-10 mb-3;
-}
-
-hr.json-divider:after {
-	@apply bg-gray-50 dark:bg-stone-800 px-1 relative -top-5 text-2xl;
-	content: 'JSON';
-}
-
-button.success {
-	@apply bg-green-500 dark:bg-green-700 disabled:saturate-0;
-}
-
-button.danger {
-	@apply text-gray-50 bg-red-600 dark:bg-red-700;
-}
-
 select.select {
 	--tw-border-opacity: 1;
 	--tw-select-arrow-rgb: 209 213 219;

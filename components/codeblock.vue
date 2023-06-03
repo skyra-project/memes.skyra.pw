@@ -1,9 +1,9 @@
 <template>
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-auto" role="status"><render-json /></pre>
+	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl max-h-[50vh] overflow-auto" role="status"><render-json /></pre>
 </template>
 
 <script setup lang="tsx">
-import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
+import type { EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
 
 const props = defineProps<{
 	name: string;
