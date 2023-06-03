@@ -16,7 +16,7 @@ async function handleEvent(event: H3Event, db: D1Database) {
 
 	const id = Number(event.context.params!.id);
 	if (!Number.isSafeInteger(id)) {
-		throw createError({ message: 'Received invalid ID', statusCode: 400 });
+		throwValidationError('Received invalid ID');
 	}
 
 	const Query = /* sql */ `

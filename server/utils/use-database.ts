@@ -11,10 +11,10 @@ export async function runAll<T, R>(promise: Promise<D1Result<T>>, map?: (value: 
 		if (result.success) return typeof map === 'function' ? result.results!.map(map) : result;
 	} catch (error) {
 		if (error instanceof Error) error = (error.cause as Error)?.message ?? error.message;
-		throw createError({ statusCode: 500, statusMessage: String(error ?? 'Received an unknown error') });
+		throw createError({ message: String(error ?? 'Received an unknown error'), statusCode: 500 });
 	}
 
-	throw createError({ statusCode: 500, statusMessage: result.error ?? 'Received an unknown error' });
+	throw createError({ message: result.error ?? 'Received an unknown error', statusCode: 500 });
 }
 
 export async function runOne<T, R>(promise: Promise<T>, map: (value: T) => R): Promise<R> {
@@ -22,7 +22,7 @@ export async function runOne<T, R>(promise: Promise<T>, map: (value: T) => R): P
 		return map(await promise);
 	} catch (error) {
 		if (error instanceof Error) error = (error.cause as Error)?.message ?? error.message;
-		throw createError({ statusCode: 500, statusMessage: String(error ?? 'Received an unknown error') });
+		throw createError({ message: String(error ?? 'Received an unknown error'), statusCode: 500 });
 	}
 }
 

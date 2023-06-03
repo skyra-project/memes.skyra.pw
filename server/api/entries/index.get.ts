@@ -1,6 +1,6 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import { transformTemplateEntry, type Entry, type RawEntry } from '../../../utils/transform/entry';
+import type { Entry, RawEntry } from '../../utils/exports';
 
 export default defineEventHandler<Entry[]>((event) => {
 	const db = useDatabase();
@@ -11,21 +11,21 @@ async function handleEvent(event: H3Event, db: D1Database) {
 	const query = getQuery(event);
 	const name = query.name as string | undefined;
 	if (name && typeof name !== 'string') {
-		throw createError({ statusCode: 400, statusMessage: 'The query name must be a string' });
+		throwValidationError('The query name must be a string');
 	}
 
 	let limit = query.limit as number | undefined;
 	if (limit) {
 		if (typeof limit === 'string') limit = Number(limit);
 		if (typeof limit !== 'number' || !Number.isSafeInteger(limit)) {
-			throw createError({ statusCode: 400, statusMessage: 'The query limit must be an integer' });
+			throwValidationError('The query limit must be an integer');
 		}
 
 		if (limit <= 0) return [];
 		if (limit > 25) {
 			const token = event.node.req.headers.authorization;
 			if (!token || token !== process.env.ARTIEL_TOKEN) {
-				throw createError({ statusCode: 403, statusMessage: 'The query limit must be 25 or smaller' });
+				throw createError({ message: 'The query limit must be 25 or smaller', statusCode: 403 });
 			}
 		}
 	}

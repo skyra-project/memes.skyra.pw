@@ -11,7 +11,7 @@ export function validateEntryURL(value: string): string {
 	try {
 		return new URL(value).href;
 	} catch {
-		throw createError({ message: '`url` is not a valid URL', statusCode: 400 });
+		throwValidationError('`url` is not a valid URL');
 	}
 }
 
@@ -25,7 +25,7 @@ export function validateEntryAvatars(value: EntryAvatars): EntryAvatars {
 }
 
 export function validateEntryAvatarPositions(field: `avatars.${keyof EntryAvatars}`, values: readonly EntryAvatarPosition[]): EntryAvatarPosition[] {
-	if (!Array.isArray(values)) throw createError({ message: `\`${field}\` is not an array`, statusCode: 400 });
+	if (!Array.isArray(values)) throwValidationError(`\`${field}\` is not an array`);
 	return values.map((value, index) => validateEntryAvatarPosition(`${field}.${index}`, value));
 }
 
@@ -42,7 +42,7 @@ export function validateEntryAvatarPosition(field: `avatars.${keyof EntryAvatars
 }
 
 export function validateEntryBoxes(values: readonly EntryBox[]): EntryBox[] {
-	if (!Array.isArray(values)) throw createError({ message: '`boxes` is not an array', statusCode: 400 });
+	if (!Array.isArray(values)) throwValidationError('`boxes` is not an array');
 	return values.map((value, index) => validateEntryBox(`boxes.${index}`, value));
 }
 

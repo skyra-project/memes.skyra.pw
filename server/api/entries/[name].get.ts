@@ -1,6 +1,6 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import { transformTemplateEntry, type Entry, type RawEntry } from '../../../utils/transform/entry';
+import type { Entry, RawEntry } from '../../utils/exports';
 
 export default defineEventHandler<Entry>((event) => {
 	const db = useDatabase();

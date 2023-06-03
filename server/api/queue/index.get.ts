@@ -1,6 +1,6 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import { transformTemplateQueueEntry, type QueueEntry, type RawQueueEntry } from '../../../utils/transform/queue-entry';
+import type { QueueEntry, RawQueueEntry } from '../../utils/exports';
 
 const ids = useAdministrators();
 

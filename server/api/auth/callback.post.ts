@@ -1,7 +1,7 @@
 export default eventHandler(async (event) => {
 	const { code, redirectUri } = (await readBody(event)) as OAuth2BodyData;
 	if (typeof code !== 'string' || typeof redirectUri !== 'string') {
-		throw createError({ message: 'Invalid body parameters', statusCode: 400 });
+		throwValidationError('Invalid body parameters');
 	}
 
 	const data = await fetchAccessToken(code, redirectUri);

@@ -40,7 +40,6 @@ export interface EntryBoxModifiers {
 	opacity: number;
 }
 
-
 export interface RawEntry {
 	name: string;
 	url: string;

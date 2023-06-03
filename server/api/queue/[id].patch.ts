@@ -1,9 +1,6 @@
 import type { D1Database } from '@cloudflare/workers-types';
 import type { H3Event } from 'h3';
-import type { Entry } from '../../../utils/transform/entry';
-import { transformTemplateQueueEntry, type QueueEntry, type RawQueueEntry } from '../../../utils/transform/queue-entry';
-import { validateEntryAvatars, validateEntryBoxes, validateEntryName, validateEntryURL } from '../../../utils/validators/entries';
-import { validateObject } from '../../../utils/validators/primitives';
+import type { Entry, QueueEntry, RawQueueEntry } from '../../utils/exports';
 
 const ids = useAdministrators();
 
@@ -20,7 +17,7 @@ async function handleEvent(event: H3Event, db: D1Database) {
 
 	const id = Number(event.context.params!.id);
 	if (!Number.isSafeInteger(id)) {
-		throw createError({ message: 'Received invalid ID', statusCode: 400 });
+		throwValidationError('Received invalid ID');
 	}
 
 	const body = validateObject('body', await readBody<Partial<Entry>>(event));

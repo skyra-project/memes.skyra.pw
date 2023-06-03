@@ -10,7 +10,7 @@
 					aria-label="Logout"
 					@click="authLogout()"
 					class="flex items-center gap-2 button bg-rose-400 hover:bg-rose-300 dark:bg-stone-800 hover:dark:bg-stone-700 py-2"
-					:class="{'outline outline-2 outline-yellow-300 dark:outline-yellow-600 focus-visible:outline-current': administrators.includes($auth.session.value!.id)}"
+					:class="{ 'outline outline-2 outline-yellow-300 dark:outline-yellow-600 focus-visible:outline-current': administrator }"
 				>
 					{{ $auth.session.value?.name }}
 					<img
@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 const { session } = useAuth();
-const administrators = useAdministrators();
+const administrator = useAdministrator();
 
 const isDefault = ref(false);
 const isAnimated = ref(false);

@@ -40,7 +40,9 @@
 			role="figure"
 		></canvas>
 
-		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto">
+		<div
+			class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto"
+		>
 			<div class="flex gap-2 items-center">
 				<button
 					@click="addBox"
@@ -151,7 +153,9 @@
 			</div>
 		</div>
 
-		<div class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:col-span-2 xl:col-auto w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto">
+		<div
+			class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:col-span-2 xl:col-auto w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto"
+		>
 			<h2 class="text-3xl font-bold">Avatars</h2>
 			<div
 				v-for="(key, index) of AvatarKeys"
@@ -206,8 +210,13 @@
 			<template v-else><ClipboardDocumentIcon class="w-5 h-5" />Copy</template>
 		</button>
 		<button class="flex items-center gap-2 button" @click="dialog.showModal()"><ClipboardDocumentListIcon class="w-5 h-5" />Paste</button>
-		<button class="flex items-center gap-2 button danger" @click="resetData"><TrashIcon class="w-5 h-5" />Reset</button>
-		<button class="flex items-center gap-2 button success" @click="uploadData"><ArrowUpTrayIcon class="w-5 h-5" />Upload</button>
+		<button v-if="dirty" class="flex items-center gap-2 button danger" @click="resetData"><TrashIcon class="w-5 h-5" />Reset</button>
+		<button v-if="$auth.loggedIn.value" class="flex items-center gap-2 button success" @click="uploadData">
+			<ArrowUpTrayIcon class="w-5 h-5" />Upload
+		</button>
+		<button v-if="administrator" class="flex items-center gap-2 button success" @click="uploadData">
+			<DocumentMagnifyingGlassIcon class="w-5 h-5" />Review
+		</button>
 	</section>
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
 </template>
@@ -218,6 +227,7 @@ import {
 	ClipboardDocumentCheckIcon,
 	ClipboardDocumentIcon,
 	ClipboardDocumentListIcon,
+	DocumentMagnifyingGlassIcon,
 	PlusIcon,
 	TrashIcon
 } from '@heroicons/vue/24/outline';
@@ -226,6 +236,7 @@ import { Canvas } from 'canvas-constructor/browser';
 import type { Entry, EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
 
 const dialog = ref<HTMLDialogElement>(null!);
+const administrator = useAdministrator();
 
 const name = ref('');
 const url = ref('');
@@ -235,6 +246,15 @@ const avatars = {
 	target: reactive<EntryAvatarPosition[]>([])
 };
 const boxes = reactive<EntryBox[]>([]);
+
+const dirty = computed(
+	() =>
+		name.value.length !== 0 || //
+		url.value.length !== 0 ||
+		avatars.author.length !== 0 ||
+		avatars.target.length !== 0 ||
+		boxes.length !== 0
+);
 
 function replace(entry: Entry) {
 	name.value = entry.name;
