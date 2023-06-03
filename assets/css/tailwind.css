@@ -5,7 +5,7 @@
 @layer base {
 	html,
 	body {
-		@apply bg-gray-50 dark:bg-stone-800 text-gray-800 dark:text-gray-200;
+		@apply bg-gray-50 text-gray-800 dark:bg-stone-800 dark:text-gray-200;
 	}
 
 	a {
@@ -15,15 +15,15 @@
 
 @layer components {
 	::-webkit-scrollbar {
-		@apply bg-gray-100 dark:bg-stone-950 rounded-xl w-4;
+		@apply w-4 rounded-xl bg-gray-100 dark:bg-stone-950;
 	}
 
 	::-webkit-scrollbar-thumb {
-		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-800 rounded-xl;
+		@apply rounded-xl bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-800;
 	}
 
 	.base-input:not([type='range']) {
-		@apply border-2 p-2 bg-gray-100 dark:bg-stone-900 border-gray-300 dark:border-stone-700;
+		@apply border-2 border-gray-300 bg-gray-100 p-2 dark:border-stone-700 dark:bg-stone-900;
 	}
 
 	input {
@@ -36,9 +36,9 @@
 	}
 
 	.button {
-		@apply p-3.5 rounded-xl;
+		@apply rounded-xl p-3.5;
 		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-900/60;
-		@apply disabled:saturate-0 disabled:pointer-events-none;
+		@apply disabled:pointer-events-none disabled:saturate-0;
 	}
 
 	.button.neutral {

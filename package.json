@@ -27,10 +27,10 @@
 		"nuxt": "^3.5.1",
 		"nuxt-security": "^0.13.0",
 		"prettier": "^2.8.8",
+		"prettier-plugin-tailwindcss": "^0.3.0",
 		"sitemap": "^7.1.1",
 		"wrangler": "^2.2.4"
 	},
-	"prettier": "@sapphire/prettier-config",
 	"packageManager": "yarn@3.5.1",
 	"resolutions": {
 		"nuxt-security@^0.13.0": "patch:nuxt-security@npm%3A0.13.0#./.yarn/patches/nuxt-security-npm-0.13.0-c6823128eb.patch"

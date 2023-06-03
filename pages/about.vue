@@ -1,5 +1,5 @@
 <template>
-	<section class="prose prose-stone dark:prose-invert max-w-none">
+	<section class="prose prose-stone max-w-none dark:prose-invert">
 		<h1>About</h1>
 		<p>
 			<span class="font-bold">Meme Generator</span> is a free open-source platform to generate the templates used in

@@ -2,18 +2,18 @@
 	<div class="mb-4 mt-6" role="alert" v-show="visible">
 		<div class="relative flex">
 			<p class="p-4"><slot /></p>
-			<button v-if="closable" class="ml-auto my-auto mr-2 rounded-lg hover:bg-red-600 hover:dark:bg-red-700" @click.prevent="visible = false">
-				<XMarkIcon class="w-5 h-5 m-2" aria-label="Close" />
+			<button v-if="closable" class="my-auto ml-auto mr-2 rounded-lg hover:bg-red-600 hover:dark:bg-red-700" @click.prevent="visible = false">
+				<XMarkIcon class="m-2 h-5 w-5" aria-label="Close" />
 			</button>
-			<div class="pointer-events-none absolute h-full w-full flex">
-				<div class="rounded-tl-md rounded-bl-md w-4 shrink-0 border-b-2 border-l-2 border-t-2" :class="border"></div>
+			<div class="pointer-events-none absolute flex h-full w-full">
+				<div class="w-4 shrink-0 rounded-bl-md rounded-tl-md border-b-2 border-l-2 border-t-2" :class="border"></div>
 				<div class="relative border-b-2" :class="border">
-					<div class="-translate-y-1/2 pointer-events-auto flex place-items-center gap-2 px-2" :class="text">
-						<icon class="w-5 h-5" :aria-label="label" />
+					<div class="pointer-events-auto flex -translate-y-1/2 place-items-center gap-2 px-2" :class="text">
+						<icon class="h-5 w-5" :aria-label="label" />
 						<span v-if="title" class="font-semibold">{{ title }}</span>
 					</div>
 				</div>
-				<div class="rounded-tr-md rounded-br-md flex-1 border-b-2 border-r-2 border-t-2" :class="border"></div>
+				<div class="flex-1 rounded-br-md rounded-tr-md border-b-2 border-r-2 border-t-2" :class="border"></div>
 			</div>
 		</div>
 	</div>

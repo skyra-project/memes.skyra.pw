@@ -1,7 +1,7 @@
 <template>
 	<dialog
 		ref="dialog"
-		class="backdrop:backdrop-brightness-[.25] dark:bg-stone-900 dark:text-gray-200 rounded-xl w-full sm:w-3/4 lg:w-2/3"
+		class="w-full rounded-xl backdrop:backdrop-brightness-[.25] dark:bg-stone-900 dark:text-gray-200 sm:w-3/4 lg:w-2/3"
 		@click="$event.target === dialog && dialog.close()"
 	>
 		<h2 class="text-2xl font-semibold">JSON Editor</h2>
@@ -14,11 +14,11 @@
 			{{ error }}
 		</alert>
 
-		<form ref="form" class="w-full h-full" @submit.prevent="submit">
-			<label class="block mb-5">
+		<form ref="form" class="h-full w-full" @submit.prevent="submit">
+			<label class="mb-5 block">
 				<textarea
 					ref="text"
-					class="base-input rounded-lg w-full font-mono"
+					class="base-input w-full rounded-lg font-mono"
 					rows="6"
 					placeholder="The raw JSON object"
 					aria-label="An editor to paste a raw JSON object string"
@@ -26,7 +26,7 @@
 				></textarea>
 			</label>
 
-			<div class="flex gap-2 justify-end">
+			<div class="flex justify-end gap-2">
 				<button class="button danger" @click.prevent="cancel">Cancel</button>
 				<button class="button success">Submit</button>
 			</div>

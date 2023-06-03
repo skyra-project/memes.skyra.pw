@@ -1,5 +1,5 @@
 <template>
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl max-h-[50vh] overflow-auto" role="status"><render-json /></pre>
+	<pre class="max-h-[50vh] overflow-auto rounded-xl bg-gray-200 p-5 dark:bg-stone-900" role="status"><render-json /></pre>
 </template>
 
 <script setup lang="tsx">

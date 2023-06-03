@@ -1,12 +1,12 @@
 <template>
-	<label class="block mb-5">
+	<label class="mb-5 block">
 		Name
-		<input type="text" v-model.trim="name" class="base-input rounded w-full" />
+		<input type="text" v-model.trim="name" class="base-input w-full rounded" />
 	</label>
 
-	<label class="block mb-5">
+	<label class="mb-5 block">
 		URL
-		<input type="url" v-model.trim="url" class="base-input rounded w-full" />
+		<input type="url" v-model.trim="url" class="base-input w-full rounded" />
 	</label>
 
 	<alert v-if="!debouncedUrl" type="info" title="Tip">
@@ -15,7 +15,7 @@
 		<NuxtLink
 			to="https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png"
 			target="_blank"
-			class="underline text-gray-800/80 dark:text-gray-200/80 inline-block"
+			class="inline-block text-gray-800/80 underline dark:text-gray-200/80"
 		>
 			https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png
 		</NuxtLink>
@@ -24,41 +24,41 @@
 		{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
 	</alert>
 
-	<label class="flex mb-5 items-center gap-2">
+	<label class="mb-5 flex items-center gap-2">
 		Use number input instead of sliders:
 		<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
 	</label>
 
-	<div class="grid grid-flow-row lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr] gap-4 mb-5 w-full justify-items-center">
+	<div class="mb-5 grid w-full grid-flow-row justify-items-center gap-4 lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr]">
 		<canvas
 			:width="width"
 			height="400"
 			ref="canvas"
-			class="border-8 rounded-xl border-gray-200 bg-gray-300 dark:border-stone-900 dark:bg-stone-900 shadow-xl w-full max-w-fit"
+			class="w-full max-w-fit rounded-xl border-8 border-gray-200 bg-gray-300 shadow-xl dark:border-stone-900 dark:bg-stone-900"
 			:class="isLoading ? 'animate-pulse' : ''"
 			aria-label="Preview"
 			role="figure"
 		></canvas>
 
 		<div
-			class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:order-first w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto"
+			class="h-[70vh] max-h-[600px] min-h-[416px] w-full overflow-y-auto rounded-xl bg-gray-200 p-5 shadow-xl dark:bg-stone-900 lg:order-first"
 		>
-			<div class="flex gap-2 items-center">
+			<div class="flex items-center gap-2">
 				<button
 					@click="addBox"
-					class="button success rounded w-8 h-8 p-0"
+					class="button success h-8 w-8 rounded p-0"
 					aria-label="Add a new text box"
 					title="Add a new text box"
 					:disabled="!image"
 				>
-					<PlusIcon class="h-6 w-6 m-auto" />
+					<PlusIcon class="m-auto h-6 w-6" />
 				</button>
 				<h2 class="text-3xl font-bold">Text Boxes</h2>
 			</div>
 
-			<div v-for="(box, index) of boxes" class="px-4 py-2 border-l-2 rounded shadow-sm mt-5" :class="classes[index % classes.length]">
+			<div v-for="(box, index) of boxes" class="mt-5 rounded border-l-2 px-4 py-2 shadow-sm" :class="classes[index % classes.length]">
 				<h3 class="text-xl font-bold">Text #{{ index + 1 }}</h3>
-				<div class="grid grid-cols-2 gap-2 mt-2">
+				<div class="mt-2 grid grid-cols-2 gap-2">
 					<input-slider name="X" v-model="box.x" :type="inputType" :min="0" :max="width" adornment="px" />
 					<input-slider name="Y" v-model="box.y" :type="inputType" :min="0" :max="height" adornment="px" />
 					<input-slider name="Width" v-model="box.width" :type="inputType" :min="0" :max="width" adornment="px" />
@@ -66,11 +66,11 @@
 					<input-slider name="Rotation" v-model="box.rotation" :type="inputType" :min="-180" :max="180" adornment="º" />
 				</div>
 
-				<accordion class="bg-gray-300 dark:bg-stone-950 mt-2 rounded-xl" header="Details">
-					<div class="grid grid-cols-2 gap-2 p-2 bg-gray-200 dark:bg-stone-900 rounded-xl">
+				<accordion class="mt-2 rounded-xl bg-gray-300 dark:bg-stone-950" header="Details">
+					<div class="grid grid-cols-2 gap-2 rounded-xl bg-gray-200 p-2 dark:bg-stone-900">
 						<label>
 							Font
-							<select v-model="box.modifiers.font" class="base-input select rounded w-full">
+							<select v-model="box.modifiers.font" class="base-input select w-full rounded">
 								<option value="impact">Impact</option>
 								<option value="arial">Arial</option>
 							</select>
@@ -80,7 +80,7 @@
 
 						<label>
 							Outline Type
-							<select v-model="box.modifiers.outlineType" class="base-input select rounded w-full">
+							<select v-model="box.modifiers.outlineType" class="base-input select w-full rounded">
 								<option value="outline">Outline</option>
 								<option value="shadow">Shadow</option>
 								<option value="none">None</option>
@@ -100,7 +100,7 @@
 
 						<label>
 							Text Align
-							<select v-model="box.modifiers.textAlign" class="base-input select rounded w-full">
+							<select v-model="box.modifiers.textAlign" class="base-input select w-full rounded">
 								<option value="left">Left</option>
 								<option value="center">Center</option>
 								<option value="right">Right</option>
@@ -109,7 +109,7 @@
 
 						<label>
 							Vertical Align
-							<select v-model="box.modifiers.verticalAlign" class="base-input select rounded w-full">
+							<select v-model="box.modifiers.verticalAlign" class="base-input select w-full rounded">
 								<option value="top">Top</option>
 								<option value="middle">Middle</option>
 								<option value="bottom">Bottom</option>
@@ -123,7 +123,7 @@
 									italic: box.modifiers.italic,
 									'font-extrabold': box.modifiers.bold
 								}"
-								class="before:content-[':_'] before:font-medium before:not-italic opacity-80"
+								class="opacity-80 before:font-medium before:not-italic before:content-[':_']"
 								>Ab</span
 							>
 
@@ -147,37 +147,37 @@
 					</div>
 				</accordion>
 
-				<div class="flex mt-2">
-					<button @click="boxes.splice(index, 1)" class="button danger p-2 rounded-xl w-full mt-auto">Remove</button>
+				<div class="mt-2 flex">
+					<button @click="boxes.splice(index, 1)" class="button danger mt-auto w-full rounded-xl p-2">Remove</button>
 				</div>
 			</div>
 		</div>
 
 		<div
-			class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl lg:col-span-2 xl:col-auto w-full shadow-xl h-[70vh] max-h-[600px] min-h-[416px] overflow-y-auto"
+			class="h-[70vh] max-h-[600px] min-h-[416px] w-full overflow-y-auto rounded-xl bg-gray-200 p-5 shadow-xl dark:bg-stone-900 lg:col-span-2 xl:col-auto"
 		>
 			<h2 class="text-3xl font-bold">Avatars</h2>
 			<div
 				v-for="(key, index) of AvatarKeys"
-				class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-rows-1 gap-5 mt-5"
+				class="mt-5 grid grid-rows-1 gap-5 rounded border-l-2 px-4 py-2 shadow-sm"
 				:class="classes[(index + 4) % classes.length]"
 			>
-				<div class="flex gap-2 items-center">
+				<div class="flex items-center gap-2">
 					<button
 						@click="addPosition(key)"
-						class="button success rounded w-8 h-8 p-0"
+						class="button success h-8 w-8 rounded p-0"
 						aria-label="Add a new position to this avatar"
 						title="Add a new position to this avatar"
 						:disabled="!image"
 					>
-						<PlusIcon class="h-6 w-6 m-auto" />
+						<PlusIcon class="m-auto h-6 w-6" />
 					</button>
 					<h3 class="text-2xl font-bold">{{ AvatarNames[index] }}</h3>
 				</div>
 
 				<div
 					v-for="(position, index) of avatars[key]"
-					class="px-4 py-2 border-l-2 rounded shadow-sm grid grid-cols-2 gap-2"
+					class="grid grid-cols-2 gap-2 rounded border-l-2 px-4 py-2 shadow-sm"
 					:class="classes[index % classes.length]"
 				>
 					<input-slider name="X" v-model="position.x" :type="inputType" :min="0" :max="width" adornment="px" />
@@ -187,35 +187,35 @@
 
 					<label>
 						Style
-						<select v-model="position.style" class="base-input select rounded w-full">
+						<select v-model="position.style" class="base-input select w-full rounded">
 							<option value="circle">Circle</option>
 							<option value="square">Square</option>
 						</select>
 					</label>
 
 					<div class="flex">
-						<button @click="avatars[key].splice(index, 1)" class="button danger p-2 rounded-xl w-full mt-auto">Remove</button>
+						<button @click="avatars[key].splice(index, 1)" class="button danger mt-auto w-full rounded-xl p-2">Remove</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<hr class="border border-gray-800 dark:border-stone-700 mt-10 mb-3" />
+	<hr class="mb-3 mt-10 border border-gray-800 dark:border-stone-700" />
 
 	<lazy-dialog-entry ref="dialog" @submit="replace" />
-	<section class="flex gap-2 mb-4 justify-end">
-		<button class="flex items-center gap-2 button" @click="copy(JSON.stringify({ name, url, avatars, boxes }, undefined, '\t'))">
-			<template v-if="copied"><ClipboardDocumentCheckIcon class="w-5 h-5" />Copied</template>
-			<template v-else><ClipboardDocumentIcon class="w-5 h-5" />Copy</template>
+	<section class="mb-4 flex justify-end gap-2">
+		<button class="button flex items-center gap-2" @click="copy(JSON.stringify({ name, url, avatars, boxes }, undefined, '\t'))">
+			<template v-if="copied"><ClipboardDocumentCheckIcon class="h-5 w-5" />Copied</template>
+			<template v-else><ClipboardDocumentIcon class="h-5 w-5" />Copy</template>
 		</button>
-		<button class="flex items-center gap-2 button" @click="dialog.showModal()"><ClipboardDocumentListIcon class="w-5 h-5" />Paste</button>
-		<button v-if="dirty" class="flex items-center gap-2 button danger" @click="resetData"><TrashIcon class="w-5 h-5" />Reset</button>
-		<button v-if="$auth.loggedIn.value" class="flex items-center gap-2 button success" @click="uploadData">
-			<ArrowUpTrayIcon class="w-5 h-5" />Upload
+		<button class="button flex items-center gap-2" @click="dialog.showModal()"><ClipboardDocumentListIcon class="h-5 w-5" />Paste</button>
+		<button v-if="dirty" class="button danger flex items-center gap-2" @click="resetData"><TrashIcon class="h-5 w-5" />Reset</button>
+		<button v-if="$auth.loggedIn.value" class="button success flex items-center gap-2" @click="uploadData">
+			<ArrowUpTrayIcon class="h-5 w-5" />Upload
 		</button>
-		<button v-if="administrator" class="flex items-center gap-2 button success" @click="uploadData">
-			<DocumentMagnifyingGlassIcon class="w-5 h-5" />Review
+		<button v-if="administrator" class="button success flex items-center gap-2" @click="uploadData">
+			<DocumentMagnifyingGlassIcon class="h-5 w-5" />Review
 		</button>
 	</section>
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
