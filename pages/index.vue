@@ -256,6 +256,14 @@ const dirty = computed(
 		boxes.length !== 0
 );
 
+if (process.client) {
+	const beforeUnloadListener = (event: Event) => {
+		event.preventDefault();
+		return 'You have pending changes, are you sure you want to leave?';
+	};
+	watch(dirty, (value) => (value ? addEventListener : removeEventListener)('beforeunload', beforeUnloadListener));
+}
+
 function replace(entry: Entry) {
 	name.value = entry.name;
 	url.value = entry.url;
