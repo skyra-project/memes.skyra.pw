@@ -9,7 +9,7 @@
 		<input type="url" v-model.trim="url" class="base-input w-full rounded" />
 	</label>
 
-	<alert v-if="!debouncedUrl" type="info" title="Tip">
+	<alert v-if="!url" type="info" title="Tip">
 		Before you can make a template, please fill the above input box with a link to an image to load as a base for the new meme template, for
 		example:
 		<NuxtLink
@@ -22,6 +22,9 @@
 	</alert>
 	<alert v-else-if="error || !imageData.src" type="danger" title="Error">
 		{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
+	</alert>
+	<alert v-if="success" type="success" title="Success">
+		{{ success }}
 	</alert>
 
 	<label class="mb-5 flex items-center gap-2">
@@ -211,20 +214,26 @@
 		</button>
 		<button class="button gap-2" @click="dialog.showModal()"><ClipboardDocumentListIcon class="h-5 w-5" />Paste</button>
 		<button v-if="dirty" class="button danger gap-2" @click="resetData"><TrashIcon class="h-5 w-5" />Reset</button>
-		<button v-if="$auth.loggedIn.value && dirty" class="button success gap-2" @click="uploadData">
-			<ArrowUpTrayIcon class="h-5 w-5" />Upload
-		</button>
+		<template v-if="$auth.loggedIn.value && dirty">
+			<button v-if="previewingId" :disabled="!name || !url || !boxes.length" class="button warning gap-2" @click="updateData">
+				<ArrowPathIcon class="h-5 w-5" />Update
+			</button>
+			<button v-else :disabled="!name || !url || !boxes.length" class="button success gap-2" @click="uploadData">
+				<ArrowUpTrayIcon class="h-5 w-5" />Upload
+			</button>
+		</template>
 		<template v-if="administrator">
 			<button v-if="reviewing" class="button gap-2" @click="reviewing = false"><DocumentMinusIcon class="h-5 w-5" />Stop Review</button>
 			<button v-else class="button success gap-2" @click="reviewing = true"><DocumentCheckIcon class="h-5 w-5" />Review</button>
 		</template>
 	</section>
-	<lazy-admin-review v-if="administrator && reviewing" />
+	<lazy-admin-review v-if="administrator && reviewing" ref="administratorReview" @preview="preview" />
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
 </template>
 
 <script setup lang="ts">
 import {
+	ArrowPathIcon,
 	ArrowUpTrayIcon,
 	ClipboardDocumentCheckIcon,
 	ClipboardDocumentIcon,
@@ -237,6 +246,7 @@ import {
 import { useImage, type UseImageOptions } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { Entry, EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
+import { QueueEntry } from '~/utils/transform/queue-entry';
 
 const dialog = ref<HTMLDialogElement>(null!);
 const administrator = useAdministrator();
@@ -244,12 +254,12 @@ const reviewing = ref(false);
 
 const name = ref('');
 const url = ref('');
-const debouncedUrl = refDebounced(url, 500, { maxWait: 2000 });
 const avatars = {
 	author: reactive<EntryAvatarPosition[]>([]),
 	target: reactive<EntryAvatarPosition[]>([])
 };
 const boxes = reactive<EntryBox[]>([]);
+const success = refAutoReset('', 7500);
 
 const dirty = computed(
 	() =>
@@ -291,26 +301,14 @@ const height = ref(400);
 const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
-const base = useRequestURL().origin;
 const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' });
 const { isLoading, error, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
 
-const imgflip = /https?:\/\/imgflip.com\/s\/meme\/([\w\-\.]+)/;
-const imgur = /https?\:\/\/imgur.com\/gallery\/([a-zA-Z]+)/;
-watch(debouncedUrl, async (value) => {
-	let result: RegExpExecArray | null;
-	if ((result = imgflip.exec(value))) {
-		// https://imgflip.com/s/meme/Drake-Hotline-Bling.jpg -> {{base}}/api/i/imgflip/Drake-Hotline-Bling.jpg
-		url.value = `${base}/api/i/imgflip/${result[1]}`;
-		value = url.value;
-	} else if ((result = imgur.exec(value))) {
-		// https://imgur.com/gallery/QaVWocN -> https://i.imgur.com/QaVWocN.png
-		url.value = `https://i.imgur.com/${result[1]}.png`;
-		value = url.value;
-	}
-
+watch(url, async (value) => {
 	try {
-		imageData.src = new URL(value).href;
+		const { src, replace } = replaceUrl(new URL(value).href);
+		if (replace) url.value = src;
+		imageData.src = src;
 		await loadImage();
 		resizeCanvas();
 		printImage();
@@ -450,6 +448,7 @@ function printImage() {
 const { copied, copy } = useClipboard();
 
 function resetData() {
+	previewingId.value = null;
 	name.value = '';
 	url.value = '';
 	avatars.author.length = 0;
@@ -457,7 +456,45 @@ function resetData() {
 	boxes.length = 0;
 }
 
-function uploadData() {}
+async function uploadData() {
+	const { error: uploadError } = await useFetch('/api/queue', {
+		method: 'POST',
+		body: {
+			name: name.value,
+			url: url.value,
+			avatars,
+			boxes: boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers, opacity: Math.round(box.modifiers.opacity / 100) } }))
+		}
+	});
+	if (uploadError.value) {
+		error.value = uploadError.value.message;
+		return;
+	}
+
+	success.value = `Successfully uploaded '${name.value}'!'`;
+}
+
+const administratorReview = ref<{ updateEntry(data: QueueEntry): void }>();
+const previewingId = ref<number | null>(null);
+
+function preview(entry: QueueEntry) {
+	previewingId.value = entry.id;
+	replace(entry);
+}
+
+async function updateData() {
+	const id = previewingId.value;
+	if (!id) return;
+
+	const { data, error: updateError } = await useFetch(`/api/queue/${id}`, { method: 'PATCH' });
+	if (updateError.value) {
+		error.value = updateError.value.message;
+		return;
+	}
+
+	administratorReview.value!.updateEntry(data.value!);
+	success.value = `Successfully updated '${data.value!.name}'!`;
+}
 </script>
 
 <style scoped>

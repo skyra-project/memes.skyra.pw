@@ -36,7 +36,7 @@
 	}
 
 	.button {
-		@apply rounded-xl p-3.5 flex items-center;
+		@apply flex items-center rounded-xl p-3.5;
 		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-900/60;
 		@apply disabled:pointer-events-none disabled:saturate-0;
 	}
@@ -47,6 +47,10 @@
 
 	.button.success {
 		@apply bg-green-500 hover:bg-green-400 dark:bg-green-800 hover:dark:bg-green-800/80;
+	}
+
+	.button.warning {
+		@apply bg-yellow-500 hover:bg-yellow-400 dark:bg-yellow-800 hover:dark:bg-yellow-800/80;
 	}
 
 	.button.danger {

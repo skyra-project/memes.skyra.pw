@@ -5,11 +5,15 @@
 			Failed to fetch the queue.
 			<pre>{{ error }}</pre>
 		</alert>
+		<alert v-if="requestError" type="danger" title="Error">
+			Failed to do operation the queue.
+			<pre>{{ requestError }}</pre>
+		</alert>
 		<alert v-if="entries?.length === 0" type="success"> There are no pending entries. </alert>
 
 		<div v-for="entry in entries" class="mt-2 flex gap-2 rounded-xl p-2 dark:bg-stone-800">
 			<div class="w-32">
-				<img :src="entry.url" :alt="entry.name" crossorigin="anonymous" loading="lazy" class="rounded-lg" />
+				<img :src="replaceUrl(entry.url).src" :alt="entry.name" crossorigin="anonymous" loading="lazy" class="rounded-lg" />
 			</div>
 			<div class="grow">
 				<div class="mb-2 flex items-center gap-2">
@@ -34,9 +38,15 @@
 					<span class="rounded-lg p-1 font-mono dark:bg-stone-900">{{ entry.submitterId }}</span>
 				</p>
 				<section class="mt-auto flex justify-end gap-2">
-					<button class="button gap-2" @click="previewEntry(entry.id)"><MagnifyingGlassIcon class="h-5 w-5" />Preview</button>
-					<button class="button danger gap-2" @click="deleteEntry(entry.id)"><TrashIcon class="h-5 w-5" />Delete</button>
-					<button class="button success gap-2" @click="uploadEntry(entry.id)"><ArrowUpTrayIcon class="h-5 w-5" />Upload</button>
+					<button class="button gap-2" @click="previewEntry(entry.id)" :disabled="loading">
+						<MagnifyingGlassIcon class="h-5 w-5" />Preview
+					</button>
+					<button class="button danger gap-2" @click="deleteEntry(entry.id)" :disabled="loading">
+						<TrashIcon class="h-5 w-5" />Delete
+					</button>
+					<button class="button success gap-2" @click="uploadEntry(entry.id)" :disabled="loading">
+						<ArrowUpTrayIcon class="h-5 w-5" />Upload
+					</button>
 				</section>
 			</div>
 		</div>
@@ -50,36 +60,87 @@ import type { QueueEntry } from '~/utils/transform/queue-entry';
 const emit = defineEmits<{
 	(event: 'preview', data: QueueEntry): void;
 }>();
+defineExpose({ updateEntry });
 
 const { data, error } = await useFetch('/api/queue');
+
 const entries = toReactive<QueueEntry[]>([]);
+const loading = ref(false);
+const requestError = refAutoReset('', 5000);
+
+function isErrorResponse(result: { error: Ref<Error | null> }) {
+	if (result.error.value) {
+		requestError.value = result.error.value.message;
+		return true;
+	}
+
+	return false;
+}
+
+async function loadingBoundary(cb: () => Promise<void>) {
+	loading.value = true;
+	try {
+		await cb();
+	} finally {
+		loading.value = false;
+	}
+}
+
+function getEntry(id: number) {
+	return entries.find((value) => value.id === id);
+}
 
 function getEntryIndex(id: number) {
 	return entries.findIndex((value) => value.id === id);
 }
 
 async function previewEntry(id: number) {
-	const entry = entries.find((value) => value.id === id);
-	if (entry) emit('preview', entry);
+	const entry = getEntry(id);
+	if (!entry) return;
+
+	emit('preview', {
+		...entry,
+		avatars: {
+			author: entry.avatars.author.map((entry) => ({ ...entry })),
+			target: entry.avatars.target.map((entry) => ({ ...entry }))
+		},
+		boxes: entry.boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers } }))
+	});
 }
 
 async function deleteEntry(id: number) {
 	const index = getEntryIndex(id);
 	if (index === -1) return;
 
-	// TODO: Fill logic
-	entries.splice(index, 1);
+	loadingBoundary(async () => {
+		if (isErrorResponse(await useFetch(`/api/queue/${id}`, { method: 'DELETE' }))) return;
+		entries.splice(index, 1);
+	});
 }
 
 async function uploadEntry(id: number) {
 	const index = getEntryIndex(id);
 	if (index === -1) return;
 
-	// TODO: Fill logic
-	entries.splice(index, 1);
+	loadingBoundary(async () => {
+		if (isErrorResponse(await useFetch('/api/entries', { method: 'POST', body: entries[index] }))) return;
+		if (isErrorResponse(await useFetch(`/api/queue/${id}`, { method: 'DELETE' }))) return;
+		entries.splice(index, 1);
+	});
 }
 
-watch(data, (values) => (values?.length ? entries.splice(0, entries.length, ...values) : (entries.length = 0)));
+function updateEntry(data: QueueEntry) {
+	const entry = getEntry(data.id);
+	if (!entry) return;
+
+	entry.name = data.name;
+	entry.url = data.url;
+	entry.avatars.author = data.avatars.author.map((entry) => ({ ...entry }));
+	entry.avatars.target = data.avatars.target.map((entry) => ({ ...entry }));
+	entry.boxes = data.boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers } }));
+}
+
+watch(data, (values) => (values?.length ? entries.splice(0, entries.length, ...values) : (entries.length = 0)), { immediate: true });
 
 const date = new Intl.DateTimeFormat('en-GB', { timeStyle: 'medium', dateStyle: 'full' });
 </script>
