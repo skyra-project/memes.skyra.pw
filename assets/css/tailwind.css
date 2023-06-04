@@ -36,7 +36,7 @@
 	}
 
 	.button {
-		@apply rounded-xl p-3.5;
+		@apply rounded-xl p-3.5 flex items-center;
 		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-900/60;
 		@apply disabled:pointer-events-none disabled:saturate-0;
 	}

@@ -80,7 +80,7 @@ export default defineNuxtConfig({
 		allowedMethodsRestricter: ['GET', 'POST', 'PATCH', 'DELETE'],
 		headers: {
 			contentSecurityPolicy: {
-				'img-src': ["'self'", 'data:', 'cdn.skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'imgflip.com']
+				'img-src': ["'self'", 'data:', 'cdn.skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'i.imgflip.com', 'i.imgur.com']
 			},
 			permissionsPolicy: {
 				accelerometer: ['()'],

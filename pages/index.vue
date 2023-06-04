@@ -148,7 +148,7 @@
 				</accordion>
 
 				<div class="mt-2 flex">
-					<button @click="boxes.splice(index, 1)" class="button danger mt-auto w-full rounded-xl p-2">Remove</button>
+					<button @click="boxes.splice(index, 1)" class="button danger w-full justify-center p-2">Remove</button>
 				</div>
 			</div>
 		</div>
@@ -194,7 +194,7 @@
 					</label>
 
 					<div class="flex">
-						<button @click="avatars[key].splice(index, 1)" class="button danger mt-auto w-full rounded-xl p-2">Remove</button>
+						<button @click="avatars[key].splice(index, 1)" class="button danger mt-auto w-full justify-center p-2">Remove</button>
 					</div>
 				</div>
 			</div>
@@ -204,20 +204,22 @@
 	<hr class="mb-3 mt-10 border border-gray-800 dark:border-stone-700" />
 
 	<lazy-dialog-entry ref="dialog" @submit="replace" />
-	<section class="mb-4 flex justify-end gap-2">
-		<button class="button flex items-center gap-2" @click="copy(JSON.stringify({ name, url, avatars, boxes }, undefined, '\t'))">
+	<section class="mb-2 flex justify-end gap-2">
+		<button class="button gap-2" @click="copy(JSON.stringify({ name, url, avatars, boxes }, undefined, '\t'))">
 			<template v-if="copied"><ClipboardDocumentCheckIcon class="h-5 w-5" />Copied</template>
 			<template v-else><ClipboardDocumentIcon class="h-5 w-5" />Copy</template>
 		</button>
-		<button class="button flex items-center gap-2" @click="dialog.showModal()"><ClipboardDocumentListIcon class="h-5 w-5" />Paste</button>
-		<button v-if="dirty" class="button danger flex items-center gap-2" @click="resetData"><TrashIcon class="h-5 w-5" />Reset</button>
-		<button v-if="$auth.loggedIn.value" class="button success flex items-center gap-2" @click="uploadData">
+		<button class="button gap-2" @click="dialog.showModal()"><ClipboardDocumentListIcon class="h-5 w-5" />Paste</button>
+		<button v-if="dirty" class="button danger gap-2" @click="resetData"><TrashIcon class="h-5 w-5" />Reset</button>
+		<button v-if="$auth.loggedIn.value && dirty" class="button success gap-2" @click="uploadData">
 			<ArrowUpTrayIcon class="h-5 w-5" />Upload
 		</button>
-		<button v-if="administrator" class="button success flex items-center gap-2" @click="uploadData">
-			<DocumentMagnifyingGlassIcon class="h-5 w-5" />Review
-		</button>
+		<template v-if="administrator">
+			<button v-if="reviewing" class="button gap-2" @click="reviewing = false"><DocumentMinusIcon class="h-5 w-5" />Stop Review</button>
+			<button v-else class="button success gap-2" @click="reviewing = true"><DocumentCheckIcon class="h-5 w-5" />Review</button>
+		</template>
 	</section>
+	<lazy-admin-review v-if="administrator && reviewing" />
 	<codeblock :name="name" :url="url" :avatars="avatars" :boxes="boxes" />
 </template>
 
@@ -227,7 +229,8 @@ import {
 	ClipboardDocumentCheckIcon,
 	ClipboardDocumentIcon,
 	ClipboardDocumentListIcon,
-	DocumentMagnifyingGlassIcon,
+	DocumentCheckIcon,
+	DocumentMinusIcon,
 	PlusIcon,
 	TrashIcon
 } from '@heroicons/vue/24/outline';
@@ -237,6 +240,7 @@ import type { Entry, EntryAvatarPosition, EntryBox } from '~/utils/transform/ent
 
 const dialog = ref<HTMLDialogElement>(null!);
 const administrator = useAdministrator();
+const reviewing = ref(false);
 
 const name = ref('');
 const url = ref('');
@@ -256,7 +260,7 @@ const dirty = computed(
 		boxes.length !== 0
 );
 
-if (process.client) {
+if (process.client && !process.dev) {
 	const beforeUnloadListener = (event: Event) => {
 		event.preventDefault();
 		return 'You have pending changes, are you sure you want to leave?';
@@ -287,9 +291,24 @@ const height = ref(400);
 const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
+const base = useRequestURL().origin;
 const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' });
 const { isLoading, error, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
+
+const imgflip = /https?:\/\/imgflip.com\/s\/meme\/([\w\-\.]+)/;
+const imgur = /https?\:\/\/imgur.com\/gallery\/([a-zA-Z]+)/;
 watch(debouncedUrl, async (value) => {
+	let result: RegExpExecArray | null;
+	if ((result = imgflip.exec(value))) {
+		// https://imgflip.com/s/meme/Drake-Hotline-Bling.jpg -> {{base}}/api/i/imgflip/Drake-Hotline-Bling.jpg
+		url.value = `${base}/api/i/imgflip/${result[1]}`;
+		value = url.value;
+	} else if ((result = imgur.exec(value))) {
+		// https://imgur.com/gallery/QaVWocN -> https://i.imgur.com/QaVWocN.png
+		url.value = `https://i.imgur.com/${result[1]}.png`;
+		value = url.value;
+	}
+
 	try {
 		imageData.src = new URL(value).href;
 		await loadImage();
