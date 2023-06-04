@@ -208,7 +208,7 @@
 
 	<lazy-dialog-entry ref="dialog" @submit="replace" />
 	<section class="mb-2 flex justify-end gap-2">
-		<button class="button gap-2" @click="copy(JSON.stringify({ name, url, avatars, boxes }, undefined, '\t'))">
+		<button class="button gap-2" @click="copy(JSON.stringify(makeBody(), undefined, '\t'))">
 			<template v-if="copied"><ClipboardDocumentCheckIcon class="h-5 w-5" />Copied</template>
 			<template v-else><ClipboardDocumentIcon class="h-5 w-5" />Copy</template>
 		</button>
@@ -283,7 +283,7 @@ function replace(entry: Entry) {
 	url.value = entry.url;
 	avatars.author.splice(0, avatars.author.length, ...entry.avatars.author);
 	avatars.target.splice(0, avatars.target.length, ...entry.avatars.target);
-	boxes.splice(0, boxes.length, ...entry.boxes);
+	boxes.splice(0, boxes.length, ...entry.boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers, opacity: box.modifiers.opacity * 100 } })));
 }
 
 const inputType = ref<'number' | 'range'>('range');
@@ -456,16 +456,17 @@ function resetData() {
 	boxes.length = 0;
 }
 
+function makeBody(): Entry {
+	return {
+		name: name.value,
+		url: url.value,
+		avatars,
+		boxes: boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers, opacity: Math.round(box.modifiers.opacity / 100) } }))
+	};
+}
+
 async function uploadData() {
-	const { error: uploadError } = await useFetch('/api/queue', {
-		method: 'POST',
-		body: {
-			name: name.value,
-			url: url.value,
-			avatars,
-			boxes: boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers, opacity: Math.round(box.modifiers.opacity / 100) } }))
-		}
-	});
+	const { error: uploadError } = await useFetch('/api/queue', { method: 'POST', body: makeBody() });
 	if (uploadError.value) {
 		error.value = uploadError.value.message;
 		return;
