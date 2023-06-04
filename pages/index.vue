@@ -27,11 +27,6 @@
 		{{ success }}
 	</alert>
 
-	<label class="mb-5 flex items-center gap-2">
-		Use number input instead of sliders:
-		<input type="checkbox" :value="inputType === 'number'" @change.prevent="toggleInputType()" class="checkbox" />
-	</label>
-
 	<div class="mb-5 grid w-full grid-flow-row justify-items-center gap-4 lg:grid-cols-[1fr_416px] xl:grid-cols-[1fr_416px_1fr]">
 		<canvas
 			:width="width"
@@ -62,11 +57,11 @@
 			<div v-for="(box, index) of boxes" class="mt-5 rounded border-l-2 px-4 py-2 shadow-sm" :class="classes[index % classes.length]">
 				<h3 class="text-xl font-bold">Text #{{ index + 1 }}</h3>
 				<div class="mt-2 grid grid-cols-2 gap-2">
-					<input-slider name="X" v-model="box.x" :type="inputType" :min="0" :max="width" adornment="px" />
-					<input-slider name="Y" v-model="box.y" :type="inputType" :min="0" :max="height" adornment="px" />
-					<input-slider name="Width" v-model="box.width" :type="inputType" :min="0" :max="width" adornment="px" />
-					<input-slider name="Height" v-model="box.height" :type="inputType" :min="0" :max="height" adornment="px" />
-					<input-slider name="Rotation" v-model="box.rotation" :type="inputType" :min="-180" :max="180" adornment="º" />
+					<input-slider name="X" v-model="box.x" :min="0" :max="width" adornment="px" />
+					<input-slider name="Y" v-model="box.y" :min="0" :max="height" adornment="px" />
+					<input-slider name="Width" v-model="box.width" :min="0" :max="width" adornment="px" />
+					<input-slider name="Height" v-model="box.height" :min="0" :max="height" adornment="px" />
+					<input-slider name="Rotation" v-model="box.rotation" :min="-180" :max="180" adornment="º" />
 				</div>
 
 				<accordion class="mt-2 rounded-xl bg-gray-300 dark:bg-stone-950" header="Details">
@@ -79,7 +74,7 @@
 							</select>
 						</label>
 
-						<input-slider name="Size" v-model="box.modifiers.fontSize" :type="inputType" :min="1" :max="72" adornment="px" />
+						<input-slider name="Size" v-model="box.modifiers.fontSize" :min="1" :max="72" adornment="px" />
 
 						<label>
 							Outline Type
@@ -93,7 +88,6 @@
 						<input-slider
 							name="Width"
 							v-model="box.modifiers.outlineWidth"
-							:type="inputType"
 							:min="0"
 							:max="4"
 							:step="0.25"
@@ -146,7 +140,7 @@
 							</label>
 						</div>
 
-						<input-slider name="Opacity" v-model="box.modifiers.opacity" :type="inputType" :min="0" :max="100" adornment="%" />
+						<input-slider name="Opacity" v-model="box.modifiers.opacity" :min="0" :max="100" adornment="%" />
 					</div>
 				</accordion>
 
@@ -183,10 +177,10 @@
 					class="grid grid-cols-2 gap-2 rounded border-l-2 px-4 py-2 shadow-sm"
 					:class="classes[index % classes.length]"
 				>
-					<input-slider name="X" v-model="position.x" :type="inputType" :min="0" :max="width" adornment="px" />
-					<input-slider name="Y" :type="inputType" v-model="position.y" :min="0" :max="height" adornment="px" />
-					<input-slider name="Size" v-model="position.size" :type="inputType" :min="16" :max="height" adornment="px" />
-					<input-slider name="Rotation" v-model="position.rotation" :type="inputType" :min="-180" :max="180" adornment="º" />
+					<input-slider name="X" v-model="position.x" :min="0" :max="width" adornment="px" />
+					<input-slider name="Y" v-model="position.y" :min="0" :max="height" adornment="px" />
+					<input-slider name="Size" v-model="position.size" :min="16" :max="height" adornment="px" />
+					<input-slider name="Rotation" v-model="position.rotation" :min="-180" :max="180" adornment="º" />
 
 					<label>
 						Style
@@ -246,7 +240,7 @@ import {
 import { useImage, type UseImageOptions } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { Entry, EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
-import { QueueEntry } from '~/utils/transform/queue-entry';
+import type { QueueEntry } from '~/utils/transform/queue-entry';
 
 const dialog = ref<HTMLDialogElement>(null!);
 const administrator = useAdministrator();
@@ -284,11 +278,6 @@ function replace(entry: Entry) {
 	avatars.author.splice(0, avatars.author.length, ...entry.avatars.author);
 	avatars.target.splice(0, avatars.target.length, ...entry.avatars.target);
 	boxes.splice(0, boxes.length, ...entry.boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers, opacity: box.modifiers.opacity * 100 } })));
-}
-
-const inputType = ref<'number' | 'range'>('range');
-function toggleInputType() {
-	inputType.value = inputType.value === 'number' ? 'range' : 'number';
 }
 
 const AvatarKeys = ['author', 'target'] as const satisfies readonly AvatarTarget[];
