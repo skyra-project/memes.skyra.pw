@@ -288,9 +288,9 @@ const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
 const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' });
-const { isLoading, isReady, error: imageError, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
+const { isLoading, isReady, error: imageError, state: image } = useImage(imageData, { immediate: false });
 
-watch(debouncedUrl, async (value) => {
+watch(debouncedUrl, (value) => {
 	if (!value) {
 		resetImage();
 		imageData.src = '';
@@ -306,8 +306,6 @@ watch(debouncedUrl, async (value) => {
 		error.value = 'The URL you have provided could not be loaded (Invalid URL)';
 		return;
 	}
-
-	await loadImage();
 });
 
 watch(isReady, (ready) => {
