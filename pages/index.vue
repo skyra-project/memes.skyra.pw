@@ -266,7 +266,7 @@ if (process.client && !process.dev) {
 		event.preventDefault();
 		return 'You have pending changes, are you sure you want to leave?';
 	};
-	watch(dirty, (value) => (value ? addEventListener : removeEventListener)('beforeunload', beforeUnloadListener));
+	watch(dirty, (value) => (window.onbeforeunload = value ? beforeUnloadListener : null));
 }
 
 function replace(entry: Entry) {
