@@ -290,7 +290,6 @@ const isLoading = ref(false);
 const isReady = ref(false);
 const image = process.client ? new Image() : null;
 if (image) {
-	console.log(image);
 	image.crossOrigin = 'anonymous';
 	useEventListener(image, 'load', () => {
 		isLoading.value = false;
