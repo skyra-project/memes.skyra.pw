@@ -231,7 +231,6 @@ import {
 	PlusIcon,
 	TrashIcon
 } from '@heroicons/vue/24/outline';
-import { useImage, type UseImageOptions } from '@vueuse/core';
 import { Canvas } from 'canvas-constructor/browser';
 import type { Entry, EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
 import type { QueueEntry } from '~/utils/transform/queue-entry';
@@ -287,51 +286,52 @@ const height = ref(400);
 const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
-const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' });
-const { isLoading, isReady, error: imageError, state: image } = useImage(imageData, { immediate: false });
-
-watch(debouncedUrl, (value) => {
-	if (!value) {
-		resetImage();
-		imageData.src = '';
+const isLoading = ref(false);
+const isReady = ref(false);
+const image = process.client ? new Image() : null;
+if (image) {
+	console.log(image);
+	image.crossOrigin = 'anonymous';
+	useEventListener(image, 'load', () => {
+		isLoading.value = false;
+		isReady.value = true;
 		error.value = '';
-		return;
-	}
-
-	try {
-		const { src, replace } = replaceUrl(new URL(value).href);
-		if (replace) url.value = src;
-		imageData.src = src;
-	} catch {
-		error.value = 'The URL you have provided could not be loaded (Invalid URL)';
-		return;
-	}
-});
-
-watch(isReady, (ready) => {
-	if (ready) {
-		resizeCanvas();
-		printImage();
-	} else {
-		resetImage();
-	}
-});
-
-watch(imageError, (exception) => {
-	if (!exception || !url.value) {
-		error.value = '';
-		return;
-	}
-
-	resetImage();
-	if (exception instanceof ErrorEvent || exception instanceof Error) {
-		error.value = `The URL you have provided could not be loaded (${exception.message})`;
-	} else if (exception instanceof Event) {
+	});
+	useEventListener(image, 'error', () => {
+		isLoading.value = false;
+		isReady.value = false;
 		error.value = 'The URL you have provided could not be loaded (The resource could not be loaded or does not exist)';
-	} else {
-		error.value = 'The URL you have provided could not be loaded (Unknown)';
-	}
-});
+	});
+
+	watch(debouncedUrl, (value) => {
+		if (!value) {
+			resetImage();
+			image.src = '';
+			error.value = '';
+			return;
+		}
+
+		try {
+			const { src, replace } = replaceUrl(new URL(value).href);
+			if (replace) url.value = src;
+
+			isLoading.value = true;
+			image.src = src;
+		} catch {
+			error.value = 'The URL you have provided could not be loaded (Invalid URL)';
+			return;
+		}
+	});
+
+	watch(isLoading, () => {
+		if (isReady) {
+			resizeCanvas();
+			printImage();
+		} else {
+			resetImage();
+		}
+	});
+}
 
 function resetImage() {
 	resizeCanvas();
@@ -384,13 +384,12 @@ function resizeCanvas() {
 	const cc = constructor.value;
 	if (!cc) return;
 
-	const img = image.value;
-	if (!img) {
+	if (!isReady.value) {
 		height.value = width;
-	} else if (img.width === img.height) {
+	} else if (image!.width === image!.height) {
 		height.value = width;
 	} else {
-		height.value = width * (img.height / img.width);
+		height.value = width * (image!.height / image!.width);
 	}
 
 	cc.height = height.value;
@@ -399,12 +398,10 @@ function resizeCanvas() {
 function printImage() {
 	const cc = constructor.value;
 	if (!cc) return;
-
-	const img = image.value;
-	if (!img) return;
+	if (!isReady.value) return;
 
 	cc.clearRectangle();
-	cc.printImage(img, 0, 0, cc.width, cc.height);
+	cc.printImage(image!, 0, 0, cc.width, cc.height);
 
 	let index = 0;
 	for (const box of boxes) {
