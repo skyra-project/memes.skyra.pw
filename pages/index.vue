@@ -20,7 +20,7 @@
 			https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png
 		</NuxtLink>
 	</alert>
-	<alert v-else-if="error || !imageData.src" type="danger" title="Error">
+	<alert v-if="error" type="danger" title="Error">
 		{{ error || 'The URL you have provided is not a valid image URL.' }}
 	</alert>
 	<alert v-if="success" type="success" title="Success">
@@ -240,7 +240,7 @@ const dialog = ref<HTMLDialogElement>(null!);
 const administrator = useAdministrator();
 const reviewing = ref(false);
 
-const error = refAutoReset('', 7500);
+const error = ref('');
 const name = ref('');
 const url = ref('');
 const avatars = {
@@ -290,6 +290,7 @@ const { isLoading, error: imageError, state: image, execute: loadImage } = useIm
 
 watch(url, async (value) => {
 	if (!value) {
+		resetImage();
 		imageData.src = '';
 		error.value = '';
 		return;
@@ -299,16 +300,38 @@ watch(url, async (value) => {
 		const { src, replace } = replaceUrl(new URL(value).href);
 		if (replace) url.value = src;
 		imageData.src = src;
-		await loadImage();
-		error.value = '';
+	} catch {
+		error.value = 'The URL you have provided could not be loaded (Invalid URL)';
+		return;
+	}
+
+	await loadImage();
+	if (!imageError.value) {
 		resizeCanvas();
 		printImage();
-	} catch {
-		error.value = `The URL you have provided could not be loaded (${(imageError.value as Error)?.message || 'Unknown'})`;
-		resizeCanvas();
-		constructor.value?.clearRectangle();
 	}
 });
+
+watch(imageError, (exception) => {
+	if (!exception || !url.value) {
+		error.value = '';
+		return;
+	}
+
+	resetImage();
+	if (exception instanceof Event) {
+		error.value = 'The URL you have provided could not be loaded (The resource could not be loaded or does not exist)';
+	} else if (exception instanceof Error) {
+		error.value = `The URL you have provided could not be loaded (${exception.message})`;
+	} else {
+		error.value = 'The URL you have provided could not be loaded (Unknown)';
+	}
+});
+
+function resetImage() {
+	resizeCanvas();
+	constructor.value?.clearRectangle();
+}
 
 watch([boxes, avatars.author, avatars.target], () => printImage());
 
