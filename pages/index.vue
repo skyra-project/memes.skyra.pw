@@ -1,12 +1,12 @@
 <template>
 	<label class="mb-5 block">
 		Name
-		<input type="text" v-model.trim="name" class="base-input w-full rounded" />
+		<input type="text" v-model="name" class="base-input w-full rounded" />
 	</label>
 
 	<label class="mb-5 block">
 		URL
-		<input type="url" v-model.trim="url" class="base-input w-full rounded" />
+		<input type="url" v-model="url" class="base-input w-full rounded" />
 	</label>
 
 	<alert v-if="!url" type="info" title="Tip">
@@ -250,6 +250,8 @@ const avatars = {
 const boxes = reactive<EntryBox[]>([]);
 const success = refAutoReset('', 7500);
 
+const debouncedUrl = useDebounce(url, 250, { maxWait: 2000 });
+
 const dirty = computed(
 	() =>
 		name.value.length !== 0 || //
@@ -286,9 +288,9 @@ const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
 const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' });
-const { isLoading, error: imageError, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
+const { isLoading, isReady, error: imageError, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
 
-watch(url, async (value) => {
+watch(debouncedUrl, async (value) => {
 	if (!value) {
 		resetImage();
 		imageData.src = '';
@@ -306,9 +308,14 @@ watch(url, async (value) => {
 	}
 
 	await loadImage();
-	if (!imageError.value) {
+});
+
+watch(isReady, (ready) => {
+	if (ready) {
 		resizeCanvas();
 		printImage();
+	} else {
+		resetImage();
 	}
 });
 
