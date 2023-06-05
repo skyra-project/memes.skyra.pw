@@ -289,6 +289,12 @@ const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' 
 const { isLoading, error: imageError, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
 
 watch(url, async (value) => {
+	if (!value) {
+		imageData.src = '';
+		error.value = '';
+		return;
+	}
+
 	try {
 		const { src, replace } = replaceUrl(new URL(value).href);
 		if (replace) url.value = src;
@@ -299,7 +305,6 @@ watch(url, async (value) => {
 		printImage();
 	} catch {
 		error.value = `The URL you have provided could not be loaded (${(imageError.value as Error)?.message || 'Unknown'})`;
-		imageData.src = '';
 		resizeCanvas();
 		constructor.value?.clearRectangle();
 	}
