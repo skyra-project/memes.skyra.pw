@@ -319,10 +319,10 @@ watch(imageError, (exception) => {
 	}
 
 	resetImage();
-	if (exception instanceof Event) {
-		error.value = 'The URL you have provided could not be loaded (The resource could not be loaded or does not exist)';
-	} else if (exception instanceof Error) {
+	if (exception instanceof ErrorEvent || exception instanceof Error) {
 		error.value = `The URL you have provided could not be loaded (${exception.message})`;
+	} else if (exception instanceof Event) {
+		error.value = 'The URL you have provided could not be loaded (The resource could not be loaded or does not exist)';
 	} else {
 		error.value = 'The URL you have provided could not be loaded (Unknown)';
 	}
