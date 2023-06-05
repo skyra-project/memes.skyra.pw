@@ -68,9 +68,9 @@ const entries = toReactive<QueueEntry[]>([]);
 const loading = ref(false);
 const requestError = refAutoReset('', 5000);
 
-function isErrorResponse(result: { error: Ref<Error | null> }) {
+function isErrorResponse(result: { error: Ref<(Error & { data: any }) | null> }) {
 	if (result.error.value) {
-		requestError.value = result.error.value.message;
+		requestError.value = result.error.value.data?.message ?? result.error.value.message;
 		return true;
 	}
 

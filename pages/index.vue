@@ -21,7 +21,7 @@
 		</NuxtLink>
 	</alert>
 	<alert v-else-if="error || !imageData.src" type="danger" title="Error">
-		{{ error ? 'The URL you have provided could not be loaded.' : 'The URL you have provided is not a valid image URL.' }}
+		{{ error || 'The URL you have provided is not a valid image URL.' }}
 	</alert>
 	<alert v-if="success" type="success" title="Success">
 		{{ success }}
@@ -212,7 +212,7 @@
 			<button v-if="previewingId" :disabled="!name || !url || !boxes.length" class="button warning gap-2" @click="updateData">
 				<ArrowPathIcon class="h-5 w-5" />Update
 			</button>
-			<button v-else :disabled="!name || !url || !boxes.length" class="button success gap-2" @click="uploadData">
+			<button v-else :disabled="name.length < 2 || !url || !boxes.length" class="button success gap-2" @click="uploadData">
 				<ArrowUpTrayIcon class="h-5 w-5" />Upload
 			</button>
 		</template>
@@ -246,6 +246,7 @@ const dialog = ref<HTMLDialogElement>(null!);
 const administrator = useAdministrator();
 const reviewing = ref(false);
 
+const error = refAutoReset('', 7500);
 const name = ref('');
 const url = ref('');
 const avatars = {
@@ -291,7 +292,7 @@ const canvas = ref<HTMLCanvasElement>(null!);
 const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : null));
 
 const imageData = reactive<UseImageOptions>({ src: '', crossorigin: 'anonymous' });
-const { isLoading, error, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
+const { isLoading, error: imageError, state: image, execute: loadImage } = useImage(imageData, { immediate: false });
 
 watch(url, async (value) => {
 	try {
@@ -302,6 +303,7 @@ watch(url, async (value) => {
 		resizeCanvas();
 		printImage();
 	} catch {
+		error.value = `The URL you have provided could not be loaded (${(imageError.value as Error)?.message || 'Unknown'})`;
 		imageData.src = '';
 		resizeCanvas();
 		constructor.value?.clearRectangle();
@@ -457,7 +459,7 @@ function makeBody(): Entry {
 async function uploadData() {
 	const { error: uploadError } = await useFetch('/api/queue', { method: 'POST', body: makeBody() });
 	if (uploadError.value) {
-		error.value = uploadError.value.message;
+		error.value = uploadError.value.data?.message ?? uploadError.value.message;
 		return;
 	}
 
@@ -478,7 +480,7 @@ async function updateData() {
 
 	const { data, error: updateError } = await useFetch(`/api/queue/${id}`, { method: 'PATCH' });
 	if (updateError.value) {
-		error.value = updateError.value.message;
+		error.value = updateError.value.data?.message ?? updateError.value.message;
 		return;
 	}
 
