@@ -27,26 +27,26 @@ const visible = ref(true);
 
 const types = {
 	info: {
-		text: 'text-blue-500 dark:text-blue-400',
-		border: 'border-blue-500 dark:border-blue-400',
+		text: 'text-blue-600 dark:text-blue-400',
+		border: 'border-blue-600 dark:border-blue-400',
 		icon: InformationCircleIcon,
 		label: 'Information Icon'
 	},
 	success: {
-		text: 'text-green-500',
-		border: 'border-green-500',
+		text: 'text-green-700 dark:text-green-500',
+		border: 'border-green-700 dark:border-green-500',
 		icon: CheckIcon,
 		label: 'Check Icon'
 	},
 	warning: {
-		text: 'text-yellow-500',
-		border: 'border-yellow-500',
+		text: 'text-yellow-700 dark:text-yellow-500',
+		border: 'border-yellow-700 dark:border-yellow-500',
 		icon: ExclamationTriangleIcon,
 		label: 'Exclamation Triangle Icon'
 	},
 	danger: {
-		text: 'text-red-500 dark:text-red-400',
-		border: 'border-red-500 dark:border-red-400',
+		text: 'text-red-600 dark:text-red-400',
+		border: 'border-red-600 dark:border-red-400',
 		icon: ExclamationTriangleIcon,
 		label: 'Exclamation Triangle Icon'
 	}
