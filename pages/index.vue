@@ -294,6 +294,7 @@ watch(url, async (value) => {
 		if (replace) url.value = src;
 		imageData.src = src;
 		await loadImage();
+		error.value = '';
 		resizeCanvas();
 		printImage();
 	} catch {
