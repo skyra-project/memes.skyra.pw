@@ -288,6 +288,7 @@ const constructor = computed(() => (canvas.value ? new Canvas(canvas.value) : nu
 
 const isLoading = ref(false);
 const isReady = ref(false);
+const imageSrc = ref('');
 const image = process.client ? new Image() : null;
 if (image) {
 	image.crossOrigin = 'anonymous';
@@ -299,23 +300,25 @@ if (image) {
 	useEventListener(image, 'error', () => {
 		isLoading.value = false;
 		isReady.value = false;
-		error.value = 'The URL you have provided could not be loaded (The resource could not be loaded or does not exist)';
+		error.value = imageSrc.value ? 'The URL you have provided could not be loaded (The resource could not be loaded or does not exist)' : '';
+	});
+
+	watch(imageSrc, (src) => {
+		isLoading.value = true;
+		image.src = src;
 	});
 
 	watch(debouncedUrl, (value) => {
 		if (!value) {
 			resetImage();
-			image.src = '';
-			error.value = '';
+			imageSrc.value = '';
 			return;
 		}
 
 		try {
 			const { src, replace } = replaceUrl(new URL(value).href);
 			if (replace) url.value = src;
-
-			isLoading.value = true;
-			image.src = src;
+			imageSrc.value = src;
 		} catch {
 			error.value = 'The URL you have provided could not be loaded (Invalid URL)';
 			return;
