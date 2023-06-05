@@ -17,7 +17,7 @@
 						v-if="isDefault"
 						:src="defaultAvatar"
 						alt="Default Avatar"
-						class="w-10 rounded-full"
+						class="h-8 w-8 rounded-full"
 						decoding="async"
 						crossorigin="anonymous"
 					/>
@@ -30,7 +30,7 @@
 						/>
 						<source type="image/webp" :srcset="makeSrcset('webp')" />
 						<source type="image/png" :srcset="makeSrcset('png')" />
-						<img :src="createUrl('png', 128)" alt="Avatar" class="w-8 rounded-full" decoding="async" crossorigin="anonymous" />
+						<img :src="createUrl('png', 128)" alt="Avatar" class="h-8 w-8 rounded-full" decoding="async" crossorigin="anonymous" />
 					</picture>
 				</button>
 			</nav>

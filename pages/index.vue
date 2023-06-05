@@ -62,6 +62,7 @@
 					<input-slider name="Width" v-model="box.width" :min="0" :max="width" adornment="px" />
 					<input-slider name="Height" v-model="box.height" :min="0" :max="height" adornment="px" />
 					<input-slider name="Rotation" v-model="box.rotation" :min="-180" :max="180" adornment="º" />
+					<input-color name="Color" v-model="box.textColor" />
 				</div>
 
 				<accordion class="mt-2 rounded-xl bg-gray-300 dark:bg-stone-950" header="Details">
@@ -95,6 +96,8 @@
 							adornment="px"
 						/>
 
+						<input-color name="Outline Color" v-model="box.modifiers.outlineColor" />
+
 						<label>
 							Text Align
 							<select v-model="box.modifiers.textAlign" class="base-input select w-full rounded">
@@ -113,7 +116,9 @@
 							</select>
 						</label>
 
-						<div>
+						<input-slider name="Opacity" v-model="box.modifiers.opacity" :min="0" :max="100" adornment="%" />
+
+						<div class="col-span-2">
 							Modifiers<span
 								:class="{
 									uppercase: box.modifiers.allCaps,
@@ -124,23 +129,12 @@
 								>Ab</span
 							>
 
-							<label class="flex items-center gap-2">
-								<input type="checkbox" v-model="box.modifiers.allCaps" class="checkbox" />
-								All Caps
-							</label>
-
-							<label class="flex items-center gap-2">
-								<input type="checkbox" v-model="box.modifiers.bold" class="checkbox" />
-								Bold
-							</label>
-
-							<label class="flex items-center gap-2">
-								<input type="checkbox" v-model="box.modifiers.italic" class="checkbox" />
-								Italic
-							</label>
+							<input-text-modifiers
+								v-model:all-caps="box.modifiers.allCaps"
+								v-model:bold="box.modifiers.bold"
+								v-model:italic="box.modifiers.italic"
+							/>
 						</div>
-
-						<input-slider name="Opacity" v-model="box.modifiers.opacity" :min="0" :max="100" adornment="%" />
 					</div>
 				</accordion>
 
@@ -319,6 +313,7 @@ function addBox() {
 		width,
 		height: 100,
 		rotation: 0,
+		textColor: '#ffffff',
 		modifiers: {
 			font: 'impact',
 			fontSize: 32,
@@ -327,6 +322,7 @@ function addBox() {
 			italic: false,
 			outlineType: 'outline',
 			outlineWidth: 4,
+			outlineColor: '#000000',
 			textAlign: 'center',
 			verticalAlign: 'middle',
 			opacity: 100

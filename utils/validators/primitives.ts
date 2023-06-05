@@ -16,6 +16,15 @@ export function validatePossibles<T extends string>(field: string, value: T, pos
 	throwValidationError(`\`${field}\` is not included in \`${possibles.join('`, `')}\``);
 }
 
+const HexadecimalStringRegExp = /^#[0-9a-fA-F]{6}$/;
+export function validateHexString<T extends `#${string}`>(field: string, value: T): T {
+	if (typeof value !== 'string') throwValidationError(`\`${field}\` is not a string`);
+	if (value.length !== 7) throwValidationError(`\`${field}.length\` cannot be !== 7`);
+	if (!HexadecimalStringRegExp.test(value)) throwValidationError(`\`${field}\` does not match \`#{{hexadecimal}}\``);
+
+	return value;
+}
+
 export function validateNumber<T extends number>(field: string, value: T, minimum: number, maximum: number): T {
 	if (typeof value !== 'number') throwValidationError(`\`${field}\` is not a number`);
 	if (value < minimum) throwValidationError(`\`${field}\` cannot be < ${minimum}`);

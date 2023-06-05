@@ -1,5 +1,5 @@
 import type { EntryAvatarPosition, EntryAvatars, EntryBox, EntryBoxModifiers } from '../transform/entry';
-import { validateBoolean, validateInteger, validateNumber, validateObject, validatePossibles, validateString } from './primitives';
+import { validateBoolean, validateHexString, validateInteger, validateNumber, validateObject, validatePossibles, validateString } from './primitives';
 
 export function validateEntryName(value: string): string {
 	return validateString('name', value, 2, 64);
@@ -55,6 +55,7 @@ export function validateEntryBox(field: `boxes.${number}`, value: EntryBox): Ent
 		width: validateInteger(`${field}.width`, value.width, 20, 512),
 		height: validateInteger(`${field}.height`, value.height, 20, 512),
 		rotation: validateInteger(`${field}.rotation`, value.rotation, -180, 180),
+		textColor: validateHexString(`${field}.textColor`, value.textColor),
 		modifiers: validateEntryBoxModifiers(`${field}.modifiers`, value.modifiers)
 	};
 }
@@ -70,6 +71,7 @@ export function validateEntryBoxModifiers(field: `boxes.${number}.modifiers`, va
 		italic: validateBoolean(`${field}.italic`, value.italic),
 		outlineType: validatePossibles(`${field}.outlineType`, value.outlineType, ['shadow', 'outline', 'none']),
 		outlineWidth: validateNumber(`${field}.outlineWidth`, value.outlineWidth, 0, 4),
+		outlineColor: validateHexString(`${field}.outlineColor`, value.outlineColor),
 		textAlign: validatePossibles(`${field}.textAlign`, value.textAlign, ['left', 'center', 'right']),
 		verticalAlign: validatePossibles(`${field}.verticalAlign`, value.verticalAlign, ['top', 'middle', 'bottom']),
 		opacity: validateInteger(`${field}.opacity`, value.opacity, 0, 1)

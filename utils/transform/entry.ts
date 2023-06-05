@@ -24,6 +24,7 @@ export interface EntryBox {
 	width: number;
 	height: number;
 	rotation: number;
+	textColor: `#${string}`;
 	modifiers: EntryBoxModifiers;
 }
 
@@ -35,6 +36,7 @@ export interface EntryBoxModifiers {
 	italic: boolean;
 	outlineType: 'shadow' | 'outline' | 'none';
 	outlineWidth: number;
+	outlineColor: `#${string}`;
 	textAlign: 'left' | 'center' | 'right';
 	verticalAlign: 'top' | 'middle' | 'bottom';
 	opacity: number;
