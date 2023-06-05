@@ -459,7 +459,7 @@ async function uploadData() {
 		return;
 	}
 
-	success.value = `Successfully uploaded '${name.value}'!'`;
+	success.value = `Successfully uploaded '${name.value}'!`;
 }
 
 const administratorReview = ref<{ updateEntry(data: QueueEntry): void }>();
