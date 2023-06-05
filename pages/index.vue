@@ -20,8 +20,8 @@
 			https://cdn.skyra.pw/skyra-assets/avatars/rainbow.png
 		</NuxtLink>
 	</alert>
-	<alert v-if="error" type="danger" title="Error">
-		{{ error || 'The URL you have provided is not a valid image URL.' }}
+	<alert v-if="error && url" type="danger" title="Error">
+		{{ error }}
 	</alert>
 	<alert v-if="success" type="success" title="Success">
 		{{ success }}
