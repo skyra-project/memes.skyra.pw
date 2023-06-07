@@ -1,30 +1,23 @@
 <template>
 	<header class="bg-rose-500 dark:bg-stone-900">
-		<div class="container px-5 py-4 mx-auto flex items-center flex-row">
-			<p class="text-lg sm:py-2 grow">
-				<NuxtLink href="/" class="font-extrabold text-2xl text-stone-100 hover:text-stone-200">Meme Generator</NuxtLink>
-			</p>
-			<nav>
-				<nuxt-link
-					v-if="!$auth.loggedIn.value"
-					class="bg-gray-200/70 hover:bg-gray-200/80 dark:bg-stone-800 hover:dark:bg-stone-700 p-3.5 rounded-xl"
-					:to="getLoginURL()"
-				>
-					Login
-				</nuxt-link>
+		<div class="container mx-auto flex flex-row items-center px-5 py-4">
+			<NuxtLink href="/" class="p-2 text-2xl font-extrabold text-stone-100 hover:text-stone-200">Meme Generator</NuxtLink>
+			<nav class="ml-auto flex gap-2">
+				<nuxt-link v-if="!$auth.loggedIn.value" class="button neutral" :to="getLoginURL()">Login</nuxt-link>
 				<button
 					v-else
 					title="Logout"
 					aria-label="Logout"
 					@click="authLogout()"
-					class="flex items-center gap-2 bg-gray-200/70 hover:bg-gray-200/80 dark:bg-stone-800 hover:dark:bg-stone-700 px-3.5 py-2 rounded-xl"
+					class="button flex items-center gap-2 bg-rose-400 py-2 hover:bg-rose-300 dark:bg-stone-800 hover:dark:bg-stone-700"
+					:class="{ 'outline outline-2 outline-yellow-300 focus-visible:outline-current dark:outline-yellow-600': administrator }"
 				>
 					{{ $auth.session.value?.name }}
 					<img
 						v-if="isDefault"
 						:src="defaultAvatar"
 						alt="Default Avatar"
-						class="rounded-full w-10"
+						class="h-8 w-8 rounded-full"
 						decoding="async"
 						crossorigin="anonymous"
 					/>
@@ -37,7 +30,7 @@
 						/>
 						<source type="image/webp" :srcset="makeSrcset('webp')" />
 						<source type="image/png" :srcset="makeSrcset('png')" />
-						<img :src="createUrl('png', 128)" alt="Avatar" class="rounded-full w-8" decoding="async" crossorigin="anonymous" />
+						<img :src="createUrl('png', 128)" alt="Avatar" class="h-8 w-8 rounded-full" decoding="async" crossorigin="anonymous" />
 					</picture>
 				</button>
 			</nav>
@@ -47,6 +40,7 @@
 
 <script setup lang="ts">
 const { session } = useAuth();
+const administrator = useAdministrator();
 
 const isDefault = ref(false);
 const isAnimated = ref(false);

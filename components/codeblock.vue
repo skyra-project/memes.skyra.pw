@@ -1,9 +1,9 @@
 <template>
-	<pre class="p-5 bg-gray-200 dark:bg-stone-900 rounded-xl h-[50vh] overflow-auto" role="status"><render-json /></pre>
+	<pre class="max-h-[50vh] overflow-auto rounded-xl bg-gray-200 p-5 dark:bg-stone-900" role="status"><render-json /></pre>
 </template>
 
 <script setup lang="tsx">
-import type { EntryAvatarPosition, EntryBox } from '~/lib/interfaces';
+import type { EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
 
 const props = defineProps<{
 	name: string;
@@ -65,6 +65,7 @@ function addBox(lines: JSX.Element[], box: EntryBox, last: boolean) {
 	lines.push(line(3, property('width'), ': ', number(box.width), ','));
 	lines.push(line(3, property('height'), ': ', number(box.height), ','));
 	lines.push(line(3, property('rotation'), ': ', number(box.rotation), ','));
+	lines.push(line(3, property('textColor'), ': ', string(box.textColor), ','));
 	lines.push(line(3, property('modifiers'), ': ', brace(3, '{')));
 	lines.push(line(4, property('font'), ': ', string(box.modifiers.font), ','));
 	lines.push(line(4, property('fontSize'), ': ', number(box.modifiers.fontSize), ','));
@@ -73,6 +74,7 @@ function addBox(lines: JSX.Element[], box: EntryBox, last: boolean) {
 	lines.push(line(4, property('italic'), ': ', boolean(box.modifiers.italic), ','));
 	lines.push(line(4, property('outlineType'), ': ', string(box.modifiers.outlineType), ','));
 	lines.push(line(4, property('outlineWidth'), ': ', number(box.modifiers.outlineWidth), ','));
+	lines.push(line(4, property('outlineColor'), ': ', string(box.modifiers.outlineColor), ','));
 	lines.push(line(4, property('textAlign'), ': ', string(box.modifiers.textAlign), ','));
 	lines.push(line(4, property('verticalAlign'), ': ', string(box.modifiers.verticalAlign), ','));
 	lines.push(line(4, property('opacity'), ': ', number(box.modifiers.opacity / 100)));

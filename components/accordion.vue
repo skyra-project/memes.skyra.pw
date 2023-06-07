@@ -1,6 +1,6 @@
 <template>
 	<div v-bind="$attrs">
-		<button class="w-full p-2 rounded-xl" @click="toggle()">
+		<button class="w-full rounded-xl p-2" @click="toggle()">
 			<slot name="header">{{ header ?? 'Accordion' }}</slot>
 		</button>
 		<transition name="accordion" @before-enter="transitionClose" @enter="transitionOpen" @before-leave="transitionOpen" @leave="transitionClose">

@@ -1,5 +1,5 @@
 <template>
-	<section class="prose prose-stone dark:prose-invert max-w-none">
+	<section class="prose prose-stone max-w-none dark:prose-invert">
 		<template v-if="!code">
 			<h1>Missing code</h1>
 			<p>Please use the <code>Login</code> button instead or click <NuxtLink to="/login" class="underline">here</NuxtLink>.</p>
@@ -13,8 +13,8 @@
 			<template v-else-if="data">
 				<h1>Welcome {{ data.name }}</h1>
 				<p>You will be redirected to the main page in a second.</p>
-				<div class="p-1 mt-2 rounded-lg bg-gray-200 dark:bg-stone-900" aria-label="Progress" role="progressbar">
-					<div class="h-4 rounded-md bg-rose-500 progress"></div>
+				<div class="mt-2 rounded-lg bg-gray-200 p-1 dark:bg-stone-900" aria-label="Progress" role="progressbar">
+					<div class="progress h-4 rounded-md bg-rose-500"></div>
 				</div>
 			</template>
 		</client-only>

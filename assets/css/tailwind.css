@@ -5,7 +5,7 @@
 @layer base {
 	html,
 	body {
-		@apply bg-gray-50 dark:bg-stone-800 text-gray-800 dark:text-gray-200;
+		@apply bg-gray-50 text-gray-800 dark:bg-stone-800 dark:text-gray-200;
 	}
 
 	a {
@@ -15,15 +15,15 @@
 
 @layer components {
 	::-webkit-scrollbar {
-		@apply bg-gray-100 dark:bg-stone-950 rounded-xl w-4;
+		@apply w-4 rounded-xl bg-gray-100 dark:bg-stone-950;
 	}
 
 	::-webkit-scrollbar-thumb {
-		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-800 rounded-xl;
+		@apply rounded-xl bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-800;
 	}
 
 	.base-input:not([type='range']) {
-		@apply border-2 p-2 bg-gray-100 dark:bg-stone-900 border-gray-300 dark:border-stone-700;
+		@apply border-2 border-gray-300 bg-gray-100 p-2 dark:border-stone-700 dark:bg-stone-900;
 	}
 
 	input {
@@ -33,5 +33,27 @@
 	.prose code {
 		@apply after:content-none;
 		@apply before:content-none;
+	}
+
+	.button {
+		@apply flex items-center rounded-xl p-3.5;
+		@apply bg-gray-200 hover:bg-gray-300 dark:bg-stone-900 hover:dark:bg-stone-900/60;
+		@apply disabled:pointer-events-none disabled:saturate-0;
+	}
+
+	.button.neutral {
+		@apply bg-gray-100 hover:bg-gray-200 dark:bg-stone-800 hover:dark:bg-stone-800/80;
+	}
+
+	.button.success {
+		@apply bg-green-500 hover:bg-green-400 dark:bg-green-800 hover:dark:bg-green-800/80;
+	}
+
+	.button.warning {
+		@apply bg-yellow-500 hover:bg-yellow-400 dark:bg-yellow-800 hover:dark:bg-yellow-800/80;
+	}
+
+	.button.danger {
+		@apply bg-red-500 hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-700/80;
 	}
 }
