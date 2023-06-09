@@ -232,6 +232,7 @@ import {
 	TrashIcon
 } from '@heroicons/vue/24/outline';
 import { Canvas } from 'canvas-constructor/browser';
+import { AvatarKeys, renderCanvas } from '~/utils/canvas';
 import type { Entry, EntryAvatarPosition, EntryBox } from '~/utils/transform/entry';
 import type { QueueEntry } from '~/utils/transform/queue-entry';
 
@@ -276,7 +277,6 @@ function replace(entry: Entry) {
 	boxes.splice(0, boxes.length, ...entry.boxes.map((box) => ({ ...box, modifiers: { ...box.modifiers, opacity: box.modifiers.opacity * 100 } })));
 }
 
-const AvatarKeys = ['author', 'target'] as const satisfies readonly AvatarTarget[];
 const AvatarNames = ['Author', 'Target'] as const satisfies readonly Capitalize<AvatarTarget>[];
 type AvatarTarget = keyof typeof avatars;
 
@@ -377,7 +377,6 @@ function addPosition(target: AvatarTarget) {
 	avatars[target].push({ x: 50, y: 50, size: 100, style: 'circle', rotation: 0 });
 }
 
-const colors = ['#dc2626', '#65a30d', '#059669', '#0891b2', '#2563eb', '#7c3aed', '#db2777', '#e11d48'];
 const classes = [
 	'border-red-600',
 	'border-lime-600',
@@ -409,67 +408,7 @@ function printImage() {
 	if (!cc) return;
 	if (!isReady.value) return;
 
-	cc.clearRectangle();
-	cc.printImage(image!, 0, 0, cc.width, cc.height);
-
-	let index = 0;
-	for (const box of boxes) {
-		cc.setStroke(colors[index]);
-		cc.setColor(`${colors[index]}20`);
-
-		const halfWidth = box.width / 2;
-		const halfHeight = box.height / 2;
-
-		cc.save();
-		cc.translate(box.x, box.y);
-		cc.rotate(box.rotation * (Math.PI / 180));
-		cc.printRectangle(-halfWidth, -halfHeight, box.width, box.height);
-		cc.printStrokeRectangle(-halfWidth, -halfHeight, box.width, box.height);
-
-		cc.beginPath();
-		cc.moveTo(-halfWidth, halfHeight);
-		cc.lineTo(0, -halfHeight);
-		cc.lineTo(halfWidth, halfHeight);
-		cc.closePath();
-		cc.stroke();
-
-		cc.restore();
-
-		if (++index > colors.length) index = 0;
-	}
-
-	index = 0;
-	for (const key of AvatarKeys) {
-		for (const position of avatars[key]) {
-			cc.setStroke(colors[index]);
-			cc.setColor(`${colors[index]}20`);
-
-			cc.save();
-			cc.translate(position.x, position.y);
-			cc.rotate(position.rotation * (Math.PI / 180));
-
-			const halfSize = position.size / 2;
-
-			if (position.style === 'circle') {
-				cc.createCircularPath(0, 0, position.size / 2);
-				cc.stroke();
-				cc.fill();
-			} else {
-				cc.printRectangle(-halfSize, -halfSize, position.size, position.size);
-				cc.printStrokeRectangle(-halfSize, -halfSize, position.size, position.size);
-			}
-
-			cc.beginPath();
-			cc.moveTo(-halfSize, 0);
-			cc.lineTo(halfSize, 0);
-			cc.lineTo(0, -halfSize);
-			cc.closePath();
-			cc.stroke();
-			cc.restore();
-
-			if (++index > colors.length) index = 0;
-		}
-	}
+	renderCanvas(cc, image!, boxes, avatars);
 }
 
 const { copied, copy } = useClipboard();
