@@ -77,7 +77,7 @@ export default defineNuxtConfig({
 		}
 	},
 	security: {
-		allowedMethodsRestricter: ['GET', 'POST', 'PATCH', 'DELETE'],
+		allowedMethodsRestricter: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
 		headers: {
 			contentSecurityPolicy: {
 				'img-src': ["'self'", 'data:', 'cdn.skyra.pw', 'memes.skyra.pw', 'cdn.discordapp.com', 'i.imgflip.com', 'i.imgur.com']
@@ -114,7 +114,7 @@ export default defineNuxtConfig({
 		},
 		corsHandler: {
 			origin: process.env.ORIGIN || '*',
-			methods: ['GET', 'POST', 'PATCH', 'DELETE']
+			methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT']
 		},
 		rateLimiter: false
 	},
