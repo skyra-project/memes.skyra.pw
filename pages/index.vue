@@ -47,7 +47,7 @@
 					class="button success h-8 w-8 rounded p-0"
 					aria-label="Add a new text box"
 					title="Add a new text box"
-					:disabled="!image"
+					:disabled="!isReady"
 				>
 					<PlusIcon class="m-auto h-6 w-6" />
 				</button>
@@ -159,7 +159,7 @@
 						class="button success h-8 w-8 rounded p-0"
 						aria-label="Add a new position to this avatar"
 						title="Add a new position to this avatar"
-						:disabled="!image"
+						:disabled="!isReady"
 					>
 						<PlusIcon class="m-auto h-6 w-6" />
 					</button>
