@@ -24,7 +24,7 @@ export interface EntryBox {
 	width: number;
 	height: number;
 	rotation: number;
-	textColor: `#${string}`;
+	textColor: HexadecimalColor;
 	modifiers: EntryBoxModifiers;
 }
 
@@ -34,13 +34,15 @@ export interface EntryBoxModifiers {
 	allCaps: boolean;
 	bold: boolean;
 	italic: boolean;
-	outlineType: 'shadow' | 'outline' | 'none';
+	outlineType: EntryBoxModifiersOutlineType;
 	outlineWidth: number;
-	outlineColor: `#${string}`;
+	outlineColor: HexadecimalColor;
 	textAlign: 'left' | 'center' | 'right';
 	verticalAlign: 'top' | 'middle' | 'bottom';
 	opacity: number;
 }
+
+export type EntryBoxModifiersOutlineType = 'shadow' | 'outline' | 'none';
 
 export interface RawEntry {
 	name: string;
@@ -48,6 +50,8 @@ export interface RawEntry {
 	avatars: string;
 	boxes: string;
 }
+
+export type HexadecimalColor = `#${string}`;
 
 export function transformTemplateEntry(entry: RawEntry): Entry {
 	return {
