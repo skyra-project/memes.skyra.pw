@@ -15,7 +15,7 @@ async function handleEvent(event: H3Event, db: D1Database) {
 	const Query = /* sql */ `
 		UPDATE templates
 		SET uses = uses + 1
-		WHERE id = ?1
+		WHERE name = ?1
 		RETURNING uses;
 	`;
 
