@@ -22,11 +22,8 @@ async function handleEvent(event: H3Event, db: D1Database) {
 		}
 
 		if (limit <= 0) return [];
-		if (limit > 25) {
-			const token = event.node.req.headers.authorization;
-			if (!token || token !== process.env.ARTIEL_TOKEN) {
-				throw createError({ message: 'The query limit must be 25 or smaller', statusCode: 403 });
-			}
+		if (limit > 25 && !isArtiel(event)) {
+			throw createError({ message: 'The query limit must be 25 or smaller', statusCode: 403 });
 		}
 	}
 
