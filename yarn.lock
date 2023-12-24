@@ -2518,7 +2518,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.8.2, @nuxt/kit@npm:^3.1.0, @nuxt/kit@npm:^3.2.2, @nuxt/kit@npm:^3.8.2":
+"@nuxt/kit@npm:3.8.2, @nuxt/kit@npm:^3.8.0, @nuxt/kit@npm:^3.8.2":
   version: 3.8.2
   resolution: "@nuxt/kit@npm:3.8.2"
   dependencies:
@@ -3012,7 +3012,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/pluginutils@npm:^4.0.0":
+"@rollup/pluginutils@npm:^4.0.0, @rollup/pluginutils@npm:^4.2.1":
   version: 4.2.1
   resolution: "@rollup/pluginutils@npm:4.2.1"
   dependencies:
@@ -4366,6 +4366,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cheerio-select@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "cheerio-select@npm:2.1.0"
+  dependencies:
+    boolbase: ^1.0.0
+    css-select: ^5.1.0
+    css-what: ^6.1.0
+    domelementtype: ^2.3.0
+    domhandler: ^5.0.3
+    domutils: ^3.0.1
+  checksum: 843d6d479922f28a6c5342c935aff1347491156814de63c585a6eb73baf7bb4185c1b4383a1195dca0f12e3946d737c7763bcef0b9544c515d905c5c44c5308b
+  languageName: node
+  linkType: hard
+
+"cheerio@npm:^1.0.0-rc.12":
+  version: 1.0.0-rc.12
+  resolution: "cheerio@npm:1.0.0-rc.12"
+  dependencies:
+    cheerio-select: ^2.1.0
+    dom-serializer: ^2.0.0
+    domhandler: ^5.0.3
+    domutils: ^3.0.1
+    htmlparser2: ^8.0.1
+    parse5: ^7.0.0
+    parse5-htmlparser2-tree-adapter: ^7.0.0
+  checksum: 5d4c1b7a53cf22d3a2eddc0aff70cf23cbb30d01a4c79013e703a012475c02461aa1fcd99127e8d83a02216386ed6942b2c8103845fd0812300dd199e6e7e054
+  languageName: node
+  linkType: hard
+
 "chokidar@npm:^3.5.1, chokidar@npm:^3.5.3":
   version: 3.5.3
   resolution: "chokidar@npm:3.5.3"
@@ -5190,7 +5219,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"entities@npm:^4.2.0":
+"entities@npm:^4.2.0, entities@npm:^4.4.0":
   version: 4.5.0
   resolution: "entities@npm:4.5.0"
   checksum: 853f8ebd5b425d350bffa97dd6958143179a5938352ccae092c62d1267c4e392a039be1bae7d51b6e4ffad25f51f9617531fedf5237f15df302ccfb452cbf2d7
@@ -6298,6 +6327,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"htmlparser2@npm:^8.0.1":
+  version: 8.0.2
+  resolution: "htmlparser2@npm:8.0.2"
+  dependencies:
+    domelementtype: ^2.3.0
+    domhandler: ^5.0.3
+    domutils: ^3.0.1
+    entities: ^4.4.0
+  checksum: 29167a0f9282f181da8a6d0311b76820c8a59bc9e3c87009e21968264c2987d2723d6fde5a964d4b7b6cba663fca96ffb373c06d8223a85f52a6089ced942700
+  languageName: node
+  linkType: hard
+
 "http-assert@npm:^1.3.0":
   version: 1.5.0
   resolution: "http-assert@npm:1.5.0"
@@ -7069,13 +7110,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"just-performance@npm:4.3.0":
-  version: 4.3.0
-  resolution: "just-performance@npm:4.3.0"
-  checksum: 37e226e308689b27ad7e0cdb2b2181c8be85f28cb0026db4b68c189f4894828a2865ea4a7a5f3488f4e3390bac1f9428fc6e40a554c068b08e5992e26920e376
-  languageName: node
-  linkType: hard
-
 "keygrip@npm:~1.1.0":
   version: 1.1.0
   resolution: "keygrip@npm:1.1.0"
@@ -7219,15 +7253,6 @@ __metadata:
   version: 2.1.0
   resolution: "lilconfig@npm:2.1.0"
   checksum: 8549bb352b8192375fed4a74694cd61ad293904eee33f9d4866c2192865c44c4eb35d10782966242634e0cbc1e91fe62b1247f148dc5514918e3a966da7ea117
-  languageName: node
-  linkType: hard
-
-"limiter@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "limiter@npm:2.1.0"
-  dependencies:
-    just-performance: 4.3.0
-  checksum: 989092bfdafeefb37bd139f6451f165d449a628cd6fbe9308ed5147a9af24631f031e16466a3e48283418e0bea45c06aa1710f8f8945bc56ea7ef01f94ed5c65
   languageName: node
   linkType: hard
 
@@ -7410,6 +7435,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magic-string@npm:^0.26.3":
+  version: 0.26.7
+  resolution: "magic-string@npm:0.26.7"
+  dependencies:
+    sourcemap-codec: ^1.4.8
+  checksum: 89b0d60cbb32bbf3d1e23c46ea93db082d18a8230b972027aecb10a40bba51be519ecce0674f995571e3affe917b76b09f59d8dbc9a1b2c9c4102a2b6e8a2b01
+  languageName: node
+  linkType: hard
+
 "magic-string@npm:^0.30.0, magic-string@npm:^0.30.2, magic-string@npm:^0.30.3, magic-string@npm:^0.30.4, magic-string@npm:^0.30.5":
   version: 0.30.5
   resolution: "magic-string@npm:0.30.5"
@@ -7500,13 +7534,6 @@ __metadata:
   version: 0.3.0
   resolution: "media-typer@npm:0.3.0"
   checksum: af1b38516c28ec95d6b0826f6c8f276c58aec391f76be42aa07646b4e39d317723e869700933ca6995b056db4b09a78c92d5440dc23657e6764be5d28874bba1
-  languageName: node
-  linkType: hard
-
-"memory-cache@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "memory-cache@npm:0.2.0"
-  checksum: 255c87fec360ce06818ca7aeb5850d798e14950a9fcea879d88e1f8d1f4a6cffb8ed16da54aa677f5ec8e47773fbe15775a1cdf837ac190e17e9fb4b71e87bee
   languageName: node
   linkType: hard
 
@@ -8289,29 +8316,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuxt-csurf@npm:^1.1.0":
-  version: 1.2.0
-  resolution: "nuxt-csurf@npm:1.2.0"
+"nuxt-csurf@npm:^1.3.1":
+  version: 1.4.0
+  resolution: "nuxt-csurf@npm:1.4.0"
   dependencies:
-    "@nuxt/kit": ^3.1.0
-    defu: ^6.1.1
-  checksum: 8d1de22dd95340f6b4fa41711ae8e38526501e5ffdec88a87aab2cdeb79d18c7b7b7c13a375a41640b3d711aeeeef857ee7bb4d66bbc59131cecfe27df5d5f94
+    "@nuxt/kit": ^3.8.2
+    defu: ^6.1.3
+    uncsrf: ^1.1.1
+  checksum: 0e2b898c1b7a356a7e68c1f905c8fbe2d1ff5bb73c38235fd65511e4d347cf1933af9b85682e8a36094353ac80d50344f1d2cf32b836a4bfeddec295020aefcd
   languageName: node
   linkType: hard
 
-"nuxt-security@npm:^0.14.4":
-  version: 0.14.4
-  resolution: "nuxt-security@npm:0.14.4"
+"nuxt-security@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "nuxt-security@npm:1.0.0"
   dependencies:
-    "@nuxt/kit": ^3.2.2
+    "@nuxt/kit": ^3.8.0
     basic-auth: ^2.0.1
+    cheerio: ^1.0.0-rc.12
     defu: ^6.1.1
-    limiter: ^2.1.0
-    memory-cache: ^0.2.0
-    nuxt-csurf: ^1.1.0
+    nuxt-csurf: ^1.3.1
     pathe: ^1.0.0
+    unplugin-remove: ^0.1.6
     xss: ^1.0.14
-  checksum: 05c8cb3662b06c71e4c975c7443c128d6ccdc0b9c240f9d771cfd60e09068d4d84f2d2e503bcdfbf1d362960e7f915f3264872f05ce738d763a57b030a24cc9f
+  checksum: d8f89367c4755a0f2610f282f664d2b1147df5638b47c7201f146a88fa8695ec43c2dcd78209ca59d4184a3d2051b0f3abc7e76625d2d94ba5fbdff8579ab5cd
   languageName: node
   linkType: hard
 
@@ -8631,6 +8659,25 @@ __metadata:
   dependencies:
     parse-path: ^7.0.0
   checksum: b93e21ab4c93c7d7317df23507b41be7697694d4c94f49ed5c8d6288b01cba328fcef5ba388e147948eac20453dee0df9a67ab2012415189fff85973bdffe8d9
+  languageName: node
+  linkType: hard
+
+"parse5-htmlparser2-tree-adapter@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "parse5-htmlparser2-tree-adapter@npm:7.0.0"
+  dependencies:
+    domhandler: ^5.0.2
+    parse5: ^7.0.0
+  checksum: fc5d01e07733142a1baf81de5c2a9c41426c04b7ab29dd218acb80cd34a63177c90aff4a4aee66cf9f1d0aeecff1389adb7452ad6f8af0a5888e3e9ad6ef733d
+  languageName: node
+  linkType: hard
+
+"parse5@npm:^7.0.0":
+  version: 7.1.2
+  resolution: "parse5@npm:7.1.2"
+  dependencies:
+    entities: ^4.4.0
+  checksum: 59465dd05eb4c5ec87b76173d1c596e152a10e290b7abcda1aecf0f33be49646ea74840c69af975d7887543ea45564801736356c568d6b5e71792fd0f4055713
   languageName: node
   linkType: hard
 
@@ -9769,7 +9816,7 @@ __metadata:
     canvas-constructor: ^7.0.1
     discord-api-types: ^0.37.66
     nuxt: ^3.8.2
-    nuxt-security: ^0.14.4
+    nuxt-security: ^1.0.0
     prettier: ^2.8.8
     prettier-plugin-tailwindcss: ^0.5.9
     sitemap: ^7.1.1
@@ -10816,6 +10863,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"uncsrf@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "uncsrf@npm:1.1.1"
+  checksum: 5f380c1f85cdf43183cec5432f542d540c59764d6c87e6acbec143ac4dec4a87fac6eb18bf454da5775623db2b3696ba28d77e8c1db17208a887ff673db8d493
+  languageName: node
+  linkType: hard
+
 "unctx@npm:^2.3.1":
   version: 2.3.1
   resolution: "unctx@npm:2.3.1"
@@ -10984,6 +11038,17 @@ __metadata:
   version: 2.0.0
   resolution: "universalify@npm:2.0.0"
   checksum: 2406a4edf4a8830aa6813278bab1f953a8e40f2f63a37873ffa9a3bc8f9745d06cc8e88f3572cb899b7e509013f7f6fcc3e37e8a6d914167a5381d8440518c44
+  languageName: node
+  linkType: hard
+
+"unplugin-remove@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "unplugin-remove@npm:0.1.6"
+  dependencies:
+    "@rollup/pluginutils": ^4.2.1
+    magic-string: ^0.26.3
+    unplugin: ^1.5.0
+  checksum: b1e7df3957319293f92336115422936f036d720922eea7449a0679b9055b4e6596fe060913f83ec2feb0eefb005095a17dd4c1861e958f739824eb41a14351f8
   languageName: node
   linkType: hard
 
