@@ -12,14 +12,14 @@
 		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20231121.0",
-		"@heroicons/vue": "^2.0.18",
+		"@cloudflare/workers-types": "^4.20231218.0",
+		"@heroicons/vue": "^2.1.1",
 		"@nuxtjs/tailwindcss": "^6.10.1",
 		"@sapphire/prettier-config": "^1.4.5",
 		"@tailwindcss/typography": "^0.5.10",
 		"@types/node": "^18.19.3",
 		"@types/prettier": "^2.7.3",
-		"@vite-pwa/nuxt": "^0.3.5",
+		"@vite-pwa/nuxt": "^0.3.6",
 		"@vueuse/core": "^10.7.0",
 		"@vueuse/nuxt": "^10.7.0",
 		"canvas-constructor": "^7.0.1",
