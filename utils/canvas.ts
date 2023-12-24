@@ -86,8 +86,8 @@ function getFontStyle(modifiers: EntryBoxModifiers) {
 			? 'italic bold '
 			: 'bold '
 		: modifiers.italic
-		? 'italic '
-		: '';
+			? 'italic '
+			: '';
 }
 
 function getFontFamily(modifiers: EntryBoxModifiers) {

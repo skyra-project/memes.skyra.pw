@@ -476,8 +476,12 @@ select.select {
 
 	background-image: linear-gradient(45deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%),
 		linear-gradient(135deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%);
-	background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
-	background-size: 5px 5px, 5px 5px;
+	background-position:
+		calc(100% - 20px) calc(1em + 2px),
+		calc(100% - 15px) calc(1em + 2px);
+	background-size:
+		5px 5px,
+		5px 5px;
 }
 
 select.select:focus {
@@ -486,7 +490,11 @@ select.select:focus {
 
 	background-image: linear-gradient(45deg, var(--tw-select-arrow-color) 50%, var(--tw-select-bg-color) 50%),
 		linear-gradient(135deg, var(--tw-select-bg-color) 50%, var(--tw-select-arrow-color) 50%);
-	background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em;
-	background-size: 5px 5px, 5px 5px;
+	background-position:
+		calc(100% - 15px) 1em,
+		calc(100% - 20px) 1em;
+	background-size:
+		5px 5px,
+		5px 5px;
 }
 </style>
