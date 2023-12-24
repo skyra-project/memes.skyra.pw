@@ -29,7 +29,7 @@
 		"prettier": "^3.1.1",
 		"prettier-plugin-tailwindcss": "^0.5.9",
 		"sitemap": "^7.1.1",
-		"wrangler": "^2.20.2"
+		"wrangler": "^3.22.1"
 	},
 	"packageManager": "yarn@4.0.2",
 	"resolutions": {
