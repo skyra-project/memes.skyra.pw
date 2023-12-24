@@ -1390,10 +1390,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20231121.0":
-  version: 4.20231121.0
-  resolution: "@cloudflare/workers-types@npm:4.20231121.0"
-  checksum: 62c5552d70a3bd533502a8ee92c6283456f9370c0b6e791641c2c322ee00cbf13b46a536532b35fe2238b463ac275b19b3a7500f4e96449b79a8e7aa813a9363
+"@cloudflare/workers-types@npm:^4.20231218.0":
+  version: 4.20231218.0
+  resolution: "@cloudflare/workers-types@npm:4.20231218.0"
+  checksum: b7e50a76ee8e9d662227bbb74798b93b6102acc224f1071a9c99a9adb419ad0b3bdabf7561e7e1b4a320a6a4616badeecdfb1848fbdaada197c7b37d845b8774
   languageName: node
   linkType: hard
 
@@ -1929,12 +1929,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heroicons/vue@npm:^2.0.18":
-  version: 2.0.18
-  resolution: "@heroicons/vue@npm:2.0.18"
+"@heroicons/vue@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@heroicons/vue@npm:2.1.1"
   peerDependencies:
     vue: ">= 3"
-  checksum: c3ca6f4fec2e4df9c84386b7029d007b906c228c592fc99858628ac350a1a194b662da60f5e08eb06e7e75c8eb740732069b87ba5313d92be25575fb2be5ab6d
+  checksum: a9b8844a03854f4ed1e87c1b926b9a9dd140f3ca73389e2da2a767682eb3331265ba8a48eec8211fbc19784c4b8a99fdcf3cc5f89fc681862d0460687d9cf4d0
   languageName: node
   linkType: hard
 
@@ -3421,15 +3421,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-pwa/nuxt@npm:^0.3.5":
-  version: 0.3.5
-  resolution: "@vite-pwa/nuxt@npm:0.3.5"
+"@vite-pwa/nuxt@npm:^0.3.6":
+  version: 0.3.6
+  resolution: "@vite-pwa/nuxt@npm:0.3.6"
   dependencies:
     "@nuxt/kit": ^3.8.2
     pathe: ^1.1.1
     ufo: ^1.3.2
     vite-plugin-pwa: ">=0.16.7 <1"
-  checksum: 0ea0ad6ac24771234f43ace6c7302331d0ec8106cab86475f7f04e00a3564264ca2d35c1e4653b971224d987d94f1bd5de6bac228ff28d45dbaacbf50af6cda2
+  checksum: 755a1dc430813245f5cf860b69543630a17662e9394b2a8fb8d731ea173d0e9479cd76378c403457c5e6ef51a542ce476f2dceeaf7e6247363959a7e6b2ee794
   languageName: node
   linkType: hard
 
@@ -9756,14 +9756,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@cloudflare/workers-types": ^4.20231121.0
-    "@heroicons/vue": ^2.0.18
+    "@cloudflare/workers-types": ^4.20231218.0
+    "@heroicons/vue": ^2.1.1
     "@nuxtjs/tailwindcss": ^6.10.1
     "@sapphire/prettier-config": ^1.4.5
     "@tailwindcss/typography": ^0.5.10
     "@types/node": ^18.19.3
     "@types/prettier": ^2.7.3
-    "@vite-pwa/nuxt": ^0.3.5
+    "@vite-pwa/nuxt": ^0.3.6
     "@vueuse/core": ^10.7.0
     "@vueuse/nuxt": ^10.7.0
     canvas-constructor: ^7.0.1
