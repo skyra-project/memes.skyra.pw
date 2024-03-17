@@ -1461,10 +1461,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20240222.0":
-  version: 4.20240222.0
-  resolution: "@cloudflare/workers-types@npm:4.20240222.0"
-  checksum: 10/168057e407098aba8221f814a567c156839beca0af2cf9885b4d3fcd5dc184dd81608857afdf130e818bd40f18747073963f6210ac851197286fcc7d2f27c2c4
+"@cloudflare/workers-types@npm:^4.20240314.0":
+  version: 4.20240314.0
+  resolution: "@cloudflare/workers-types@npm:4.20240314.0"
+  checksum: 10/b1776a20e69908db06cfcd9ed7640f927900ad78f6ef60b858baf38f801cc738b69fe35a45e0310ed5b26a37c00ccce28de0c86bf36cdc9e21cf552441a8cd41
   languageName: node
   linkType: hard
 
@@ -3119,12 +3119,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.11.25":
-  version: 20.11.25
-  resolution: "@types/node@npm:20.11.25"
+"@types/node@npm:*, @types/node@npm:^20.11.28":
+  version: 20.11.28
+  resolution: "@types/node@npm:20.11.28"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/861265f1bbb151404bd8842b595f027a4ff067c61ecff9a37b9f7f53922c18dd532c8e795e8e7675dd8dba056645623fd2b9848d5ef72863ec3609096cd2923e
+  checksum: 10/b03f69213ac6e7cd5f7efa86139f24e23ff70a12fed04adeac5413b62d6982343ce94906f74c401c5afefda48d36ae0efd6a575240996b15a5cf80b456ab4221
   languageName: node
   linkType: hard
 
@@ -4862,10 +4862,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord-api-types@npm:^0.37.73":
-  version: 0.37.73
-  resolution: "discord-api-types@npm:0.37.73"
-  checksum: 10/e3c46fa71ee83d4bbee9319dfa5f3b02b963d1b12bba0eed374c46b0fdcda25c58a782931511f90d2ab1132f6b51db561c1257945321cf3963c1cd1cfd5b90ac
+"discord-api-types@npm:^0.37.74":
+  version: 0.37.74
+  resolution: "discord-api-types@npm:0.37.74"
+  checksum: 10/0ee299b13a32181e1aa16e9034cb0884597eeb8784a1a13e85b701b3575f44e8af284390b22b154ec95e446bffd8d147c53f554cfc11acb5d2d6f5f3abe17779
   languageName: node
   linkType: hard
 
@@ -7320,9 +7320,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:3.20240304.0":
-  version: 3.20240304.0
-  resolution: "miniflare@npm:3.20240304.0"
+"miniflare@npm:3.20240304.2":
+  version: 3.20240304.2
+  resolution: "miniflare@npm:3.20240304.2"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     acorn: "npm:^8.8.0"
@@ -7338,7 +7338,7 @@ __metadata:
     zod: "npm:^3.20.6"
   bin:
     miniflare: bootstrap.js
-  checksum: 10/ce93146ff67ea580cb5601608384d7393085df826c6fdd8ed10987f1be2a2e5834c0d100ed0cc9eefbd6364d54abb097057f0df83b9cd89780d2701c5a3773b0
+  checksum: 10/968b43660a72989874ba23fcd9e5b0e671768f7a04e11c229fea671488dc232501050f9e2e8aab4065ce0feb88f0630770d6d60f14fc49f48f6404e33090b4ef
   languageName: node
   linkType: hard
 
@@ -9385,24 +9385,24 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20240222.0"
+    "@cloudflare/workers-types": "npm:^4.20240314.0"
     "@heroicons/vue": "npm:^2.1.1"
     "@nuxtjs/tailwindcss": "npm:^6.11.4"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@tailwindcss/typography": "npm:^0.5.10"
-    "@types/node": "npm:^20.11.25"
+    "@types/node": "npm:^20.11.28"
     "@types/prettier": "npm:^3.0.0"
     "@vite-pwa/nuxt": "npm:^0.6.0"
     "@vueuse/core": "npm:^10.9.0"
     "@vueuse/nuxt": "npm:^10.9.0"
     canvas-constructor: "npm:^7.0.1"
-    discord-api-types: "npm:^0.37.73"
+    discord-api-types: "npm:^0.37.74"
     nuxt: "npm:^3.10.3"
     nuxt-security: "npm:^0.14.4"
     prettier: "npm:^3.2.5"
     prettier-plugin-tailwindcss: "npm:^0.5.12"
     sitemap: "npm:^7.1.1"
-    wrangler: "npm:^3.32.0"
+    wrangler: "npm:^3.34.2"
   languageName: unknown
   linkType: soft
 
@@ -11479,9 +11479,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:^3.32.0":
-  version: 3.32.0
-  resolution: "wrangler@npm:3.32.0"
+"wrangler@npm:^3.34.2":
+  version: 3.34.2
+  resolution: "wrangler@npm:3.34.2"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.1"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
@@ -11490,7 +11490,7 @@ __metadata:
     chokidar: "npm:^3.5.3"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:3.20240304.0"
+    miniflare: "npm:3.20240304.2"
     nanoid: "npm:^3.3.3"
     path-to-regexp: "npm:^6.2.0"
     resolve: "npm:^1.22.8"
@@ -11509,7 +11509,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10/851dea4faba464112f251d79750f80a00ae23826598b89aeae4a4c382d92cf8b3f6ebad7f8f5aff527644a4eae1d8481a4c5b740657651adb0285c3d45c3a521
+  checksum: 10/f1b4099c68841a4e739d1f8b4b732b37d5d9667d06d42de41e260a054aeb0ce5868d067e4b0bcc0a6e236878b9409516d37c4fdc8581a7a53ac6354321e18506
   languageName: node
   linkType: hard
 
