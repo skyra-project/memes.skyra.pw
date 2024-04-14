@@ -17,7 +17,7 @@
 		"@nuxtjs/tailwindcss": "^6.11.4",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@tailwindcss/typography": "^0.5.12",
-		"@types/node": "^20.12.5",
+		"@types/node": "^20.12.7",
 		"@types/prettier": "^3.0.0",
 		"@vite-pwa/nuxt": "^0.6.0",
 		"@vueuse/core": "^10.9.0",
@@ -29,7 +29,7 @@
 		"prettier": "^3.2.5",
 		"prettier-plugin-tailwindcss": "^0.5.13",
 		"sitemap": "^7.1.1",
-		"wrangler": "^3.48.0"
+		"wrangler": "^3.50.0"
 	},
 	"packageManager": "yarn@4.1.1",
 	"resolutions": {
