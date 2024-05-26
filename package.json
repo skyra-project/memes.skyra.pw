@@ -28,7 +28,7 @@
 		"nuxt-security": "^0.14.4",
 		"prettier": "^3.2.5",
 		"prettier-plugin-tailwindcss": "^0.5.14",
-		"sitemap": "^7.1.2",
+		"sitemap": "^8.0.0",
 		"wrangler": "^3.57.1"
 	},
 	"packageManager": "yarn@4.2.2",
