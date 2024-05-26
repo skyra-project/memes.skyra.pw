@@ -22,14 +22,14 @@
 		"@vite-pwa/nuxt": "^0.7.0",
 		"@vueuse/core": "^10.9.0",
 		"@vueuse/nuxt": "^10.9.0",
-		"canvas-constructor": "^7.0.1",
-		"discord-api-types": "^0.37.84",
+		"canvas-constructor": "^7.0.2",
+		"discord-api-types": "^0.37.85",
 		"nuxt": "^3.11.2",
 		"nuxt-security": "^0.14.4",
 		"prettier": "^3.2.5",
 		"prettier-plugin-tailwindcss": "^0.5.14",
-		"sitemap": "^7.1.1",
-		"wrangler": "^3.57.0"
+		"sitemap": "^7.1.2",
+		"wrangler": "^3.57.1"
 	},
 	"packageManager": "yarn@4.2.2",
 	"resolutions": {
