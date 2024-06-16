@@ -24,7 +24,7 @@
 		"@vueuse/nuxt": "^10.11.0",
 		"canvas-constructor": "^7.0.2",
 		"discord-api-types": "^0.37.89",
-		"nuxt": "^3.12.1",
+		"nuxt": "^3.12.2",
 		"nuxt-security": "^0.14.4",
 		"prettier": "^3.3.2",
 		"prettier-plugin-tailwindcss": "^0.6.4",
