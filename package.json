@@ -21,7 +21,7 @@
 		"@types/prettier": "^3.0.0",
 		"@vite-pwa/nuxt": "^0.9.1",
 		"@vueuse/core": "^11.0.0",
-		"@vueuse/nuxt": "^10.11.1",
+		"@vueuse/nuxt": "^11.0.0",
 		"canvas-constructor": "^7.0.2",
 		"discord-api-types": "^0.37.93",
 		"nuxt": "^3.12.4",
