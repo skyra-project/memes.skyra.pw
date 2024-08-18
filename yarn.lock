@@ -2501,7 +2501,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:3.12.4, @nuxt/kit@npm:^3.10.2, @nuxt/kit@npm:^3.11.2, @nuxt/kit@npm:^3.12.1, @nuxt/kit@npm:^3.12.2, @nuxt/kit@npm:^3.12.3, @nuxt/kit@npm:^3.2.2, @nuxt/kit@npm:^3.9.0":
+"@nuxt/kit@npm:3.12.4, @nuxt/kit@npm:^3.10.2, @nuxt/kit@npm:^3.11.2, @nuxt/kit@npm:^3.12.2, @nuxt/kit@npm:^3.12.3, @nuxt/kit@npm:^3.12.4, @nuxt/kit@npm:^3.2.2, @nuxt/kit@npm:^3.9.0":
   version: 3.12.4
   resolution: "@nuxt/kit@npm:3.12.4"
   dependencies:
@@ -3568,19 +3568,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:10.11.1":
-  version: 10.11.1
-  resolution: "@vueuse/core@npm:10.11.1"
-  dependencies:
-    "@types/web-bluetooth": "npm:^0.0.20"
-    "@vueuse/metadata": "npm:10.11.1"
-    "@vueuse/shared": "npm:10.11.1"
-    vue-demi: "npm:>=0.14.8"
-  checksum: 10/bbebdcd1ef0a77437cf2432062bb57c13e0afdadc474861ddad7ce343a8638778c5e54ad302c80e1d4351d4bdaf43501dc5937185e08d257fd000bdfea4ecb36
-  languageName: node
-  linkType: hard
-
-"@vueuse/core@npm:^11.0.0":
+"@vueuse/core@npm:11.0.0, @vueuse/core@npm:^11.0.0":
   version: 11.0.0
   resolution: "@vueuse/core@npm:11.0.0"
   dependencies:
@@ -3592,13 +3580,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/metadata@npm:10.11.1":
-  version: 10.11.1
-  resolution: "@vueuse/metadata@npm:10.11.1"
-  checksum: 10/20336a05eb4945c1486d5e0a81c91a8ba08137f567b86d2bc1171af36d916c56d30166163016ed64642cce904cad1af09332655f7f0178eb5f2c65e54f648b4f
-  languageName: node
-  linkType: hard
-
 "@vueuse/metadata@npm:11.0.0":
   version: 11.0.0
   resolution: "@vueuse/metadata@npm:11.0.0"
@@ -3606,27 +3587,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/nuxt@npm:^10.11.1":
-  version: 10.11.1
-  resolution: "@vueuse/nuxt@npm:10.11.1"
+"@vueuse/nuxt@npm:^11.0.0":
+  version: 11.0.0
+  resolution: "@vueuse/nuxt@npm:11.0.0"
   dependencies:
-    "@nuxt/kit": "npm:^3.12.1"
-    "@vueuse/core": "npm:10.11.1"
-    "@vueuse/metadata": "npm:10.11.1"
+    "@nuxt/kit": "npm:^3.12.4"
+    "@vueuse/core": "npm:11.0.0"
+    "@vueuse/metadata": "npm:11.0.0"
     local-pkg: "npm:^0.5.0"
-    vue-demi: "npm:>=0.14.8"
+    vue-demi: "npm:>=0.14.10"
   peerDependencies:
     nuxt: ^3.0.0
-  checksum: 10/4fa0ab677cb513b7fe89f19ef600203190b5d77164f04b92ab425d8fdc5f4a6d4469a0dcc93a2ac28abc320bdf1f50a5f17da0320f03f2dc4ce88670d2b4005c
-  languageName: node
-  linkType: hard
-
-"@vueuse/shared@npm:10.11.1":
-  version: 10.11.1
-  resolution: "@vueuse/shared@npm:10.11.1"
-  dependencies:
-    vue-demi: "npm:>=0.14.8"
-  checksum: 10/5d8c28ed441a66b200c76ab44b6dbc6af152a6cecc527a1f4f645d95547e1de65e4b99e16d25f77609cb146e9e4b4961b260fe723043b08ab198e88ed1d47f4e
+  checksum: 10/46019a55b7edf051b254e2140398631e486aee6b378501fbb3f6bd0d55717c4d3a32869dac636ca5e1dbe94cce0e00baed0ab7c24f6a658f8b537ee192879f3f
   languageName: node
   linkType: hard
 
@@ -9596,7 +9568,7 @@ __metadata:
     "@types/prettier": "npm:^3.0.0"
     "@vite-pwa/nuxt": "npm:^0.9.1"
     "@vueuse/core": "npm:^11.0.0"
-    "@vueuse/nuxt": "npm:^10.11.1"
+    "@vueuse/nuxt": "npm:^11.0.0"
     canvas-constructor: "npm:^7.0.2"
     discord-api-types: "npm:^0.37.93"
     nuxt: "npm:^3.12.4"
@@ -11273,7 +11245,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-demi@npm:>=0.14.10, vue-demi@npm:>=0.14.8":
+"vue-demi@npm:>=0.14.10":
   version: 0.14.10
   resolution: "vue-demi@npm:0.14.10"
   peerDependencies:
