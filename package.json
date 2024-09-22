@@ -12,7 +12,7 @@
 		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240909.0",
+		"@cloudflare/workers-types": "^4.20240919.0",
 		"@heroicons/vue": "^2.1.5",
 		"@nuxtjs/tailwindcss": "^6.12.1",
 		"@sapphire/prettier-config": "^2.0.0",
@@ -20,16 +20,16 @@
 		"@types/node": "^20.16.5",
 		"@types/prettier": "^3.0.0",
 		"@vite-pwa/nuxt": "^0.10.5",
-		"@vueuse/core": "^11.0.3",
-		"@vueuse/nuxt": "^11.0.3",
+		"@vueuse/core": "^11.1.0",
+		"@vueuse/nuxt": "^11.1.0",
 		"canvas-constructor": "^7.0.2",
 		"discord-api-types": "^0.37.100",
-		"nuxt": "^3.13.1",
+		"nuxt": "^3.13.2",
 		"nuxt-security": "^0.14.4",
 		"prettier": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.6",
 		"sitemap": "^8.0.0",
-		"wrangler": "^3.78.2"
+		"wrangler": "^3.78.7"
 	},
 	"packageManager": "yarn@4.5.0",
 	"resolutions": {
