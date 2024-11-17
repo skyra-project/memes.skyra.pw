@@ -1479,10 +1479,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20241106.0":
-  version: 4.20241106.0
-  resolution: "@cloudflare/workers-types@npm:4.20241106.0"
-  checksum: 10/f5a62b26ae25e944f845fa86b407bba350eeffc1cec99e2bb34c591f1cb243427a560ff8220a764342f560bc1bd2f2e0f3dbf816ac0ee96288861d44ad3cd39f
+"@cloudflare/workers-types@npm:^4.20241112.0":
+  version: 4.20241112.0
+  resolution: "@cloudflare/workers-types@npm:4.20241112.0"
+  checksum: 10/b0aae1dcac6c1e02faceeaffb6279e2f4ed65db8ca509d1c5f301ddcfde768157a5a7aa60716da90847743d5aa018049db8d3a2b84fe2740bac39647a6a0dcbc
   languageName: node
   linkType: hard
 
@@ -9428,7 +9428,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20241106.0"
+    "@cloudflare/workers-types": "npm:^4.20241112.0"
     "@heroicons/vue": "npm:^2.1.5"
     "@nuxtjs/tailwindcss": "npm:^6.12.2"
     "@sapphire/prettier-config": "npm:^2.0.0"
@@ -9445,7 +9445,7 @@ __metadata:
     prettier: "npm:^3.3.3"
     prettier-plugin-tailwindcss: "npm:^0.6.8"
     sitemap: "npm:^8.0.0"
-    wrangler: "npm:^3.86.0"
+    wrangler: "npm:^3.87.0"
   languageName: unknown
   linkType: soft
 
@@ -11483,16 +11483,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:^3.86.0":
-  version: 3.86.0
-  resolution: "wrangler@npm:3.86.0"
+"wrangler@npm:^3.87.0":
+  version: 3.87.0
+  resolution: "wrangler@npm:3.87.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
     "@cloudflare/workers-shared": "npm:0.7.1"
     "@esbuild-plugins/node-globals-polyfill": "npm:^0.2.3"
     "@esbuild-plugins/node-modules-polyfill": "npm:^0.2.2"
     blake3-wasm: "npm:^2.1.5"
-    chokidar: "npm:^3.5.3"
+    chokidar: "npm:^4.0.1"
     date-fns: "npm:^4.1.0"
     esbuild: "npm:0.17.19"
     fsevents: "npm:~2.3.2"
@@ -11518,7 +11518,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10/109c9bfb8e90594b4a5ff7302eac6aef0785891386dbafa276f75805f28b998e94482e482733d7479636ef9934997d18a2d16f207d36b6de6ad9937e4645ec9e
+  checksum: 10/a744b0343b81b3f8d13c95accc427398b22a2d3a2c5c98cdb0e94577d8beef8f67cc14c192249dd3c8ed0773fd3f34cb27241f1f21fd9fde5ff1280eaedd4f69
   languageName: node
   linkType: hard
 
