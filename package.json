@@ -12,7 +12,7 @@
 		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20241205.0",
+		"@cloudflare/workers-types": "^4.20241218.0",
 		"@heroicons/vue": "^2.2.0",
 		"@nuxtjs/tailwindcss": "^6.12.2",
 		"@sapphire/prettier-config": "^2.0.0",
@@ -29,7 +29,7 @@
 		"prettier": "^3.4.2",
 		"prettier-plugin-tailwindcss": "^0.6.9",
 		"sitemap": "^8.0.0",
-		"wrangler": "^3.95.0"
+		"wrangler": "^3.99.0"
 	},
 	"packageManager": "yarn@4.5.3",
 	"resolutions": {
