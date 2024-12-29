@@ -12,7 +12,7 @@
 		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20241218.0",
+		"@cloudflare/workers-types": "^4.20241224.0",
 		"@heroicons/vue": "^2.2.0",
 		"@nuxtjs/tailwindcss": "^6.12.2",
 		"@sapphire/prettier-config": "^2.0.0",
@@ -20,11 +20,11 @@
 		"@types/node": "^22.10.2",
 		"@types/prettier": "^3.0.0",
 		"@vite-pwa/nuxt": "^0.10.6",
-		"@vueuse/core": "^12.1.0",
-		"@vueuse/nuxt": "^12.1.0",
+		"@vueuse/core": "^12.2.0",
+		"@vueuse/nuxt": "^12.2.0",
 		"canvas-constructor": "^7.0.2",
 		"discord-api-types": "^0.37.100",
-		"nuxt": "^3.14.1592",
+		"nuxt": "^3.15.0",
 		"nuxt-security": "^0.14.4",
 		"prettier": "^3.4.2",
 		"prettier-plugin-tailwindcss": "^0.6.9",
