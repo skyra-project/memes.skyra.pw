@@ -1460,10 +1460,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20241224.0":
-  version: 4.20241224.0
-  resolution: "@cloudflare/workers-types@npm:4.20241224.0"
-  checksum: 10/b380b8bfdabba5541766f3ce3d05260d833299ea742f5ad42d319a6a8ed9b5b316a64db545e64d001daa3222a2fb80b18d1d18345411044d0efc6b469bb5c9a3
+"@cloudflare/workers-types@npm:^4.20241230.0":
+  version: 4.20241230.0
+  resolution: "@cloudflare/workers-types@npm:4.20241230.0"
+  checksum: 10/ddb68935d69522e98a3b22e80620cc3c110c9f46cb033341b680c53c528d5704a43f4adaf3c69cecea7011212a8e36047146911419baba00f39043f1dc866676
   languageName: node
   linkType: hard
 
@@ -3041,12 +3041,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.10.2":
-  version: 22.10.2
-  resolution: "@types/node@npm:22.10.2"
+"@types/node@npm:*, @types/node@npm:^22.10.5":
+  version: 22.10.5
+  resolution: "@types/node@npm:22.10.5"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10/451adfefed4add58b069407173e616220fd4aaa3307cdde1bb701aa053b65b54ced8483db2f870dcedec7a58cb3b06101fbc19d85852716672ec1fd3660947fa
+  checksum: 10/a5366961ffa9921e8f15435bc18ea9f8b7a7bb6b3d92dd5e93ebcd25e8af65708872bd8e6fee274b4655bab9ca80fbff9f0e42b5b53857790f13cf68cf4cbbfc
   languageName: node
   linkType: hard
 
@@ -3431,46 +3431,46 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vueuse/core@npm:12.2.0, @vueuse/core@npm:^12.2.0":
-  version: 12.2.0
-  resolution: "@vueuse/core@npm:12.2.0"
+"@vueuse/core@npm:12.3.0, @vueuse/core@npm:^12.3.0":
+  version: 12.3.0
+  resolution: "@vueuse/core@npm:12.3.0"
   dependencies:
     "@types/web-bluetooth": "npm:^0.0.20"
-    "@vueuse/metadata": "npm:12.2.0"
-    "@vueuse/shared": "npm:12.2.0"
+    "@vueuse/metadata": "npm:12.3.0"
+    "@vueuse/shared": "npm:12.3.0"
     vue: "npm:^3.5.13"
-  checksum: 10/93df9f58aae35efd8ffc5de16f28bd8cec61bf388999ea4abcf966ae5fcb3738fefa667f4fa6afba1f0f91a9140125911786e5ab50394e7f5bcefe5fd6d6c4b8
+  checksum: 10/c631aa4b2206b06d0cbd6fba59f08eba3862d1a556f085863446e05df4910d986dd49182fcccfe6d582b58e45bc2046f9985af0bee331cc737f29d0c879c74dc
   languageName: node
   linkType: hard
 
-"@vueuse/metadata@npm:12.2.0":
-  version: 12.2.0
-  resolution: "@vueuse/metadata@npm:12.2.0"
-  checksum: 10/8e9d8cb6299485f8e8f234d93c6e7ae874494297ded6b42c1bbffd8f50caef416112297c4eb349f24da3bfa626c2104567b3f029c8c9aa4ee4eda60f3fac2fb9
+"@vueuse/metadata@npm:12.3.0":
+  version: 12.3.0
+  resolution: "@vueuse/metadata@npm:12.3.0"
+  checksum: 10/116143706e3190a398b7caef54bf5eb96b2e2cceab2bd40f686c47629fe8d9a59e987f6fd26a31ce7433bb69610b8a4ec57cb3121ecc2cda7624a97ae6c796f3
   languageName: node
   linkType: hard
 
-"@vueuse/nuxt@npm:^12.2.0":
-  version: 12.2.0
-  resolution: "@vueuse/nuxt@npm:12.2.0"
+"@vueuse/nuxt@npm:^12.3.0":
+  version: 12.3.0
+  resolution: "@vueuse/nuxt@npm:12.3.0"
   dependencies:
-    "@nuxt/kit": "npm:^3.14.1592"
-    "@vueuse/core": "npm:12.2.0"
-    "@vueuse/metadata": "npm:12.2.0"
+    "@nuxt/kit": "npm:^3.15.0"
+    "@vueuse/core": "npm:12.3.0"
+    "@vueuse/metadata": "npm:12.3.0"
     local-pkg: "npm:^0.5.1"
     vue: "npm:^3.5.13"
   peerDependencies:
     nuxt: ^3.0.0
-  checksum: 10/592d314fbc0d6b60be1858627c68adefa16463f61298f8415e3579cdc74315a9134eabdca492a0eb02a9125a451c665d723b55098a6b7780fe12101458f736ef
+  checksum: 10/f396f43641eb9daf2dde7d10a3b6872bbee6f762a4a9da02120f54af66e173142b40f0c6bf153fc787468ee2ea3ccd756e9c6f6e25ddfd04e417acefe97a9a3d
   languageName: node
   linkType: hard
 
-"@vueuse/shared@npm:12.2.0":
-  version: 12.2.0
-  resolution: "@vueuse/shared@npm:12.2.0"
+"@vueuse/shared@npm:12.3.0":
+  version: 12.3.0
+  resolution: "@vueuse/shared@npm:12.3.0"
   dependencies:
     vue: "npm:^3.5.13"
-  checksum: 10/e889c4b13445dacbde131fab7617b46a1b430a9edccf9330924d34732b6d4927b2116438a2b4be69f4a378783ebb7e32633de186deb65463a64b9cd63935f6f3
+  checksum: 10/bc0ce6506d1d794da13682bdbbb17e879a9d106761c9a7f9359456fcc9660fdc87d1bcc200f9df6e41994f8b0e0135221dade0c2b4e1f9d300e4954e8a2cdaec
   languageName: node
   linkType: hard
 
@@ -9388,16 +9388,16 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20241224.0"
+    "@cloudflare/workers-types": "npm:^4.20241230.0"
     "@heroicons/vue": "npm:^2.2.0"
     "@nuxtjs/tailwindcss": "npm:^6.12.2"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@tailwindcss/typography": "npm:^0.5.15"
-    "@types/node": "npm:^22.10.2"
+    "@types/node": "npm:^22.10.5"
     "@types/prettier": "npm:^3.0.0"
     "@vite-pwa/nuxt": "npm:^0.10.6"
-    "@vueuse/core": "npm:^12.2.0"
-    "@vueuse/nuxt": "npm:^12.2.0"
+    "@vueuse/core": "npm:^12.3.0"
+    "@vueuse/nuxt": "npm:^12.3.0"
     canvas-constructor: "npm:^7.0.2"
     discord-api-types: "npm:^0.37.100"
     nuxt: "npm:^3.15.0"
