@@ -1460,10 +1460,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20250129.0":
-  version: 4.20250129.0
-  resolution: "@cloudflare/workers-types@npm:4.20250129.0"
-  checksum: 10/7c722a2ef81af43621853d14400a32134dc9b5be68db19c96210df1a27084665af448b04f7e79f0adc05f02c7116b518cea6bb679836f4740328c92be36f36c3
+"@cloudflare/workers-types@npm:^4.20250204.0":
+  version: 4.20250204.0
+  resolution: "@cloudflare/workers-types@npm:4.20250204.0"
+  checksum: 10/59aa4b166de347d594a10dd3b4e514334081b4cd61c555f9bc02ea83e2302fe25114b82d394d90c9781878c1c73878b7565738eca49c3b023fb78339d475473b
   languageName: node
   linkType: hard
 
@@ -2898,12 +2898,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.13.0":
-  version: 22.13.0
-  resolution: "@types/node@npm:22.13.0"
+"@types/node@npm:*, @types/node@npm:^22.13.1":
+  version: 22.13.1
+  resolution: "@types/node@npm:22.13.1"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: 10/a7563e57df48cb7e28f936dbabe228316dcdb4c7c3a88a6c1659fae898ffde2647a7193a9e29e0cbcb7dacc05a91fb3bc30c1a1d6fc9294694a734ff71a5f12e
+  checksum: 10/d8ba7068b0445643c0fa6e4917cdb7a90e8756a9daff8c8a332689cd5b2eaa01e4cd07de42e3cd7e6a6f465eeda803d5a1363d00b5ab3f6cea7950350a159497
   languageName: node
   linkType: hard
 
@@ -9165,12 +9165,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20250129.0"
+    "@cloudflare/workers-types": "npm:^4.20250204.0"
     "@heroicons/vue": "npm:^2.2.0"
     "@nuxtjs/tailwindcss": "npm:^6.13.1"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@tailwindcss/typography": "npm:^0.5.16"
-    "@types/node": "npm:^22.13.0"
+    "@types/node": "npm:^22.13.1"
     "@types/prettier": "npm:^3.0.0"
     "@vite-pwa/nuxt": "npm:^0.10.6"
     "@vueuse/core": "npm:^12.5.0"
@@ -9182,7 +9182,7 @@ __metadata:
     prettier: "npm:^3.4.2"
     prettier-plugin-tailwindcss: "npm:^0.6.11"
     sitemap: "npm:^8.0.0"
-    wrangler: "npm:^3.107.2"
+    wrangler: "npm:^3.107.3"
   languageName: unknown
   linkType: soft
 
@@ -11263,9 +11263,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:^3.107.2":
-  version: 3.107.2
-  resolution: "wrangler@npm:3.107.2"
+"wrangler@npm:^3.107.3":
+  version: 3.107.3
+  resolution: "wrangler@npm:3.107.3"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.3.4"
     "@esbuild-plugins/node-globals-polyfill": "npm:0.2.3"
@@ -11288,7 +11288,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10/a1ce974278c6c0661594a23c3a05ea4108c0dc8a4712f89b38ed5376acceeade4af618ad8f8ca4fa041d2ea0230ecddad8061f6c89f7b672b64b6e2dc896035c
+  checksum: 10/e86be23b72d6fafaba6c989f946abf113356439d6722347e2b2a8fc897eec9239a702e6c1657629e7f74609a2ac753a7b59ecbce080ee48effe5282b9b680955
   languageName: node
   linkType: hard
 
