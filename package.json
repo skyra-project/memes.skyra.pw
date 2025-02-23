@@ -17,7 +17,7 @@
 		"@nuxtjs/tailwindcss": "^6.13.1",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@tailwindcss/typography": "^0.5.16",
-		"@types/node": "^22.13.4",
+		"@types/node": "^22.13.5",
 		"@types/prettier": "^3.0.0",
 		"@vite-pwa/nuxt": "^0.10.6",
 		"@vueuse/core": "^12.7.0",
@@ -26,10 +26,10 @@
 		"discord-api-types": "^0.37.100",
 		"nuxt": "^3.15.4",
 		"nuxt-security": "^0.14.4",
-		"prettier": "^3.5.1",
+		"prettier": "^3.5.2",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"sitemap": "^8.0.0",
-		"wrangler": "^3.109.1"
+		"wrangler": "^3.109.2"
 	},
 	"packageManager": "yarn@4.6.0",
 	"resolutions": {
