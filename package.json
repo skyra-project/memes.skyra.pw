@@ -31,7 +31,7 @@
 		"sitemap": "^8.0.0",
 		"wrangler": "^4.6.0"
 	},
-	"packageManager": "yarn@4.8.0",
+	"packageManager": "yarn@4.8.1",
 	"resolutions": {
 		"nuxt-security@^0.13.0": "patch:nuxt-security@npm%3A0.13.0#./.yarn/patches/nuxt-security-npm-0.13.0-c6823128eb.patch"
 	}
