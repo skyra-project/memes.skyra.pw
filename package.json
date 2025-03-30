@@ -12,14 +12,14 @@
 		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250321.0",
+		"@cloudflare/workers-types": "^4.20250327.0",
 		"@heroicons/vue": "^2.2.0",
 		"@nuxtjs/tailwindcss": "^6.13.2",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@tailwindcss/typography": "^0.5.16",
-		"@types/node": "^22.13.11",
+		"@types/node": "^22.13.14",
 		"@types/prettier": "^3.0.0",
-		"@vite-pwa/nuxt": "^0.10.6",
+		"@vite-pwa/nuxt": "^0.10.8",
 		"@vueuse/core": "^13.0.0",
 		"@vueuse/nuxt": "^13.0.0",
 		"canvas-constructor": "^7.0.2",
@@ -29,9 +29,9 @@
 		"prettier": "^3.5.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"sitemap": "^8.0.0",
-		"wrangler": "^4.4.0"
+		"wrangler": "^4.6.0"
 	},
-	"packageManager": "yarn@4.7.0",
+	"packageManager": "yarn@4.8.0",
 	"resolutions": {
 		"nuxt-security@^0.13.0": "patch:nuxt-security@npm%3A0.13.0#./.yarn/patches/nuxt-security-npm-0.13.0-c6823128eb.patch"
 	}
