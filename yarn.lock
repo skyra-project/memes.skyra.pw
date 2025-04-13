@@ -1435,10 +1435,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20250412.0":
-  version: 4.20250412.0
-  resolution: "@cloudflare/workers-types@npm:4.20250412.0"
-  checksum: 10/cbced0ca941b93125d3a1f37f9c3845c0f7b18bf923f3c8bd5ebd3392972185c7f6f9ba7ccaadb64d77f825eb63127f42d888f29f50654fa608de603a3c16221
+"@cloudflare/workers-types@npm:^4.20250413.0":
+  version: 4.20250413.0
+  resolution: "@cloudflare/workers-types@npm:4.20250413.0"
+  checksum: 10/9b86d37bab3cf85c8a8dddb26a5b67c6f3f03a9108efffa0927055f83095487892b30426e7ebf776079ec2b482361acef67cecd10f6602bdd375a6c508ccd516
   languageName: node
   linkType: hard
 
@@ -9228,7 +9228,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20250412.0"
+    "@cloudflare/workers-types": "npm:^4.20250413.0"
     "@heroicons/vue": "npm:^2.2.0"
     "@nuxtjs/tailwindcss": "npm:^6.13.2"
     "@sapphire/prettier-config": "npm:^2.0.0"
