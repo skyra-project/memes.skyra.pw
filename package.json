@@ -12,26 +12,26 @@
 		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250525.0",
+		"@cloudflare/workers-types": "^4.20250606.0",
 		"@heroicons/vue": "^2.2.0",
 		"@nuxtjs/tailwindcss": "^6.14.0",
 		"@sapphire/prettier-config": "^2.0.0",
 		"@tailwindcss/typography": "^0.5.16",
-		"@types/node": "^22.15.21",
+		"@types/node": "^22.15.30",
 		"@types/prettier": "^3.0.0",
-		"@vite-pwa/nuxt": "^1.0.1",
-		"@vueuse/core": "^13.2.0",
-		"@vueuse/nuxt": "^13.2.0",
+		"@vite-pwa/nuxt": "^1.0.3",
+		"@vueuse/core": "^13.3.0",
+		"@vueuse/nuxt": "^13.3.0",
 		"canvas-constructor": "^7.0.2",
 		"discord-api-types": "^0.37.119",
-		"nuxt": "^3.17.4",
+		"nuxt": "^3.17.5",
 		"nuxt-security": "^0.14.4",
 		"prettier": "^3.5.3",
-		"prettier-plugin-tailwindcss": "^0.6.11",
+		"prettier-plugin-tailwindcss": "^0.6.12",
 		"sitemap": "^8.0.0",
-		"wrangler": "^4.16.1"
+		"wrangler": "^4.19.1"
 	},
-	"packageManager": "yarn@4.9.1",
+	"packageManager": "yarn@4.9.2",
 	"resolutions": {
 		"nuxt-security@^0.13.0": "patch:nuxt-security@npm%3A0.13.0#./.yarn/patches/nuxt-security-npm-0.13.0-c6823128eb.patch"
 	}
