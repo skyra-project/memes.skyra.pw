@@ -1435,10 +1435,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20250606.0":
-  version: 4.20250606.0
-  resolution: "@cloudflare/workers-types@npm:4.20250606.0"
-  checksum: 10/cb71ebf9335e741ac72a0b6653527868863c15c43ead6e3ad16d3bc27a80c125cf84c413a32324ba5587e63de01e4651fc8d06b4c4ef7f7c9a4fe2f72041ef5d
+"@cloudflare/workers-types@npm:^4.20250607.0":
+  version: 4.20250607.0
+  resolution: "@cloudflare/workers-types@npm:4.20250607.0"
+  checksum: 10/617a639119cdd608f25f2ba0d3ccf8cacd2e541d5cc0a1b6fe863e570805f2a2644b12265effd0159ee35ce29a50dff1df5c4df813d9a8c0aa028a33fa8c8818
   languageName: node
   linkType: hard
 
@@ -3510,9 +3510,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-pwa/nuxt@npm:^1.0.3":
-  version: 1.0.3
-  resolution: "@vite-pwa/nuxt@npm:1.0.3"
+"@vite-pwa/nuxt@npm:^1.0.4":
+  version: 1.0.4
+  resolution: "@vite-pwa/nuxt@npm:1.0.4"
   dependencies:
     "@nuxt/kit": "npm:^3.9.0"
     pathe: "npm:^1.1.1"
@@ -3523,7 +3523,7 @@ __metadata:
   peerDependenciesMeta:
     "@vite-pwa/assets-generator":
       optional: true
-  checksum: 10/64a7de221ab63318d6c8c52979d1345d6a2a03d9261060a3cd88fdd7ee4086fd6b6acb5dd7f9f20f2c47e027e73c284b3bfb71faa864d64dd00f5a7fe5268c65
+  checksum: 10/58e32a5f81d9d4b600b807f7c4f8100fc222a523e5d807bab8e313190228b88d13c8a562d06f2b8dda39cae85cd40e6bf2d2640a54022f7b058c4772754a1347
   languageName: node
   linkType: hard
 
@@ -10435,14 +10435,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20250606.0"
+    "@cloudflare/workers-types": "npm:^4.20250607.0"
     "@heroicons/vue": "npm:^2.2.0"
     "@nuxtjs/tailwindcss": "npm:^6.14.0"
     "@sapphire/prettier-config": "npm:^2.0.0"
     "@tailwindcss/typography": "npm:^0.5.16"
     "@types/node": "npm:^22.15.30"
     "@types/prettier": "npm:^3.0.0"
-    "@vite-pwa/nuxt": "npm:^1.0.3"
+    "@vite-pwa/nuxt": "npm:^1.0.4"
     "@vueuse/core": "npm:^13.3.0"
     "@vueuse/nuxt": "npm:^13.3.0"
     canvas-constructor: "npm:^7.0.2"
