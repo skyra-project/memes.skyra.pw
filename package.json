@@ -12,26 +12,26 @@
 		"wrangler:dev": "wrangler pages dev dist --local --persist"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250726.0",
+		"@cloudflare/workers-types": "^4.20260702.1",
 		"@heroicons/vue": "^2.2.0",
 		"@nuxtjs/tailwindcss": "^6.14.0",
 		"@sapphire/prettier-config": "^2.0.0",
-		"@tailwindcss/typography": "^0.5.16",
-		"@types/node": "^22.16.5",
+		"@tailwindcss/typography": "^0.5.20",
+		"@types/node": "^22.20.1",
 		"@types/prettier": "^3.0.0",
-		"@vite-pwa/nuxt": "^1.0.4",
-		"@vueuse/core": "^13.5.0",
-		"@vueuse/nuxt": "^13.5.0",
+		"@vite-pwa/nuxt": "^1.1.1",
+		"@vueuse/core": "^13.9.0",
+		"@vueuse/nuxt": "^13.9.0",
 		"canvas-constructor": "^7.0.2",
 		"discord-api-types": "^0.37.119",
-		"nuxt": "^3.17.7",
+		"nuxt": "^3.21.11",
 		"nuxt-security": "^0.14.4",
-		"prettier": "^3.6.2",
-		"prettier-plugin-tailwindcss": "^0.6.14",
-		"sitemap": "^8.0.0",
-		"wrangler": "^4.26.0"
+		"prettier": "^3.9.6",
+		"prettier-plugin-tailwindcss": "^0.8.1",
+		"sitemap": "^8.0.3",
+		"wrangler": "^4.129.0"
 	},
-	"packageManager": "yarn@4.9.2",
+	"packageManager": "yarn@4.18.0",
 	"resolutions": {
 		"nuxt-security@^0.13.0": "patch:nuxt-security@npm%3A0.13.0#./.yarn/patches/nuxt-security-npm-0.13.0-c6823128eb.patch"
 	}
