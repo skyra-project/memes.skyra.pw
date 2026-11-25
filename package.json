@@ -19,7 +19,7 @@
 		"@tailwindcss/typography": "^0.5.16",
 		"@types/node": "^22.16.5",
 		"@types/prettier": "^3.0.0",
-		"@vite-pwa/nuxt": "^1.0.4",
+		"@vite-pwa/nuxt": "^2.0.4",
 		"@vueuse/core": "^13.5.0",
 		"@vueuse/nuxt": "^13.5.0",
 		"canvas-constructor": "^7.0.2",
